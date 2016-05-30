@@ -8,6 +8,7 @@ using TypeLibTypes.Interop;
 using System.Threading;
 using CoreRuleEngine;
 using System.IO;
+using System.Linq;
 using TlbImpRuleEngine;
 using System.Xml;
 using TypeLibraryTreeView;
@@ -170,12 +171,7 @@ namespace TlbImpRuleFileEditor
                                                           condition.GetConditionDef().GetConditionName()));
                     return false;
                 }
-                for (int i = 0; i < list.Count; i++)
-                {
-                    if (!CheckCondition(list[i]))
-                        return false;
-                }
-                return true;
+                return list.All(t => CheckCondition(t));
             }
             else
             {

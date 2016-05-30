@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using CoreRuleEngine;
 using System.Text.RegularExpressions;
@@ -61,12 +62,7 @@ namespace TlbImpRuleEngine
         public bool IsTrue(string subjectValue, string objectValue)
         {
             string[] isAnyStringArray = objectValue.Split(new char[] { ';' });
-            foreach (string oneValue in isAnyStringArray)
-            {
-                if (oneValue.Equals(subjectValue))
-                    return true;
-            }
-            return false;
+            return isAnyStringArray.Any(oneValue => oneValue.Equals(subjectValue));
         }
 
         public bool CanApplyToCondition(IConditionDef conditionCreator)

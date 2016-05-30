@@ -5,6 +5,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports System
 Imports System.Text
 Imports System.Collections.Generic
+Imports System.Linq
 Imports PInvoke
 
 
@@ -35,21 +36,17 @@ Public Class NativeSymbolIteratorTest
     End Property
 
     Private Sub EnsureIsSymbol(ByVal sym As NativeSymbol, ByVal list As List(Of NativeSymbolRelationship))
-        For Each rel As NativeSymbolRelationship In list
-            If Object.ReferenceEquals(sym, rel.Symbol) Then
-                Return
-            End If
-        Next
+        If list.Any(Function(rel) Object.ReferenceEquals(sym, rel.Symbol)) Then
+            Return
+        End If
 
         Assert.Fail("Could not find the symbol")
     End Sub
 
     Private Sub EnsureIsParent(ByVal sym As NativeSymbol, ByVal list As List(Of NativeSymbolRelationship))
-        For Each rel As NativeSymbolRelationship In list
-            If Object.ReferenceEquals(sym, rel.Parent) Then
-                Return
-            End If
-        Next
+        If list.Any(Function(rel) Object.ReferenceEquals(sym, rel.Parent)) Then
+            Return
+        End If
 
         Assert.Fail("Could not find the symbol")
     End Sub

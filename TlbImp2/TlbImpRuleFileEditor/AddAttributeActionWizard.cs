@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using TlbImpRuleEngine;
 using System.Globalization;
+using System.Linq;
 using System.Xml;
 
 namespace TlbImpRuleFileEditor
@@ -250,14 +251,7 @@ namespace TlbImpRuleFileEditor
 
         private ConstructorInfo GetConstructor(ConstructorInfo[] constructorInfos, string ctorToken)
         {
-            foreach (ConstructorInfo ctor in constructorInfos)
-            {
-                if (ctor.ToString().Equals(ctorToken))
-                {
-                    return ctor;
-                }
-            }
-            return null;
+            return constructorInfos.FirstOrDefault(ctor => ctor.ToString().Equals(ctorToken));
         }
 
         private void textBoxAssembly_TextChanged(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Linq;
 
 namespace CoreRuleEngine
 {
@@ -54,14 +55,7 @@ namespace CoreRuleEngine
 
         public override bool Match(IMatchTarget matchTarget)
         {
-            for (int i = 0; i < m_list.Count; i++)
-            {
-                if (!m_list[i].Match(matchTarget))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return m_list.All(t => t.Match(matchTarget));
         }
 
         public override IConditionDef GetConditionDef()
