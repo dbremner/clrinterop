@@ -215,11 +215,11 @@ namespace TlbImpRegressionTestTool
 
         private void ChangeRunningTestCases2Untested(List<TestCase> testCaseList)
         {
-            for (int i = 0; i < testCaseList.Count; i++)
+            foreach (TestCase testCase in testCaseList)
             {
-                if (testCaseList[i].TestCaseStatus == TestCaseStatus.Running)
+                if (testCase.TestCaseStatus == TestCaseStatus.Running)
                 {
-                    testCaseList[i].TestCaseStatus = TestCaseStatus.Untested;
+                    testCase.TestCaseStatus = TestCaseStatus.Untested;
                 }
             }
         }

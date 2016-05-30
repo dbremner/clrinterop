@@ -73,17 +73,17 @@ namespace tlbimp2.Event
 
             // Process all the methods in the event interface.
             MethodInfo[] aMethods = TCEAdapterGenerator.GetNonPropertyMethods(m_SrcItfType);
-            for (int cMethods = 0; cMethods < aMethods.Length; cMethods++)
+            foreach (MethodInfo aMethodInfo in aMethods)
             {
-                if (m_SrcItfType == aMethods[cMethods].DeclaringType)
+                if (m_SrcItfType == aMethodInfo.DeclaringType)
                 {
                     // Define the add_XXX method.
                     MethodBuilder AddEventMethodBuilder = DefineAddEventMethod(
-                        OutputTypeBuilder, aMethods[cMethods], m_SinkHelperType, fbSinkHelper, fbEventCP, InitSrcItfMethodBuilder);
+                        OutputTypeBuilder, aMethodInfo, m_SinkHelperType, fbSinkHelper, fbEventCP, InitSrcItfMethodBuilder);
 
                     // Define the remove_XXX method.
                     MethodBuilder RemoveEventMethodBuilder = DefineRemoveEventMethod(
-                        OutputTypeBuilder, aMethods[cMethods], m_SinkHelperType, fbSinkHelper, fbEventCP);
+                        OutputTypeBuilder, aMethodInfo, m_SinkHelperType, fbSinkHelper, fbEventCP);
                 }
             }
 

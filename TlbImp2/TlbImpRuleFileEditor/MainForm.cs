@@ -144,14 +144,14 @@ namespace TlbImpRuleFileEditor
         private bool CheckRuleSet(RuleSet ruleSet)
         {
             List<Rule> rules = ruleSet.GetAllRules();
-            for (int i = 0; i < rules.Count; i++)
+            foreach (Rule rule in rules)
             {
-                if (rules[i].Action == null || !rules[i].Action.IsInitialized)
+                if (rule.Action == null || !rule.Action.IsInitialized)
                 {
-                    MessageBox.Show(Resource.FormatString("Wrn_ActionUninitialized", rules[i].Name));
+                    MessageBox.Show(Resource.FormatString("Wrn_ActionUninitialized", rule.Name));
                     return false;
                 }
-                if (!CheckCondition(rules[i].Condition))
+                if (!CheckCondition(rule.Condition))
                 {
                     return false;
                 }

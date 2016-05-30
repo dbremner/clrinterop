@@ -283,13 +283,13 @@ namespace tlbimp2.Event
             il.Emit(OpCodes.Stfld, fbCookie);
 
             // Generate the code to set all the delegates to NULL.
-            for (int cDelegates = 0; cDelegates < afbDelegates.Length; cDelegates++)
+            foreach (FieldBuilder afbDelegate in afbDelegates)
             {
-                if (afbDelegates[cDelegates] != null)
+                if (afbDelegate != null)
                 {
                     il.Emit(OpCodes.Ldarg, (short)0);
                     il.Emit(OpCodes.Ldnull);
-                    il.Emit(OpCodes.Stfld, afbDelegates[cDelegates]);
+                    il.Emit(OpCodes.Stfld, afbDelegate);
                 }
             }
 

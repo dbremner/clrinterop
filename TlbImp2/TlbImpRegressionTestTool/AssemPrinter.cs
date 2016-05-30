@@ -136,8 +136,8 @@ public class AssemPrinter
         }
         Console.WriteLine("Loaded Assemblies");
         Assembly[] asmss = AppDomain.CurrentDomain.ReflectionOnlyGetAssemblies();
-        for (int i = 0; i < asmss.Length; i++)
-            Console.WriteLine(asmss[i]);
+        foreach (Assembly assembly in asmss)
+            Console.WriteLine(assembly);
 
         Array.Sort(asms, sc);
         foreach (AssemblyName a in asms)
@@ -186,9 +186,8 @@ public class AssemPrinter
 
         Console.WriteLine("Loaded Assemblies");
         asmss = AppDomain.CurrentDomain.ReflectionOnlyGetAssemblies();
-        for (int i = 0; i < asmss.Length; i++)
-            Console.WriteLine(asmss[i]);
-
+        foreach (Assembly assembly in asmss)
+            Console.WriteLine(assembly);
     }
     void PrintAssemblyName(Assembly asm, AssemblyName asmName, bool IsExtern)
     {

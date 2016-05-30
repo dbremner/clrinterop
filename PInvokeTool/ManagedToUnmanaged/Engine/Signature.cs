@@ -711,12 +711,12 @@ namespace SignatureGenerator
             // enumerate return type and parameter types to find all related definitions avoiding duplicates
             returnType.GetDefinitionsRecursive(set, parentDef);
 
-            for (int i = 0; i < parameters.Length; i++)
+            foreach (NativeParameter parameter in parameters)
             {
                 // Type may be null of special parameters like the ... ellipsis
-                if (parameters[i].Type != null)
+                if (parameter.Type != null)
                 {
-                    parameters[i].Type.GetDefinitionsRecursive(set, parentDef);
+                    parameter.Type.GetDefinitionsRecursive(set, parentDef);
                 }
             }
         }
