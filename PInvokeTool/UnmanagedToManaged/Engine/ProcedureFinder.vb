@@ -65,20 +65,20 @@ Public Class ProcedureFinder
     End Sub
 
     Public Sub AddDll(ByVal dllName As String)
-        If dllName Is Nothing Then : Throw New ArgumentNullException("dllName") : End If
+        If dllName Is Nothing Then : Throw New ArgumentNullException(NameOf(dllName)) : End If
 
         m_dllMap.Add(dllName, IntPtr.Zero)
         m_loaded = False
     End Sub
 
     Public Function TryFindDllNameExact(ByVal procName As String, ByRef dllName As String) As Boolean
-        If procName Is Nothing Then : Throw New ArgumentNullException("procName") : End If
+        If procName Is Nothing Then : Throw New ArgumentNullException(NameOf(procName)) : End If
 
         Return TryFindDllNameImpl(procName, dllName)
     End Function
 
     Public Function TryFindDllName(ByVal procName As String, ByRef dllName As String) As Boolean
-        If procName Is Nothing Then : Throw New ArgumentNullException("procName") : End If
+        If procName Is Nothing Then : Throw New ArgumentNullException(NameOf(procName)) : End If
 
         If Not TryFindDllNameImpl(procName, dllName) _
             AndAlso Not TryFindDllNameImpl(procName & "W", dllName) Then

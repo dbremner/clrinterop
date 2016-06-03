@@ -1120,7 +1120,7 @@ namespace SignatureGenerator
         public static NativeType FromClrParameter(ParameterInfo pi, MarshalFlags flags)
         {
             if (pi == null)
-                throw new ArgumentNullException("pi");
+                throw new ArgumentNullException(nameof(pi));
 
             NativeTypeDesc desc = new NativeTypeDesc(pi,
                 flags & ~(MarshalFlags.ArrayElement | MarshalFlags.StructField));
@@ -1131,7 +1131,7 @@ namespace SignatureGenerator
         public static NativeType FromClrField(FieldInfo fi, MarshalFlags flags)
         {
             if (fi == null)
-                throw new ArgumentNullException("fi");
+                throw new ArgumentNullException(nameof(fi));
 
             NativeTypeDesc desc = new NativeTypeDesc(fi,
                 (flags & ~MarshalFlags.ArrayElement) | MarshalFlags.StructField);
@@ -1142,7 +1142,7 @@ namespace SignatureGenerator
         public static NativeType FromClrType(Type type, MarshalFlags flags)
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             NativeTypeDesc desc = new NativeTypeDesc(type, flags);
 
@@ -1152,7 +1152,7 @@ namespace SignatureGenerator
         public static NativeType FromClrArrayElement(Type arrayType, UnmanagedType elementUnmanagedType, MarshalFlags flags)
         {
             if (arrayType == null)
-                throw new ArgumentNullException("arrayType");
+                throw new ArgumentNullException(nameof(arrayType));
 
             Type element_managed_type;
             if (arrayType == typeof(System.Array))
@@ -1172,7 +1172,7 @@ namespace SignatureGenerator
             }
             else
             {
-                throw new ArgumentException("", "arrayType");
+                throw new ArgumentException("", nameof(arrayType));
             }
 
             // we intentionally do not clear MarshalFlags.ByRefParam because we want the by-ref

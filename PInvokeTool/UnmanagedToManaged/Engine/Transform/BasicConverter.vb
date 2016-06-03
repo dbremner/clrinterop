@@ -134,7 +134,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function ConvertNativeCodeToPInvokeCode(ByVal code As String) As String
-            If code Is Nothing Then : Throw New ArgumentNullException("code") : End If
+            If code Is Nothing Then : Throw New ArgumentNullException(NameOf(code)) : End If
 
             Dim ep As New ErrorProvider()
             Dim col As CodeTypeDeclarationCollection = ConvertNativeCodeToCodeDom(code, ep)
@@ -149,8 +149,8 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function ConvertNativeCodeToCodeDom(ByVal code As String, ByVal ep As ErrorProvider) As CodeTypeDeclarationCollection
-            If code Is Nothing Then : Throw New ArgumentNullException("code") : End If
-            If ep Is Nothing Then : Throw New ArgumentNullException("ep") : End If
+            If code Is Nothing Then : Throw New ArgumentNullException(NameOf(code)) : End If
+            If ep Is Nothing Then : Throw New ArgumentNullException(NameOf(ep)) : End If
 
             Dim analyzer As NativeCodeAnalyzer = NativeCodeAnalyzerFactory.CreateForMiniParse(OsVersion.WindowsVista, m_ns.LoadAllMacros())
             Dim bag As NativeSymbolBag

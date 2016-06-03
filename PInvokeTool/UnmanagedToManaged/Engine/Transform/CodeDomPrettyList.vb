@@ -18,7 +18,7 @@ Namespace Transform
         End Sub
 
         Public Sub PerformRename(ByVal col As CodeTypeDeclarationCollection)
-            If col Is Nothing Then : Throw New ArgumentNullException("col") : End If
+            If col Is Nothing Then : Throw New ArgumentNullException(NameOf(col)) : End If
 
             Dim map As New Dictionary(Of String, String)(StringComparer.Ordinal)
             map.Add("tagPOINT", "Point")

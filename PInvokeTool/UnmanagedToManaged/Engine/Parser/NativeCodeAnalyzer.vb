@@ -229,7 +229,7 @@ Namespace Parser
         ''' <remarks></remarks>
         Public Function Analyze(ByVal filePath As String) As NativeCodeAnalyzerResult
             If String.IsNullOrEmpty(filePath) Then
-                Throw New ArgumentNullException("path")
+                Throw New ArgumentNullException(NameOf(filePath))
             End If
 
             Using reader As New StreamReader(filePath)
@@ -246,7 +246,7 @@ Namespace Parser
         ''' <remarks></remarks>
         Public Function Analyze(ByVal reader As TextReader) As NativeCodeAnalyzerResult
             If reader Is Nothing Then
-                Throw New ArgumentNullException("reader")
+                Throw New ArgumentNullException(NameOf(reader))
             End If
 
             Return AnalyzeImpl(New TextReaderBag(reader))
@@ -261,7 +261,7 @@ Namespace Parser
         ''' <remarks></remarks>
         Public Function RunPreProcessor(ByVal filePath As String) As TextReaderBag
             If String.IsNullOrEmpty(filePath) Then
-                Throw New ArgumentNullException("filePath")
+                Throw New ArgumentNullException(NameOf(filePath))
             End If
 
             Dim result As New NativeCodeAnalyzerResult()
