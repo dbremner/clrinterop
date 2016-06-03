@@ -61,7 +61,8 @@ namespace SignatureGenerator
 
             public EnumField(string name, object value)
             {
-                Debug.Assert(name != null && value != null);
+                if (name == null) throw new ArgumentNullException(nameof(name));
+                if (value == null) throw new ArgumentNullException(nameof(value));
 
                 this.Name = name;
                 this.Value = Convert.ToDecimal(value);
@@ -186,7 +187,9 @@ namespace SignatureGenerator
 
         public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null && fields != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
+            Debug.Assert(fields != null);
 
             printer.Print(OutputType.Keyword, "enum");
             printer.Print(OutputType.Other, " ");

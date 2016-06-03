@@ -167,7 +167,7 @@ namespace SignatureGenerator
         /// </summary>
         public NativeTypeDesc(ParameterInfo pi, MarshalFlags flags)
         {
-            Debug.Assert(pi != null);
+            if (pi == null) throw new ArgumentNullException(nameof(pi));
 
             SetupTypeAndFlags(pi.ParameterType, flags);
 
@@ -193,7 +193,8 @@ namespace SignatureGenerator
         /// </summary>
         public NativeTypeDesc(FieldInfo fi, MarshalFlags flags)
         {
-            Debug.Assert(fi != null && !fi.IsStatic);
+            if (fi == null) throw new ArgumentNullException(nameof(fi));
+            Debug.Assert(!fi.IsStatic);
 
             SetupTypeAndFlags(fi.FieldType, flags);
 
@@ -213,7 +214,7 @@ namespace SignatureGenerator
         /// </summary>
         public NativeTypeDesc(Type type, MarshalFlags flags)
         {
-            Debug.Assert(type != null);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             SetupTypeAndFlags(type, flags);
         }
@@ -223,7 +224,7 @@ namespace SignatureGenerator
         /// </summary>
         public NativeTypeDesc(Type type, UnmanagedType unmngType, MarshalFlags flags)
         {
-            Debug.Assert(type != null);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             SetupTypeAndFlags(type, flags);
 
@@ -390,7 +391,8 @@ namespace SignatureGenerator
         /// </summary>
         public static NativeSignature FromPInvokeSignature(MethodInfo mi, bool ansiPlatform, bool platform64bit)
         {
-            Debug.Assert(mi != null && (mi.Attributes & MethodAttributes.PinvokeImpl) == MethodAttributes.PinvokeImpl);
+            if (mi == null) throw new ArgumentNullException(nameof(mi));
+            Debug.Assert((mi.Attributes & MethodAttributes.PinvokeImpl) == MethodAttributes.PinvokeImpl);
 
             NativeSignature sig = new NativeSignature(false, false);
 
@@ -476,7 +478,7 @@ namespace SignatureGenerator
         /// </summary>
         public static NativeSignature FromComInteropSignature(MethodInfo mi, bool ansiPlatform, bool platform64bit)
         {
-            Debug.Assert(mi != null);
+            if (mi == null) throw new ArgumentNullException(nameof(mi));
 
             MethodImplAttributes mia = mi.GetMethodImplementationFlags();
 
@@ -540,7 +542,8 @@ namespace SignatureGenerator
         /// </summary>
         public static NativeSignature FromDelegateType(Type delegateType, bool ansiPlatform, bool platform64bit)
         {
-            Debug.Assert(delegateType != null && typeof(Delegate).IsAssignableFrom(delegateType));
+            if (delegateType == null) throw new ArgumentNullException(nameof(delegateType));
+            Debug.Assert(typeof(Delegate).IsAssignableFrom(delegateType));
 
             NativeSignature sig = new NativeSignature(true, false);
 
@@ -602,7 +605,8 @@ namespace SignatureGenerator
 
         public void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             // print the signature log to the log printer
             if (_log != null)
@@ -798,7 +802,7 @@ namespace SignatureGenerator
 
         public static NativeParameter FromClrParameter(ParameterInfo pi, MarshalFlags flags)
         {
-            Debug.Assert(pi != null);
+            if (pi == null) throw new ArgumentNullException(nameof(pi));
 
             string name = Utility.MakeCIdentifier(pi.Name);
             if (String.IsNullOrEmpty(name))
@@ -831,7 +835,8 @@ namespace SignatureGenerator
 
         public void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             if (type != null)
             {
@@ -961,7 +966,7 @@ namespace SignatureGenerator
 
         public static NativeField FromClrField(FieldInfo fi, MarshalFlags flags)
         {
-            Debug.Assert(fi != null);
+            if (fi == null) throw new ArgumentNullException(nameof(fi));
 
             string name = Utility.MakeCIdentifier(fi.Name);
             if (String.IsNullOrEmpty(name))
@@ -1016,7 +1021,8 @@ namespace SignatureGenerator
 
         public void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             // print the log of the underlying type
             type.PrintLog(logPrinter, flags, String.Format(Resources.Field, name));
@@ -1569,7 +1575,8 @@ namespace SignatureGenerator
 
         public virtual void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             // The log is printed by the PrintLog called by NativeParameter/NativeField (we want the log to be
             // associated with the parameter/field as otherwise it would be confusing for the user).
@@ -1714,7 +1721,8 @@ namespace SignatureGenerator
 
         public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             base.PrintTo(printer, logPrinter, flags);
 
@@ -1783,7 +1791,7 @@ namespace SignatureGenerator
 
             public TypeDefKey(Type type, MarshalFlags flags)
             {
-                Debug.Assert(type != null);
+                if (type == null) throw new ArgumentNullException(nameof(type));
 
                 this.Type = type;
                 this.Flags = flags;
@@ -1813,7 +1821,7 @@ namespace SignatureGenerator
         protected static T Get<T>(TypeDefKey key)
             where T : NativeTypeDefinition, new()
         {
-            Debug.Assert(key != null);
+            if (key == null) throw new ArgumentNullException(nameof(key));
 
             NativeTypeDefinition definition;
             T specific_definition;
@@ -1887,7 +1895,8 @@ namespace SignatureGenerator
 
         public virtual void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             if (_log != null)
             {

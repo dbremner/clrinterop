@@ -237,7 +237,8 @@ namespace SignatureGenerator
 
             public PrintContext(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
             {
-                Debug.Assert(printer != null && logPrinter != null);
+                if (printer == null) throw new ArgumentNullException(nameof(printer));
+                if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
                 this.printer = printer;
                 this.logPrinter = logPrinter;
@@ -406,7 +407,7 @@ namespace SignatureGenerator
 
             public ForwardDeclaration(StructureDefinition definition)
             {
-                Debug.Assert(definition != null);
+                if (definition == null) throw new ArgumentNullException(nameof(definition));
                 this.definition = definition;
             }
 
@@ -808,7 +809,8 @@ namespace SignatureGenerator
 
         public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             base.PrintTo(printer, logPrinter, flags);
 

@@ -23,7 +23,7 @@ namespace SignatureGenerator
 
         public ErrorDesc(int errorCode, Severity severity, string message)
         {
-            Debug.Assert(message != null);
+            if (message == null) throw new ArgumentNullException(nameof(message));
 
             this.ErrorCode = errorCode;
             this.Severity = severity;
@@ -34,31 +34,31 @@ namespace SignatureGenerator
 
         public void PrintTo(ILogPrinter logPrinter)
         {
-            Debug.Assert(logPrinter != null);
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
             logPrinter.PrintEntry(Severity, ErrorCode, Message);
         }
 
         public void PrintTo(ILogPrinter logPrinter, object arg1)
         {
-            Debug.Assert(logPrinter != null);
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
             logPrinter.PrintEntry(Severity, ErrorCode, String.Format(Message, arg1));
         }
 
         public void PrintTo(ILogPrinter logPrinter, object arg1, object arg2)
         {
-            Debug.Assert(logPrinter != null);
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
             logPrinter.PrintEntry(Severity, ErrorCode, String.Format(Message, arg1, arg2));
         }
 
         public void PrintTo(ILogPrinter logPrinter, object arg1, object arg2, object arg3)
         {
-            Debug.Assert(logPrinter != null);
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
             logPrinter.PrintEntry(Severity, ErrorCode, String.Format(Message, arg1, arg2, arg3));
         }
 
         public void PrintTo(ILogPrinter logPrinter, params object[] args)
         {
-            Debug.Assert(logPrinter != null);
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
             logPrinter.PrintEntry(Severity, ErrorCode, String.Format(Message, args));
         }
 

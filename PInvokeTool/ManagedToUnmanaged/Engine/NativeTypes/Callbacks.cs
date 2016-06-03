@@ -91,7 +91,7 @@ namespace SignatureGenerator
 
             public ForwardDeclaration(FunctionPtrDefinition definition)
             {
-                Debug.Assert(definition != null);
+                if (definition == null) throw new ArgumentNullException(nameof(definition));
                 this.definition = definition;
             }
 
@@ -200,7 +200,9 @@ namespace SignatureGenerator
 
         public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null && signature != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
+            Debug.Assert(signature != null);
 
             if (hasForwardDeclaration)
             {

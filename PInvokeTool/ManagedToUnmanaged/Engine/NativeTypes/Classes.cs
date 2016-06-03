@@ -248,7 +248,8 @@ namespace SignatureGenerator
 
         public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
-            Debug.Assert(printer != null && logPrinter != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (logPrinter == null) throw new ArgumentNullException(nameof(logPrinter));
 
             if (isUndefined && (flags & PrintFlags.UseDefinedComInterfaces) == PrintFlags.UseDefinedComInterfaces)
             {

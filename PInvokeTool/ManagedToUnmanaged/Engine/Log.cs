@@ -114,7 +114,7 @@ namespace SignatureGenerator
 
         public void Print(ILogPrinter printer, string messagePrefix)
         {
-            Debug.Assert(printer != null);
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
 
             foreach (LogEntry entry in Entries())
             {

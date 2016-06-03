@@ -399,7 +399,7 @@ namespace SignatureGenerator
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands")]
         internal static Type GetNormalizedType(Type type)
         {
-            Debug.Assert(type != null);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             Type orig_type = type;
 
@@ -470,7 +470,7 @@ namespace SignatureGenerator
 
         internal static string MakeCIdentifier(string arg)
         {
-            Debug.Assert(arg != null);
+            if (arg == null) throw new ArgumentNullException(nameof(arg));
 
             StringBuilder sb = null;
 

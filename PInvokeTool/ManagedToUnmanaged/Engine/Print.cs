@@ -178,7 +178,8 @@ namespace SignatureGenerator
 
         public void ReplayTo(ILogPrinter anotherPrinter)
         {
-            Debug.Assert(anotherPrinter != null && anotherPrinter != this);
+            if (anotherPrinter == null) throw new ArgumentNullException(nameof(anotherPrinter));
+            Debug.Assert(anotherPrinter != this);
 
             foreach (Log.LogEntry entry in log.Entries())
             {
@@ -320,7 +321,8 @@ namespace SignatureGenerator
 
         public void ReplayTo(ICodePrinter anotherPrinter)
         {
-            Debug.Assert(anotherPrinter != null && anotherPrinter != this);
+            if (anotherPrinter == null) throw new ArgumentNullException(nameof(anotherPrinter));
+            Debug.Assert(anotherPrinter != this);
 
             foreach (PrintEntry entry in list)
             {

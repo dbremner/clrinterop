@@ -35,7 +35,7 @@ namespace WindowsTool
 
         public RichTextPrinter(RichTextBox textBox)
         {
-            Debug.Assert(textBox != null);
+            if (textBox == null) throw new ArgumentNullException(nameof(textBox));
 
             this.textBox = textBox;
         }

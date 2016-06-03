@@ -302,7 +302,8 @@ namespace SignatureGenerator
 
         public static bool IsKeyword(string str)
         {
-            Debug.Assert(!String.IsNullOrEmpty(str));
+            if (String.IsNullOrEmpty(str))
+                throw new ArgumentException("string is null or empty",nameof(str));
 
             if (Char.IsUpper(str[0])) return false;
 
