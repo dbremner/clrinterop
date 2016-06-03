@@ -4,6 +4,7 @@ using System.Text;
 
 namespace TlbImpRegressionTestTool
 {
+    [Serializable]
     class BadXmlFormatException : Exception
     {
     }

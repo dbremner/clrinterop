@@ -15,10 +15,12 @@ namespace TlbImpRuleFileEditor
         }
     }
 
+    [Serializable]
     public class ParseDataFailedException : ApplicationException
     {
     }
 
+    [Serializable]
     public class ParseDataTypeUnsupportedException : ApplicationException
     {
     }
