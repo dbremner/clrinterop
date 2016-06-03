@@ -20,43 +20,42 @@ namespace TypeLibraryTreeView
     {
         delegate IntPtr GetTypeLibAttrDelegate(ITypeLib typeLib);
 
-        private static GetTypeLibAttrDelegate s_getTypeLibAttrDelegate =
-                new GetTypeLibAttrDelegate(GetTypeLibAttr_Proxy);
+        private static readonly GetTypeLibAttrDelegate s_getTypeLibAttrDelegate =
+                GetTypeLibAttr_Proxy;
 
         delegate void ReleaseTypeLibAttrDelegate(ITypeLib typeLib, IntPtr libAttr);
 
-        private static ReleaseTypeLibAttrDelegate s_releaseTypeLibAttrDelegate =
-                new ReleaseTypeLibAttrDelegate(ReleaseTypeLibAttr_Proxy);
+        private static readonly ReleaseTypeLibAttrDelegate s_releaseTypeLibAttrDelegate =
+                ReleaseTypeLibAttr_Proxy;
 
         delegate IntPtr GetTypeAttrDelegate(ITypeInfo typeInfo);
 
-        private static GetTypeAttrDelegate s_getTypeAttrDelegate =
-                new GetTypeAttrDelegate(GetTypeAttr_Proxy);
+        private static readonly GetTypeAttrDelegate s_getTypeAttrDelegate = 
+                GetTypeAttr_Proxy;
 
         delegate void ReleaseTypeAttrDelegate(ITypeInfo typeInfo, IntPtr typeAttr);
 
-        private static ReleaseTypeAttrDelegate s_releaseTypeAttrDelegate =
-                new ReleaseTypeAttrDelegate(ReleaseTypeAttr_Proxy);
+        private static readonly ReleaseTypeAttrDelegate s_releaseTypeAttrDelegate =
+                ReleaseTypeAttr_Proxy;
 
         delegate IntPtr GetFuncDescDelegate(ITypeInfo typeInfo, int index);
 
-        private static GetFuncDescDelegate s_getFuncDescDelegate =
-                new GetFuncDescDelegate(GetFuncDesc_Proxy);
+        private static readonly GetFuncDescDelegate s_getFuncDescDelegate = 
+                GetFuncDesc_Proxy;
 
         delegate void ReleaseFuncDescDelegate(ITypeInfo typeInfo, IntPtr funcDesc);
         
-        private static ReleaseFuncDescDelegate s_releaseFuncDescDelegate =
-                new ReleaseFuncDescDelegate(ReleaseFuncDesc_Proxy);
+        private static readonly ReleaseFuncDescDelegate s_releaseFuncDescDelegate =
+                ReleaseFuncDesc_Proxy;
 
         delegate IntPtr GetVarDescDelegate(ITypeInfo typeInfo, int index);
 
-        private static GetVarDescDelegate s_getVarDescDelegate =
-                new GetVarDescDelegate(GetVarDesc_Proxy);
+        private static readonly GetVarDescDelegate s_getVarDescDelegate = GetVarDesc_Proxy;
 
         delegate void ReleaseVarDescDelegate(ITypeInfo typeInfo, IntPtr varDesc);
 
-        private static ReleaseVarDescDelegate s_releaseVarDescDelegate =
-               new ReleaseVarDescDelegate(ReleaseVarDesc_Proxy);
+        private static readonly ReleaseVarDescDelegate s_releaseVarDescDelegate =
+               ReleaseVarDesc_Proxy;
 
         DaemonForm m_form;
 

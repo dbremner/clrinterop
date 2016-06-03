@@ -41,7 +41,7 @@ namespace TlbImpRegressionTestTool
             InitializeComponent();
             m_settings = new TestCaseSettings();
             m_enableRunMenuItemDelegate =
-                new EnableRunMenuItemDelegate(this.EnableRunMenuItem);
+                this.EnableRunMenuItem;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace TlbImpRegressionTestTool
             for (int i = 0; i < testCaseList.Count; i++)
             {
                 testCaseList[i].StatusChange +=
-                    new TestCase.StatusChangeHandler(this.TestCaseStatusChangeHandler);
+                    this.TestCaseStatusChangeHandler;
                 dataGridViewTestCases[IdColumnName, i].Value = "" + (i + 1);
                 dataGridViewTestCases[TargetColumnName, i].Value = testCaseList[i].TestedTarget;
                 dataGridViewTestCases[WorkingDirectoryName, i].Value = testCaseList[i].WorkingDirectory;

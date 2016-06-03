@@ -22,7 +22,7 @@ public class AssemPrinter
     private void ConnectEvent()
     {
         AppDomain currentDomain = Thread.GetDomain();
-        ResolveEventHandler asmResolveHandler = new ResolveEventHandler(this.ReflectionOnlyResolveAsmEvent);
+        ResolveEventHandler asmResolveHandler = this.ReflectionOnlyResolveAsmEvent;
         currentDomain.ReflectionOnlyAssemblyResolve += asmResolveHandler;
     }
 

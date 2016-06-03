@@ -254,7 +254,7 @@ namespace WindowsTool
             }
 
             // Start building the native storage 
-            ThreadPool.QueueUserWorkItem(new WaitCallback(this.LoadNativeStorage), this);
+            ThreadPool.QueueUserWorkItem(this.LoadNativeStorage, this);
 
             // Load up the correct tab page
             switch ((TabMode)(userSettings.Mode))
@@ -289,8 +289,8 @@ namespace WindowsTool
             symbolDisplay.SearchKind = ParseOrDefault(userSettings.PInvokeSearchKind, SearchKind.All);
             symbolDisplay.LanguageType = ParseOrDefault(userSettings.PInvokeLanguageType, PInvoke.Transform.LanguageType.CSharp);
             snippetDisplay.LanguageType = ParseOrDefault(userSettings.PInvokeLanguageType, PInvoke.Transform.LanguageType.CSharp);
-            snippetDisplay.LanguageTypeChanged += new EventHandler(OnLanguageTypeChanged);
-            symbolDisplay.LanguageTypeChanged += new EventHandler(OnLanguageTypeChanged);
+            snippetDisplay.LanguageTypeChanged += OnLanguageTypeChanged;
+            symbolDisplay.LanguageTypeChanged += OnLanguageTypeChanged;
         }
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)

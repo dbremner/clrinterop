@@ -457,7 +457,7 @@ namespace tlbimp2
 
             // Add a listener for the reflection load only resolve events.
             AppDomain currentDomain = Thread.GetDomain();
-            ResolveEventHandler asmResolveHandler = new ResolveEventHandler(ReflectionOnlyResolveAsmEvent);
+            ResolveEventHandler asmResolveHandler = ReflectionOnlyResolveAsmEvent;
             currentDomain.ReflectionOnlyAssemblyResolve += asmResolveHandler;
 
             ConverterSettings settings;

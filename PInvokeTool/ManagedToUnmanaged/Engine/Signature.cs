@@ -1934,7 +1934,7 @@ namespace SignatureGenerator
     public class NativeTypeDefinitionSet : Set<NativeTypeDefinition>
     {
         public NativeTypeDefinitionSet()
-            : base(new Transformer<NativeTypeDefinition>(GetForwardDeclaration))
+            : base(GetForwardDeclaration)
         { }
 
         static bool GetForwardDeclaration(ref NativeTypeDefinition definition)

@@ -93,7 +93,7 @@ namespace WindowsTool
 
         static Reflector()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolveHandler);
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolveHandler;
         }
 
         public Reflector(string assemblyPath)
