@@ -144,7 +144,7 @@ Namespace Controls
         ''' <remarks></remarks>
         Private Sub OnSearchKindChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles m_searchKindCb.SelectedIndexChanged
             If m_searchKindCb.SelectedItem IsNot Nothing Then
-                Dim kind As SearchKind = DirectCast(m_searchKindCb.SelectedItem, SearchKind)
+                Dim kind = DirectCast(m_searchKindCb.SelectedItem, SearchKind)
                 If m_searchGrid IsNot Nothing Then
                     m_searchGrid.SearchKind = kind
                 End If

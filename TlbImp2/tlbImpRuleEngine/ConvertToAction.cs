@@ -43,14 +43,14 @@ namespace TlbImpRuleEngine
 
         public IAction Create()
         {
-            ConvertToAction convertToAction = new ConvertToAction();
+            var convertToAction = new ConvertToAction();
             return convertToAction;
         }
 
         public IAction Create(Dictionary<string, string> parameters)
         {
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
-            ConvertToAction convertToAction = new ConvertToAction();
+            var convertToAction = new ConvertToAction();
             if (parameters.ContainsKey(ParameterDirection))
             {
                 convertToAction.Direction = parameters[ParameterDirection];
@@ -282,7 +282,7 @@ namespace TlbImpRuleEngine
             if (convertToAttributes == null) throw new ArgumentNullException(nameof(convertToAttributes));
             string attributes = convertToAttributes.Substring(1, convertToAttributes.Length - 2);
             string[] attributePairs = attributes.Split(';');
-            Dictionary<string, string> attributePairDictionary = new Dictionary<string, string>();
+            var attributePairDictionary = new Dictionary<string, string>();
             foreach (string attributePair in attributePairs)
             {
                 string[] pair = attributePair.Split('=');

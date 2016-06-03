@@ -166,7 +166,7 @@ Namespace Transform
             ' Go through and put each struct back at the start of the struct to simulate the 
             ' union
             For Each member As CodeTypeMember In ctd.Members
-                Dim fieldMember As CodeMemberField = TryCast(member, CodeMemberField)
+                Dim fieldMember = TryCast(member, CodeMemberField)
                 If fieldMember IsNot Nothing Then
                     fieldMember.CustomAttributes.Add( _
                         MarshalAttributeFactory.CreateFieldOffsetAttribute(0))
@@ -550,7 +550,7 @@ Namespace Transform
             ctd.Members.Add(member)
 
             ' If this is an array then add the appropriate marshal directive if it's an inline array
-            Dim ntArray As NativeArray = TryCast(nt.NativeType, NativeArray)
+            Dim ntArray = TryCast(nt.NativeType, NativeArray)
             If ntArray IsNot Nothing AndAlso ntArray.ElementCount > 0 Then
                 ' Add the struct layout attribute
                 Dim attrRef As New CodeTypeReference(GetType(MarshalAsAttribute))
@@ -576,7 +576,7 @@ Namespace Transform
                 subTypeArg.Name = "ArraySubType"
                 If elemType.Kind = NativeSymbolKind.BuiltinType Then
                     ' Builtin types know their size in bytes
-                    Dim elemBt As NativeBuiltinType = DirectCast(elemType, NativeBuiltinType)
+                    Dim elemBt = DirectCast(elemType, NativeBuiltinType)
                     subTypeArg.Value = New CodeFieldReferenceExpression( _
                         New CodeTypeReferenceExpression(GetType(UnmanagedType)), _
                         elemBt.UnmanagedType.ToString())
@@ -698,22 +698,22 @@ Namespace Transform
             Select Case proxyNt.Kind
                 Case NativeSymbolKind.ArrayType
                     comment &= proxyNt.DisplayName
-                    Dim arrayNt As NativeArray = DirectCast(proxyNt, NativeArray)
+                    Dim arrayNt = DirectCast(proxyNt, NativeArray)
                     Dim elemRef As CodeTypeReference = GenerateTypeReference(arrayNt.RealType)
                     Dim arrayRef As New CodeTypeReference(elemRef, 1)
                     Return arrayRef
                 Case NativeSymbolKind.PointerType
                     comment &= proxyNt.DisplayName
-                    Dim pointerNt As NativePointer = DirectCast(proxyNt, NativePointer)
+                    Dim pointerNt = DirectCast(proxyNt, NativePointer)
                     Return New CodeTypeReference(GetType(IntPtr))
                 Case NativeSymbolKind.TypedefType
-                    Dim td As NativeTypeDef = DirectCast(proxyNt, NativeTypeDef)
+                    Dim td = DirectCast(proxyNt, NativeTypeDef)
                     comment &= td.Name & "->"
                     Return GenerateTypeReferenceImpl(td.RealType, comment)
                 Case NativeSymbolKind.NamedType
                     ' Don't update the comment for named types.  Otherwise you get lots of 
                     ' comments like DWORD->DWORD->unsigned long
-                    Dim namedNt As NativeNamedType = DirectCast(proxyNt, NativeNamedType)
+                    Dim namedNt = DirectCast(proxyNt, NativeNamedType)
                     Return GenerateTypeReferenceImpl(namedNt.RealType, comment)
                 Case Else
                     Contract.InvalidEnumValue(proxyNt.Kind)
@@ -726,11 +726,11 @@ Namespace Transform
 
             Select Case specialNt.Kind
                 Case NativeSymbolKind.BitVectorType
-                    Dim bitNt As NativeBitVector = DirectCast(specialNt, NativeBitVector)
+                    Dim bitNt = DirectCast(specialNt, NativeBitVector)
                     comment = String.Format("bitvector : {0}", bitNt.Size)
                     Return New CodeTypeReference(GetManagedNameForBitVector(bitNt))
                 Case NativeSymbolKind.BuiltinType
-                    Dim builtNt As NativeBuiltinType = DirectCast(specialNt, NativeBuiltinType)
+                    Dim builtNt = DirectCast(specialNt, NativeBuiltinType)
                     Dim realType As Type = builtNt.ManagedType
                     comment &= builtNt.DisplayName
                     Return New CodeTypeReference(realType)
@@ -865,7 +865,7 @@ Namespace Transform
         Private Function GenerateValueExpressionLeaf(ByVal node As ExpressionNode, ByRef leafType As CodeTypeReference) As CodeExpression
             ThrowIfNull(node)
 
-            Dim ntVal As NativeValue = DirectCast(node.Tag, NativeValue)
+            Dim ntVal = DirectCast(node.Tag, NativeValue)
             If ntVal Is Nothing Then
                 Throw New InvalidOperationException("Expected a NativeValue")
             End If

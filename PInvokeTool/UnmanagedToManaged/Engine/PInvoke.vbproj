@@ -63,6 +63,9 @@
     <DefineConstants>CODE_ANALYSIS</DefineConstants>
     <CodeAnalysisRuleSet>Migrated rules for PInvoke (2).ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />

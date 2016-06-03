@@ -116,13 +116,13 @@ Public Class ParseEngineTest
     End Function
 
     Private Sub VerifyStruct(ByVal nt As NativeType, ByVal name As String, ByVal ParamArray args As String())
-        Dim ntStruct As NativeStruct = TryCast(nt, NativeStruct)
+        Dim ntStruct = TryCast(nt, NativeStruct)
         Assert.IsNotNull(ntStruct, "NativeType is not a Struct")
         VerifyMembers(ntStruct, name, args)
     End Sub
 
     Private Sub VerifyUnion(ByVal nt As NativeType, ByVal name As String, ByVal ParamArray args As String())
-        Dim ntUnion As NativeUnion = TryCast(nt, NativeUnion)
+        Dim ntUnion = TryCast(nt, NativeUnion)
         Assert.IsNotNull(ntUnion, "NativeType is not a Union")
         VerifyMembers(ntUnion, name, args)
     End Sub
@@ -136,7 +136,7 @@ Public Class ParseEngineTest
 
         Dim index As Integer = 0
         For Each cur As NativeMember In container.Members
-            Dim definedType As NativeDefinedType = TryCast(cur.NativeType, NativeDefinedType)
+            Dim definedType = TryCast(cur.NativeType, NativeDefinedType)
             If definedType IsNot Nothing AndAlso definedType.IsAnonymous Then
                 Assert.IsTrue(String.IsNullOrEmpty(args(index)))
             Else
@@ -158,7 +158,7 @@ Public Class ParseEngineTest
     Private Sub VerifyFuncPtr(ByVal result As ParseResult, ByVal index As Integer, ByVal str As String)
         Assert.IsNotNull(result)
         Assert.IsTrue(index < result.NativeDefinedTypes.Count, "Invalid index")
-        Dim fptr As NativeFunctionPointer = DirectCast(result.NativeDefinedTypes(index), NativeFunctionPointer)
+        Dim fptr = DirectCast(result.NativeDefinedTypes(index), NativeFunctionPointer)
         Assert.AreEqual(str, fptr.DisplayName)
     End Sub
 
@@ -171,20 +171,20 @@ Public Class ParseEngineTest
     End Sub
 
     Private Sub VerifyTypeDef(ByVal nt As NativeType, ByVal name As String, ByVal targetName As String)
-        Dim td As NativeTypeDef = TryCast(nt, NativeTypeDef)
+        Dim td = TryCast(nt, NativeTypeDef)
         Assert.IsNotNull(td)
         Assert.AreEqual(name, td.DisplayName)
         Assert.AreEqual(targetName, td.RealType.DisplayName)
     End Sub
 
     Private Sub VerifyPointer(ByVal nt As NativeType, ByVal fullName As String)
-        Dim pt As NativePointer = TryCast(nt, NativePointer)
+        Dim pt = TryCast(nt, NativePointer)
         Assert.IsNotNull(pt)
         Assert.AreEqual(pt.DisplayName, fullName)
     End Sub
 
     Private Sub VerifyEnum(ByVal nt As NativeType, ByVal name As String, ByVal ParamArray args As String())
-        Dim ntEnum As NativeEnum = TryCast(nt, NativeEnum)
+        Dim ntEnum = TryCast(nt, NativeEnum)
         Assert.IsNotNull(ntEnum)
         Assert.AreEqual(name, ntEnum.Name)
 
@@ -214,7 +214,7 @@ Public Class ParseEngineTest
     <TestMethod()> _
     Public Sub TestStruct1()
         Dim result As ParseResult = ParseFile("Struct1.txt")
-        Dim nt As NativeStruct = DirectCast(result.ParsedTypes(0), NativeStruct)
+        Dim nt = DirectCast(result.ParsedTypes(0), NativeStruct)
         VerifyMembers(nt, "foo", "int", "i")
     End Sub
 
@@ -225,7 +225,7 @@ Public Class ParseEngineTest
     <TestMethod()> _
     Public Sub TestStruct2()
         Dim result As ParseResult = ParseFile("Struct2.txt")
-        Dim nt As NativeStruct = DirectCast(result.ParsedTypes(0), NativeStruct)
+        Dim nt = DirectCast(result.ParsedTypes(0), NativeStruct)
         VerifyMembers(nt, "bar", "double", "j")
     End Sub
 
@@ -236,15 +236,15 @@ Public Class ParseEngineTest
     <TestMethod()> _
     Public Sub TestStruct3()
         Dim result As ParseResult = ParseFile("Struct3.txt")
-        Dim nt As NativeStruct = DirectCast(result.ParsedTypes(0), NativeStruct)
+        Dim nt = DirectCast(result.ParsedTypes(0), NativeStruct)
         VerifyMembers(nt, "bar2", "bar**", "i", "foo", "j")
     End Sub
 
     <TestMethod()> _
     Public Sub TestStruct4()
         Dim result As ParseResult = ParseFile("Struct4.txt")
-        Dim nt1 As NativeStruct = DirectCast(result.ParsedTypes(0), NativeStruct)
-        Dim nt2 As NativeStruct = DirectCast(result.ParsedTypes(1), NativeStruct)
+        Dim nt1 = DirectCast(result.ParsedTypes(0), NativeStruct)
+        Dim nt2 = DirectCast(result.ParsedTypes(1), NativeStruct)
 
         VerifyMembers(nt1, "s1", "int", "i", "double*", "j")
         VerifyMembers(nt2, "s2", "s1", "parent")
@@ -257,7 +257,7 @@ Public Class ParseEngineTest
     <TestMethod()> _
     Public Sub TestStruct5()
         Dim result As ParseResult = ParseFile("Struct5.txt")
-        Dim nt As NativeStruct = DirectCast(result.ParsedTypes(0), NativeStruct)
+        Dim nt = DirectCast(result.ParsedTypes(0), NativeStruct)
         VerifyMembers(nt, "s1", "int", "i", "s1*", "next")
     End Sub
 

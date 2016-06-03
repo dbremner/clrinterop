@@ -74,7 +74,7 @@ namespace TlbImpRuleFileEditor
                 //UpdateValueComboBox();
                 if (m_fixedCondition is AbstractAtomicCondition)
                 {
-                    AbstractAtomicCondition atomicCondition = m_fixedCondition as AbstractAtomicCondition;
+                    var atomicCondition = m_fixedCondition as AbstractAtomicCondition;
                     operatorComboBox.SelectedItem = atomicCondition.Operator.GetOperatorName();
                     if (m_fixedCondition is NativeParameterIndexCondition)
                     {

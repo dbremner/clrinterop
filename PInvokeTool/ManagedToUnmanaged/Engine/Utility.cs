@@ -39,7 +39,7 @@ namespace SignatureGenerator
         public override object[] GetCustomAttributes(Type attributeType, bool inherit)
         {
             if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));
-            List<object> attrs = new List<object>();
+            var attrs = new List<object>();
             for (int i = 0; i < customAttributes.Length; i++)
             {
                 if (attributeType.IsAssignableFrom(customAttributes[i].GetType()))

@@ -135,7 +135,7 @@ Namespace Transform
         Private Sub AddPInvokePointerDisposeLogic(ByVal ctd As CodeTypeDeclaration)
             ctd.BaseTypes.Add(New CodeTypeReference(GetType(IDisposable)))
 
-            Dim mem As CodeMemberMethod = New CodeMemberMethod()
+            Dim mem = New CodeMemberMethod()
             mem.Name = "Dispose"
             mem.Attributes = MemberAttributes.Public
             mem.ImplementationTypes.Add(New CodeTypeReference(GetType(IDisposable)))

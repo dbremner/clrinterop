@@ -60,7 +60,7 @@ Namespace Controls
         Private Shared Sub OnDoBackgroundCompile(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles m_bgWorker.DoWork
             Dim result As String
             Try
-                Dim data As Data = DirectCast(e.Argument, Data)
+                Dim data = DirectCast(e.Argument, Data)
                 Dim code As String = data.Text
                 Dim analyzer As NativeCodeAnalyzer = NativeCodeAnalyzerFactory.CreateForMiniParse(OsVersion.WindowsVista, data.InitialMacroList)
                 Using reader As New IO.StringReader(code)

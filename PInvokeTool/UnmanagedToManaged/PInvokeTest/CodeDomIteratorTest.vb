@@ -72,7 +72,7 @@ Public Class CodeDomIteratorTest
 
     Private Sub ExpectTypeRef(ByVal name As String, ByVal list As List(Of Object))
         For Each obj As Object In list
-            Dim typeRef As CodeTypeReference = TryCast(obj, CodeTypeReference)
+            Dim typeRef = TryCast(obj, CodeTypeReference)
             If typeRef IsNot Nothing Then
                 If 0 = String.CompareOrdinal(name, typeRef.BaseType) Then
                     Return
@@ -85,7 +85,7 @@ Public Class CodeDomIteratorTest
 
     Private Sub ExpectField(ByVal name As String, ByVal list As List(Of Object))
         For Each obj As Object In list
-            Dim field As CodeMemberField = TryCast(obj, CodeMemberField)
+            Dim field = TryCast(obj, CodeMemberField)
             If field IsNot Nothing AndAlso 0 = String.CompareOrdinal(field.Name, name) Then
                 Return
             End If
@@ -96,7 +96,7 @@ Public Class CodeDomIteratorTest
 
     Private Sub ExpectProc(ByVal name As String, ByVal list As List(Of Object))
         For Each obj As Object In list
-            Dim field As CodeMemberMethod = TryCast(obj, CodeMemberMethod)
+            Dim field = TryCast(obj, CodeMemberMethod)
             If field IsNot Nothing AndAlso 0 = String.CompareOrdinal(field.Name, name) Then
                 Return
             End If
@@ -106,7 +106,7 @@ Public Class CodeDomIteratorTest
     End Sub
     Private Sub ExpectType(ByVal name As String, ByVal list As List(Of Object))
         For Each obj As Object In list
-            Dim ctd As CodeTypeDeclaration = TryCast(obj, CodeTypeDeclaration)
+            Dim ctd = TryCast(obj, CodeTypeDeclaration)
             If ctd IsNot Nothing AndAlso 0 = String.CompareOrdinal(ctd.Name, name) Then
                 Return
             End If

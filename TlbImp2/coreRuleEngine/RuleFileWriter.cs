@@ -88,7 +88,7 @@ namespace CoreRuleEngine
             {
                 if (condition is AbstractMultipleCondition)
                 {
-                    AbstractMultipleCondition multipleCondition = condition as AbstractMultipleCondition;
+                    var multipleCondition = condition as AbstractMultipleCondition;
                     foreach (ICondition subCondition in multipleCondition.ConditionList)
                     {
                         conditionElement.AppendChild(WriteConditionToXmlNode(subCondition));
@@ -96,14 +96,14 @@ namespace CoreRuleEngine
                 }
                 else
                 {
-                    AbstractSingleCondition singleCondition = condition as AbstractSingleCondition;
+                    var singleCondition = condition as AbstractSingleCondition;
                     conditionElement.AppendChild(
                         WriteConditionToXmlNode(singleCondition.ConditionList[0]));
                 }
             }
             else
             {
-                AbstractAtomicCondition atomicCondition = condition as AbstractAtomicCondition;
+                var atomicCondition = condition as AbstractAtomicCondition;
                 conditionElement.SetAttribute(RuleFileConstants.Operator,
                     atomicCondition.Operator.GetOperatorName());
                 conditionElement.SetAttribute(RuleFileConstants.Value, atomicCondition.Value);

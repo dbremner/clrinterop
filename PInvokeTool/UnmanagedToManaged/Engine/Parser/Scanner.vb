@@ -664,7 +664,7 @@ Namespace Parser
                 Return New Token(keywordType, word)
             End If
 
-            Dim numberType As TokenType = TokenType.Ampersand
+            Dim numberType = TokenType.Ampersand
             If IsNumber(word, numberType) Then
 
                 ' Loop for a floating point number literal
@@ -673,7 +673,7 @@ Namespace Parser
 
                     m_buffer.ReadChar()
                     Dim fullWord As String = word & "." & ReadWord()
-                    Dim fullNumberType As TokenType = TokenType.Ampersand
+                    Dim fullNumberType = TokenType.Ampersand
                     If IsNumber(fullWord, fullNumberType) Then
                         Return New Token(fullNumberType, fullWord)
                     Else

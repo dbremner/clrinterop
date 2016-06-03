@@ -110,7 +110,7 @@ namespace TlbImpRuleFileEditor
         {
             if (HasRuleSet())
             {
-                RuleSet ruleSet = ruleTreeView.Nodes[0].Tag as RuleSet;
+                var ruleSet = ruleTreeView.Nodes[0].Tag as RuleSet;
                 if (!CheckRuleSet(ruleSet))
                 {
                     return false;
@@ -163,7 +163,7 @@ namespace TlbImpRuleFileEditor
         {
             if (condition is AbstractCompositeCondition)
             {
-                AbstractCompositeCondition compositeCondition = condition as AbstractCompositeCondition;
+                var compositeCondition = condition as AbstractCompositeCondition;
                 List<ICondition> list = compositeCondition.ConditionList;
                 if (list.Count == 0)
                 {
@@ -183,10 +183,10 @@ namespace TlbImpRuleFileEditor
         {
             try
             {
-                RuleSet ruleSet = ruleTreeView.Nodes[0].Tag as RuleSet;
-                RuleFileWriter ruleFileWriter = new RuleFileWriter(ruleSet);
+                var ruleSet = ruleTreeView.Nodes[0].Tag as RuleSet;
+                var ruleFileWriter = new RuleFileWriter(ruleSet);
                 XmlDocument doc = ruleFileWriter.WriteToXmlDocument();
-                XmlTextWriter xmlTextWriter = new XmlTextWriter(ruleFilePath, null);
+                var xmlTextWriter = new XmlTextWriter(ruleFilePath, null);
                 xmlTextWriter.Formatting = Formatting.Indented;
 
                 doc.WriteContentTo(xmlTextWriter);
@@ -233,7 +233,7 @@ namespace TlbImpRuleFileEditor
         {
             try
             {
-                RuleFileParser ruleFileParser = new RuleFileParser(ruleFileName);
+                var ruleFileParser = new RuleFileParser(ruleFileName);
                 RuleSet ruleSet = ruleFileParser.Parse();
 
                 TreeNode ruleTreeRoot = RuleSet2TreeNodeProcessor.GetRuleSetTreeNode(ruleSet);
@@ -457,7 +457,7 @@ namespace TlbImpRuleFileEditor
             TreeNode ruleSetNode = ruleTreeView.Nodes[0];
             ruleTreeView.SelectedNode = ruleSetNode;
             ruleSetNode.Nodes.Clear();
-            RuleSet ruleSet = ruleSetNode.Tag as RuleSet;
+            var ruleSet = ruleSetNode.Tag as RuleSet;
             ruleSet.RemoveAllRules();
             SetModified(true);
         }
@@ -469,16 +469,16 @@ namespace TlbImpRuleFileEditor
 
         private void addNewRuleOperation()
         {
-            RuleForm form = new RuleForm("Rule #" + (ruleTreeView.Nodes[0].Nodes.Count + 1));
+            var form = new RuleForm("Rule #" + (ruleTreeView.Nodes[0].Nodes.Count + 1));
             if (form.ShowDialog() == DialogResult.OK)
             {
                 ICategory category = form.GetCategory();
                 IAction action = form.GetAction();
-                Rule newRule = new Rule(category, form.GetRuleName());
+                var newRule = new Rule(category, form.GetRuleName());
                 newRule.Action = action;
                 newRule.Condition = new AndCondition();
                 TreeNode ruleSetNode = ruleTreeView.Nodes[0];
-                RuleSet ruleSet = ruleSetNode.Tag as RuleSet;
+                var ruleSet = ruleSetNode.Tag as RuleSet;
                 ruleSet.AddRule(newRule);
                 // Add tree node.
                 TreeNode ruleNode = RuleSet2TreeNodeProcessor.GetRuleTreeNode(newRule);
@@ -506,7 +506,7 @@ namespace TlbImpRuleFileEditor
             {
                 return;
             }
-            RuleSet ruleSet = ruleTreeView.SelectedNode.Parent.Tag as RuleSet;
+            var ruleSet = ruleTreeView.SelectedNode.Parent.Tag as RuleSet;
             ruleSet.RemoveRule(ruleTreeView.SelectedNode.Tag as Rule);
             ruleTreeView.SelectedNode.Remove();
             SetModified(true);
@@ -654,8 +654,7 @@ namespace TlbImpRuleFileEditor
                 }
             }
 
-            AbstractCompositeCondition compositeCondition =
-                    treeNode.Parent.Tag as AbstractCompositeCondition;
+            var compositeCondition = treeNode.Parent.Tag as AbstractCompositeCondition;
             compositeCondition.RemoveConditionAt(treeNode.Index);
 
             if (compositeCondition is AbstractSingleCondition)
@@ -682,8 +681,7 @@ namespace TlbImpRuleFileEditor
 
         private void removeAllSubconditionsOperation()
         {
-            AbstractCompositeCondition compositeCondition =
-                ruleTreeView.SelectedNode.Tag as AbstractCompositeCondition;
+            var compositeCondition = ruleTreeView.SelectedNode.Tag as AbstractCompositeCondition;
             if (compositeCondition.ConditionList.Count == 0)
                 return;
             DialogResult response = MessageBox.Show(
@@ -719,7 +717,7 @@ namespace TlbImpRuleFileEditor
 
         private void addNewRuleFromHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IMatchTarget matchTarget = tlbTreeView.SelectedNode.Tag as IMatchTarget;
+            var matchTarget = tlbTreeView.SelectedNode.Tag as IMatchTarget;
             addNewRuleFromHereOperation(matchTarget);
         }
 
@@ -731,14 +729,14 @@ namespace TlbImpRuleFileEditor
                 return;
             }
             ICategory fixedCategory = matchTarget.GetCategory();
-            RuleForm form = new RuleForm(fixedCategory,
+            var form = new RuleForm(fixedCategory,
                 "Rule #" + (ruleTreeView.Nodes[0].Nodes.Count + 1));
             if (form.ShowDialog() == DialogResult.OK)
             {
                 IAction action = form.GetAction();
                 AndCondition andCondition = ExtractDefaultConditions(matchTarget);
-                Rule newRule = new Rule(fixedCategory, action, andCondition, form.GetRuleName());
-                RuleSet ruleSet = ruleTreeView.Nodes[0].Tag as RuleSet;
+                var newRule = new Rule(fixedCategory, action, andCondition, form.GetRuleName());
+                var ruleSet = ruleTreeView.Nodes[0].Tag as RuleSet;
                 ruleSet.AddRule(newRule);
                 // Add tree node.
                 TreeNode ruleNode = RuleSet2TreeNodeProcessor.GetRuleTreeNode(newRule);
@@ -753,8 +751,8 @@ namespace TlbImpRuleFileEditor
         {
             if (node.Tag is AbstractCompositeCondition)
             {
-                AbstractCompositeCondition compositeCondition = node.Tag as AbstractCompositeCondition;
-                AbstractCompositeConditionDef compositeConditionDef =
+                var compositeCondition = node.Tag as AbstractCompositeCondition;
+                var compositeConditionDef =
                     compositeCondition.GetConditionDef() as AbstractCompositeConditionDef;
                 return compositeCondition.ConditionList.Count <
                     compositeConditionDef.GetMaxSubconditionNumber();
@@ -765,8 +763,7 @@ namespace TlbImpRuleFileEditor
         private AndCondition ExtractDefaultConditions(IMatchTarget matchTarget)
         {
             ICategory fixedCategory = matchTarget.GetCategory();
-            AndCondition andCondition =
-                AndConditionDef.GetInstance().Create() as AndCondition;
+            var andCondition = AndConditionDef.GetInstance().Create() as AndCondition;
             if (fixedCategory == SignatureCategory.GetInstance())
             {
                 NativeParentFunctionNameCondition nativeParentFunctionNameCondition =
@@ -791,7 +788,7 @@ namespace TlbImpRuleFileEditor
         {
             NativeParameterIndexConditionDef parameterIndexConditionDef =
                 NativeParameterIndexConditionDef.GetInstance();
-            NativeParameterIndexCondition parameterIndexCondition =
+            var parameterIndexCondition =
                 parameterIndexConditionDef.Create() as NativeParameterIndexCondition;
             parameterIndexCondition.Operator = EqualOperator.GetInstance();
             parameterIndexCondition.Value = "" + signatureInfoMatchTarget.NativeParameterIndex;
@@ -806,7 +803,7 @@ namespace TlbImpRuleFileEditor
             if (nativeParentFunctionNameConditionDef.CanApplyToCategory(matchTarget.GetCategory()) &&
                 matchTarget is IGetNativeParentName)
             {
-                NativeParentFunctionNameCondition nativeParentFunctionNameCondition =
+                var nativeParentFunctionNameCondition = 
                     nativeParentFunctionNameConditionDef.Create() as NativeParentFunctionNameCondition;
                 nativeParentFunctionNameCondition.Operator = EqualOperator.GetInstance();
                 nativeParentFunctionNameCondition.Value =
@@ -831,8 +828,7 @@ namespace TlbImpRuleFileEditor
             NativeNameConditionDef nativeNameConditionDef = NativeNameConditionDef.GetInstance();
             if (nativeNameConditionDef.CanApplyToCategory(matchTarget.GetCategory()))
             {
-                NativeNameCondition nativeNameCondition =
-                    nativeNameConditionDef.Create() as NativeNameCondition;
+                var nativeNameCondition = nativeNameConditionDef.Create() as NativeNameCondition;
                 nativeNameCondition.Operator = EqualOperator.GetInstance();
                 if (matchTarget is IGetTypeLibElementCommonInfo)
                 {
@@ -907,7 +903,7 @@ namespace TlbImpRuleFileEditor
             conditionInPlaceEditor.Visible = false;
             if (SaveExistingRuleSet())
             {
-                RuleSet newRuleSet = new RuleSet();
+                var newRuleSet = new RuleSet();
                 TreeNode ruleTreeRoot = RuleSet2TreeNodeProcessor.GetRuleSetTreeNode(newRuleSet);
 
                 ruleTreeView.BeginUpdate();
@@ -1063,7 +1059,7 @@ namespace TlbImpRuleFileEditor
             TreeNode ruleNode = GetRuleNode(ruleTreeView.SelectedNode);
             if (ruleNode != null)
             {
-                Rule selectedRule = ruleNode.Tag as Rule;
+                var selectedRule = ruleNode.Tag as Rule;
                 richTextBoxConditionExp.UpdateText(selectedRule);
             }
             else
@@ -1176,7 +1172,7 @@ namespace TlbImpRuleFileEditor
         {
             if (e.Button == MouseButtons.Left)
             {
-                TreeNode draggedNode = e.Item as TreeNode;
+                var draggedNode = e.Item as TreeNode;
                 if (draggedNode.Parent != null)
                     DoDragDrop(e.Item, DragDropEffects.Move);
             }
@@ -1198,7 +1194,7 @@ namespace TlbImpRuleFileEditor
             TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
             if (draggedNode.Tag is IMatchTarget)
             {
-                IMatchTarget matchTarget = draggedNode.Tag as IMatchTarget;
+                var matchTarget = draggedNode.Tag as IMatchTarget;
                 if (node != null && (node.Tag is ICondition || IsEmptyConditionNode(node)))
                 {
                     // Drag to the condition
@@ -1233,7 +1229,7 @@ namespace TlbImpRuleFileEditor
             {
                 TreeNode parentNode = node.Parent;
                 // Insert before node; not Append as the last sun of node.
-                AbstractCompositeCondition compositeCondition = parentNode.Tag as AbstractCompositeCondition;
+                var compositeCondition = parentNode.Tag as AbstractCompositeCondition;
                 compositeCondition.InsertConditionAt(andCondition, node.Index);
                 parentNode.Nodes.Insert(node.Index, andConditionNode);
                 if (!CanAddCondition(parentNode))
@@ -1242,7 +1238,7 @@ namespace TlbImpRuleFileEditor
             else
             {
                 // Append as the last sun of node; not Insert before node.
-                AbstractCompositeCondition compositeCondition = node.Tag as AbstractCompositeCondition;
+                var compositeCondition = node.Tag as AbstractCompositeCondition;
                 compositeCondition.AppendCondition(andCondition);
                 node.Nodes.Insert(node.Nodes.Count - 1, andConditionNode);
                 if (!CanAddCondition(node))
@@ -1259,7 +1255,7 @@ namespace TlbImpRuleFileEditor
             if (insertionHighlight.Visible)
             {
                 TreeNode parentNode = node.Parent;
-                AbstractCompositeCondition compositeCondition = parentNode.Tag as AbstractCompositeCondition;
+                var compositeCondition = parentNode.Tag as AbstractCompositeCondition;
                 compositeCondition.InsertConditionAt(condition, node.Index);
                 parentNode.Nodes.Insert(node.Index, conditionNode);
                 if (!CanAddCondition(parentNode))
@@ -1267,7 +1263,7 @@ namespace TlbImpRuleFileEditor
             }
             else
             {
-                AbstractCompositeCondition compositeCondition = node.Tag as AbstractCompositeCondition;
+                var compositeCondition = node.Tag as AbstractCompositeCondition;
                 compositeCondition.AppendCondition(condition);
                 node.Nodes.Insert(node.Nodes.Count - 1, conditionNode);
                 if (!CanAddCondition(node))
@@ -1317,8 +1313,7 @@ namespace TlbImpRuleFileEditor
                                 MessageBox.Show(Resource.FormatString("Wrn_InvalidCondition"));
                             return;
                         }
-                        AbstractCompositeCondition compositeCondition =
-                                    modifiedTreeNode.Parent.Tag as AbstractCompositeCondition;
+                        var compositeCondition = modifiedTreeNode.Parent.Tag as AbstractCompositeCondition;
                         compositeCondition.AppendCondition(newCondition);
 
                         // Replace tree node.
@@ -1333,7 +1328,7 @@ namespace TlbImpRuleFileEditor
                     }
                     else
                     {
-                        ICondition oldCondition = modifiedTreeNode.Tag as ICondition;
+                        var oldCondition = modifiedTreeNode.Tag as ICondition;
                         // recover first
                         modifiedTreeNode.Text =
                             RuleSet2TreeNodeProcessor.GetConditionNodeText(oldCondition);
@@ -1365,11 +1360,11 @@ namespace TlbImpRuleFileEditor
                                 {
                                     if (oldCondition is AbstractCompositeCondition)
                                     {
-                                        AbstractCompositeCondition oldCompositeCondition =
+                                        var oldCompositeCondition = 
                                             oldCondition as AbstractCompositeCondition;
                                         if (oldCompositeCondition.ConditionList.Count > 0)
                                         {
-                                            AbstractSingleCondition newSingleCondition =
+                                            var newSingleCondition =
                                                 newCondition as AbstractSingleCondition;
                                             newSingleCondition.AppendCondition(oldCompositeCondition.ConditionList[0]);
                                         }
@@ -1380,11 +1375,11 @@ namespace TlbImpRuleFileEditor
                                     // newCondition is AbstractMultipleCondition
                                     if (oldCondition is AbstractCompositeCondition)
                                     {
-                                        AbstractCompositeCondition oldCompositeCondition =
+                                        var oldCompositeCondition =
                                             oldCondition as AbstractCompositeCondition;
                                         if (oldCompositeCondition.ConditionList.Count > 0)
                                         {
-                                            AbstractMultipleCondition newCompositeCondition =
+                                            var newCompositeCondition =
                                                 newCondition as AbstractMultipleCondition;
                                             foreach (ICondition subCondition in oldCompositeCondition.ConditionList)
                                                 newCompositeCondition.AppendCondition(subCondition);
@@ -1392,7 +1387,7 @@ namespace TlbImpRuleFileEditor
                                     }
                                 }
                             }
-                            AbstractCompositeCondition compositeCondition =
+                            var compositeCondition =
                                     modifiedTreeNode.Parent.Tag as AbstractCompositeCondition;
                             compositeCondition.ReplaceCondition(modifiedTreeNode.Index, newCondition);
 
@@ -1419,8 +1414,7 @@ namespace TlbImpRuleFileEditor
             {
                 if (oldCondition is AbstractCompositeCondition)
                 {
-                    AbstractCompositeCondition condition =
-                        oldCondition as AbstractCompositeCondition;
+                    var condition = oldCondition as AbstractCompositeCondition;
                     if (condition.ConditionList.Count > 0)
                     {
                         return true;
@@ -1431,8 +1425,7 @@ namespace TlbImpRuleFileEditor
             {
                 if (oldCondition is AbstractMultipleCondition)
                 {
-                    AbstractMultipleCondition condition =
-                        oldCondition as AbstractMultipleCondition;
+                    var condition = oldCondition as AbstractMultipleCondition;
                     if (condition.ConditionList.Count > 1)
                     {
                         return true;
@@ -1500,7 +1493,7 @@ namespace TlbImpRuleFileEditor
             else if (draggedNode.Tag is ICondition)
             {
                 // drag from rule tree.
-                ICondition draggedCondition = draggedNode.Tag as ICondition;
+                var draggedCondition = draggedNode.Tag as ICondition;
 
                 if (node != null)
                 {
@@ -1557,7 +1550,7 @@ namespace TlbImpRuleFileEditor
             else
             {
                 // AbstractCompositeCondition
-                AbstractCompositeCondition compositeCondition = condition as AbstractCompositeCondition;
+                var compositeCondition = condition as AbstractCompositeCondition;
                 foreach (ICondition subCondition in compositeCondition.ConditionList)
                 {
                     if (!subCondition.GetConditionDef().CanApplyToCategory(category))
@@ -1576,7 +1569,7 @@ namespace TlbImpRuleFileEditor
         {
             if (e.Button == MouseButtons.Left)
             {
-                TreeNode draggedNode = e.Item as TreeNode;
+                var draggedNode = e.Item as TreeNode;
                 if (draggedNode.Tag is ICondition && !IsRootConditionTreeNode(draggedNode.Parent))
                     DoDragDrop(e.Item, DragDropEffects.Move | DragDropEffects.Copy);
             }
@@ -1668,7 +1661,7 @@ namespace TlbImpRuleFileEditor
             TreeNode node = ruleTreeView.SelectedNode;
             if (node.Tag is Rule)
             {
-                Rule rule = node.Tag as Rule;
+                var rule = node.Tag as Rule;
                 if (e.Label != null && !e.Label.Trim().Equals(""))
                 {
                     rule.Name = e.Label;
@@ -1688,7 +1681,7 @@ namespace TlbImpRuleFileEditor
 
         private void aboutTlbImpRuleFileEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutDialog aboutDlg = new AboutDialog();
+            var aboutDlg = new AboutDialog();
             aboutDlg.ShowDialog();
         }
 

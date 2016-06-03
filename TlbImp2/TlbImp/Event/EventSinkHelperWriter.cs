@@ -64,7 +64,7 @@ namespace tlbimp2.Event
             MethodInfo[] aMethods = TCEAdapterGenerator.GetNonPropertyMethods(m_InputType);
 
             // Allocate an array to contain the delegate fields.
-            FieldBuilder[] afbDelegates = new FieldBuilder[aMethods.Length];
+            var afbDelegates = new FieldBuilder[aMethods.Length];
             // Process all the methods on the input interface.
             for (int cMethods = 0; cMethods < aMethods.Length; cMethods++)
             {

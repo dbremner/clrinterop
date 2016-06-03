@@ -27,7 +27,7 @@ Namespace Transform
             ThrowIfNull(child)
 
             If child.Kind = NativeSymbolKind.NamedType Then
-                Dim namedNt As NativeNamedType = DirectCast(child, NativeNamedType)
+                Dim namedNt = DirectCast(child, NativeNamedType)
                 If namedNt.RealType IsNot Nothing Then
                     ns.ReplaceChild(child, namedNt.RealType)
                 End If
@@ -47,7 +47,7 @@ Namespace Transform
             ThrowIfNull(child)
 
             If child.Kind = NativeSymbolKind.TypedefType Then
-                Dim typedef As NativeTypeDef = DirectCast(child, NativeTypeDef)
+                Dim typedef = DirectCast(child, NativeTypeDef)
                 If typedef.RealType IsNot Nothing Then
                     ns.ReplaceChild(child, typedef.RealType)
                 End If

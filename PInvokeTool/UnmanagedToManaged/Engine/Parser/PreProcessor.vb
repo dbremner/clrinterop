@@ -223,7 +223,7 @@ Namespace Parser
             End Function
 
             Protected Overrides Function TryEvaluateNegation(ByVal node As ExpressionNode) As Boolean
-                Dim value As ExpressionValue = DirectCast(node.LeftNode.Tag, ExpressionValue)
+                Dim value = DirectCast(node.LeftNode.Tag, ExpressionValue)
                 value = Not value
                 node.Tag = value
                 Return True
@@ -473,7 +473,7 @@ Namespace Parser
                 Else
                     m_macroMap(macro.Name) = macro
                     If macro.IsMethod Then
-                        Dim method As MethodMacro = DirectCast(macro, MethodMacro)
+                        Dim method = DirectCast(macro, MethodMacro)
                         TraceToStream("Defined: {0} -> {1}", macro.Name, method.MethodSignature)
                     Else
                         TraceToStream("Defined: {0} -> {1}", macro.Name, macro.Value)
@@ -952,7 +952,7 @@ Namespace Parser
 
                     Dim replaceList As List(Of Token) = Nothing
                     If macro.IsMethod Then
-                        Dim method As MethodMacro = DirectCast(macro, MethodMacro)
+                        Dim method = DirectCast(macro, MethodMacro)
                         Dim args As List(Of Token) = ParseAndRemoveMacroMethodArguments(list, i)
                         If args Is Nothing Then
                             ' Parse did not succeed, move to the next token
@@ -1027,7 +1027,7 @@ Namespace Parser
             i += 1    ' Move past the '('
 
             Dim depth As Int32 = 0
-            Dim curArg As Token = New Token(TokenType.Text, String.Empty)
+            Dim curArg = New Token(TokenType.Text, String.Empty)
 
             While i < list.Count
                 Dim cur As Token = list(i)

@@ -48,7 +48,7 @@ Namespace Transform
 
             ' Use the iterator so we make sure to reach nested types
             For Each obj As Object In col
-                Dim ctd As CodeTypeDeclaration = TryCast(obj, CodeTypeDeclaration)
+                Dim ctd = TryCast(obj, CodeTypeDeclaration)
                 If ctd IsNot Nothing Then
                     Dim definedNt As NativeDefinedType = GetDefined(ctd)
                     If definedNt IsNot Nothing AndAlso 0 = String.CompareOrdinal(definedNt.Name, ctd.Name) Then
@@ -87,7 +87,7 @@ Namespace Transform
             ThrowIfNull(col)
 
             For Each obj As Object In col
-                Dim ctd As CodeTypeDeclaration = TryCast(obj, CodeTypeDeclaration)
+                Dim ctd = TryCast(obj, CodeTypeDeclaration)
                 If ctd IsNot Nothing Then
                     Dim newName As String = Nothing
                     If map.TryGetValue(ctd.Name, newName) Then
@@ -96,7 +96,7 @@ Namespace Transform
                     Continue For
                 End If
 
-                Dim typeRef As CodeTypeReference = TryCast(obj, CodeTypeReference)
+                Dim typeRef = TryCast(obj, CodeTypeReference)
                 If typeRef IsNot Nothing Then
                     Dim newName As String = Nothing
                     If map.TryGetValue(typeRef.BaseType, newName) Then
@@ -121,7 +121,7 @@ Namespace Transform
             ThrowIfNull(col)
 
             For Each obj As Object In col
-                Dim custom As CodeCustomExpression = TryCast(obj, CodeCustomExpression)
+                Dim custom = TryCast(obj, CodeCustomExpression)
                 If custom IsNot Nothing Then
                     custom.ResetValue()
                 End If

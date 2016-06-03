@@ -43,14 +43,14 @@ namespace TlbImpRuleEngine
 
         public IAction Create()
         {
-            AddAttributeAction addAttributeAction = new AddAttributeAction();
+            var addAttributeAction = new AddAttributeAction();
             return addAttributeAction;
         }
 
         public IAction Create(Dictionary<string, string> parameters)
         {
-            AddAttributeAction addAttributeAction = new AddAttributeAction();
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            var addAttributeAction = new AddAttributeAction();
             if (parameters.ContainsKey(ParameterAssemblyName))
             {
                 addAttributeAction.AssemblyName = parameters[ParameterAssemblyName];

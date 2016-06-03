@@ -33,8 +33,8 @@ Public Class NativeSymbolTest
     Private Sub VerifyReachable(ByVal nt As NativeType, ByVal ParamArray names As String())
         Dim bag As New NativeSymbolBag()
 
-        Dim definedNt As NativeDefinedType = TryCast(nt, NativeDefinedType)
-        Dim typedefNt As NativeTypeDef = TryCast(nt, NativeTypeDef)
+        Dim definedNt = TryCast(nt, NativeDefinedType)
+        Dim typedefNt = TryCast(nt, NativeTypeDef)
         If definedNt IsNot Nothing Then
             bag.AddDefinedType(DirectCast(nt, NativeDefinedType))
         ElseIf typedefNt IsNot Nothing Then
@@ -50,9 +50,9 @@ Public Class NativeSymbolTest
         Assert.IsNotNull(bag)
         Dim map As New Dictionary(Of String, NativeType)
         For Each curSym As NativeSymbol In bag.FindAllReachableNativeSymbols()
-            Dim cur As NativeType = TryCast(curSym, NativeType)
+            Dim cur = TryCast(curSym, NativeType)
             If cur IsNot Nothing Then
-                Dim nt As NativeType = TryCast(cur, NativeType)
+                Dim nt = TryCast(cur, NativeType)
                 If nt IsNot Nothing Then
                     map.Add(cur.DisplayName, nt)
                 End If

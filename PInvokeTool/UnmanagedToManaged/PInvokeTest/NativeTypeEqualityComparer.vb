@@ -143,8 +143,8 @@ Public Class NativeTypeEqualityComparer
 
         ' If this is a defined type then make sure the members compare
         If left.Category = NativeSymbolCategory.Defined Then
-            Dim leftDefined As NativeDefinedType = DirectCast(left, NativeDefinedType)
-            Dim rightDefined As NativeDefinedType = DirectCast(right, NativeDefinedType)
+            Dim leftDefined = DirectCast(left, NativeDefinedType)
+            Dim rightDefined = DirectCast(right, NativeDefinedType)
 
             If leftDefined.Members.Count <> rightDefined.Members.Count Then
                 Return False
@@ -166,7 +166,7 @@ Public Class NativeTypeEqualityComparer
 
     Private Function DigThroughNamedType(ByVal nt As NativeType) As NativeType
         While (NativeSymbolKind.NamedType = nt.Kind)
-            Dim namedtype As NativeNamedType = DirectCast(nt, NativeNamedType)
+            Dim namedtype = DirectCast(nt, NativeNamedType)
             If namedtype.RealType Is Nothing Then
                 Exit While
             End If
@@ -213,8 +213,8 @@ Public Class NativeTypeEqualityComparer
 
         ' If this is an enum, compare the values
         If left.Kind = NativeSymbolKind.EnumType Then
-            Dim leftEnum As NativeEnum = DirectCast(left, NativeEnum)
-            Dim rightEnum As NativeEnum = DirectCast(right, NativeEnum)
+            Dim leftEnum = DirectCast(left, NativeEnum)
+            Dim rightEnum = DirectCast(right, NativeEnum)
 
             If rightEnum.Values.Count <> leftEnum.Values.Count Then
                 Return False
@@ -238,8 +238,8 @@ Public Class NativeTypeEqualityComparer
         Dim ret As Boolean
         Select Case left.Kind
             Case NativeSymbolKind.ArrayType
-                Dim a1 As NativeArray = DirectCast(left, NativeArray)
-                Dim a2 As NativeArray = DirectCast(right, NativeArray)
+                Dim a1 = DirectCast(left, NativeArray)
+                Dim a2 = DirectCast(right, NativeArray)
 
                 ret = a1.ElementCount = a2.ElementCount
             Case NativeSymbolKind.NamedType
@@ -274,12 +274,12 @@ Public Class NativeTypeEqualityComparer
     Private Function EqualsSpecializedCore(ByVal left As NativeSpecializedType, ByVal right As NativeSpecializedType) As Boolean
         Select Case left.Kind
             Case NativeSymbolKind.BitVectorType
-                Dim bt1 As NativeBitVector = DirectCast(left, NativeBitVector)
-                Dim bt2 As NativeBitVector = DirectCast(right, NativeBitVector)
+                Dim bt1 = DirectCast(left, NativeBitVector)
+                Dim bt2 = DirectCast(right, NativeBitVector)
                 Return bt1.Size = bt2.Size
             Case NativeSymbolKind.BuiltinType
-                Dim b1 As NativeBuiltinType = DirectCast(left, NativeBuiltinType)
-                Dim b2 As NativeBuiltinType = DirectCast(right, NativeBuiltinType)
+                Dim b1 = DirectCast(left, NativeBuiltinType)
+                Dim b2 = DirectCast(right, NativeBuiltinType)
                 Return b1.BuiltinType = b2.BuiltinType
             Case Else
                 Return False

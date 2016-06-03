@@ -46,8 +46,7 @@ namespace CoreRuleEngine
 
         public void AppendCondition(ICondition condition)
         {
-            AbstractCompositeConditionDef compositeConditionDef =
-                GetConditionDef() as AbstractCompositeConditionDef;
+            var compositeConditionDef = GetConditionDef() as AbstractCompositeConditionDef;
             if (m_list.Count < compositeConditionDef.GetMaxSubconditionNumber())
                 m_list.Add(condition);
             else
@@ -56,8 +55,7 @@ namespace CoreRuleEngine
 
         public void InsertConditionAt(ICondition condition, int index)
         {
-            AbstractCompositeConditionDef compositeConditionDef =
-                GetConditionDef() as AbstractCompositeConditionDef;
+            var compositeConditionDef = GetConditionDef() as AbstractCompositeConditionDef;
             if (m_list.Count < compositeConditionDef.GetMaxSubconditionNumber())
                 m_list.Insert(index, condition);
             else
@@ -82,7 +80,7 @@ namespace CoreRuleEngine
         {
             if (obj is AbstractCompositeCondition)
             {
-                AbstractCompositeCondition condition = obj as AbstractCompositeCondition;
+                var condition = obj as AbstractCompositeCondition;
                 return (GetConditionDef() == condition.GetConditionDef());
             }
             return false;

@@ -111,7 +111,7 @@ Public Class NativeSymbolBag
 
         m_definedMap.Add(nt.Name, nt)
 
-        Dim ntEnum As NativeEnum = TryCast(nt, NativeEnum)
+        Dim ntEnum = TryCast(nt, NativeEnum)
         If ntEnum IsNot Nothing Then
             For Each pair As NativeEnumValue In ntEnum.Values
                 AddValue(pair.Name, ntEnum)
@@ -363,7 +363,7 @@ Public Class NativeSymbolBag
     Public Function FindUnresolvedNativeValues() As List(Of NativeValue)
         Dim list As New List(Of NativeValue)
         For Each ns As NativeSymbol In Me.FindAllReachableNativeSymbols()
-            Dim nValue As NativeValue = TryCast(ns, NativeValue)
+            Dim nValue = TryCast(ns, NativeValue)
             If nValue IsNot Nothing AndAlso Not nValue.IsValueResolved Then
                 list.Add(nValue)
             End If
@@ -530,7 +530,7 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function SaveToNativeStorage() As NativeStorage
-        Dim ns As NativeStorage = New NativeStorage()
+        Dim ns = New NativeStorage()
         ns.CacheLookup = True
 
         For Each nConst As NativeConstant In Me.FindResolvedConstants()
@@ -690,7 +690,7 @@ Public Class NativeSymbolBag
             End If
 
             ' All we can resolve here are NativeNamedType instances
-            Dim namedType As NativeNamedType = TryCast(rel.Symbol, NativeNamedType)
+            Dim namedType = TryCast(rel.Symbol, NativeNamedType)
             If namedType Is Nothing Then
                 ep.AddError("Failed to resolve {0} -> '{1}'", rel.Symbol.Kind, rel.Symbol.DisplayName)
                 Continue For

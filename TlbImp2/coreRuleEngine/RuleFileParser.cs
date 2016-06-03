@@ -20,7 +20,7 @@ namespace CoreRuleEngine
 
         public RuleSet Parse()
         {
-            RuleSet ruleSet = new RuleSet();
+            var ruleSet = new RuleSet();
 
             XmlNodeList nodeList = m_doc.GetElementsByTagName(RuleFileConstants.RuleElementName);
             foreach (XmlNode node in nodeList)
@@ -82,8 +82,7 @@ namespace CoreRuleEngine
             {
                 if (condition is AbstractMultipleCondition)
                 {
-                    AbstractMultipleCondition multipleCondition =
-                        condition as AbstractMultipleCondition;
+                    var multipleCondition = condition as AbstractMultipleCondition;
                     foreach (XmlNode childConditionNode in conditionNode.ChildNodes)
                     {
                         ICondition childCondition = ProcessConditionNode(childConditionNode);
@@ -93,8 +92,7 @@ namespace CoreRuleEngine
                 }
                 else
                 {
-                    AbstractSingleCondition singleCondition =
-                        condition as AbstractSingleCondition;
+                    var singleCondition = condition as AbstractSingleCondition;
                     ICondition childCondition = ProcessConditionNode(conditionNode.ChildNodes[0]);
                     singleCondition.AppendCondition(childCondition);
                     return singleCondition;
@@ -102,7 +100,7 @@ namespace CoreRuleEngine
             }
             else
             {
-                AbstractAtomicCondition atomicCondition = condition as AbstractAtomicCondition;
+                var atomicCondition = condition as AbstractAtomicCondition;
                 string operatorName = conditionNode.Attributes[RuleFileConstants.Operator].InnerText;
                 atomicCondition.Operator = RuleEngine.GetOperatorManager().GetOperator(operatorName);
                 atomicCondition.Value =
@@ -121,7 +119,7 @@ namespace CoreRuleEngine
 
         private Dictionary<string, string> GetActionParameters(XmlNode actionNode)
         {
-            Dictionary<string, string> paramDict = new Dictionary<string, string>();
+            var paramDict = new Dictionary<string, string>();
             XmlNodeList paramList = actionNode.SelectNodes(RuleFileConstants.Parameter);
             foreach (XmlNode paramNode in paramList)
             {

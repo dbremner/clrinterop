@@ -274,11 +274,11 @@ namespace tlbimp2
         /// <param name="type">The TypeInfo used for generating the member list</param>
         public static List<InterfaceMemberInfo> BuildMemberList(ConverterInfo info, TypeInfo type, IConvBase convBase, bool implementsIEnumerable)
         {
-            List<InterfaceMemberInfo> allMembers = new List<InterfaceMemberInfo>();
+            var allMembers = new List<InterfaceMemberInfo>();
 
             using (TypeAttr attr = type.GetTypeAttr())
             {
-                Dictionary<string, TypeLibTypes.Interop.INVOKEKIND> propertyInvokeKinds = new Dictionary<string, TypeLibTypes.Interop.INVOKEKIND>();
+                var propertyInvokeKinds = new Dictionary<string, TypeLibTypes.Interop.INVOKEKIND>();
 
                 //
                 // 1. Walk through all the propput/propget/propref properties and collect information
@@ -300,8 +300,8 @@ namespace tlbimp2
                     }
                 }
 
-                Dictionary<string, int> allNames = new Dictionary<string, int>();
-                SortedDictionary<int, InterfacePropertyInfo> propertyList = new SortedDictionary<int, InterfacePropertyInfo>();
+                var allNames = new Dictionary<string, int>();
+                var propertyList = new SortedDictionary<int, InterfacePropertyInfo>();
 
                 //
                 // 2. Walk through all vars (for disp interface) and generate name for get/set accessors
@@ -973,7 +973,7 @@ namespace tlbimp2
 
                 m_implementsIEnumerable = ConvCommon.ExplicitlyImplementsIEnumerable(typeInfo, typeAttr);
 
-                List<Type> implTypeList = new List<Type>();
+                var implTypeList = new List<Type>();
 
                 if (typeAttr.cImplTypes == 1)
                 {

@@ -126,8 +126,8 @@ Namespace Parser
         End Function
 
         Protected Overridable Function TryEvaluateBinaryOperation(ByVal node As ExpressionNode) As Boolean
-            Dim left As ExpressionValue = DirectCast(node.LeftNode.Tag, ExpressionValue)
-            Dim right As ExpressionValue = DirectCast(node.RightNode.Tag, ExpressionValue)
+            Dim left = DirectCast(node.LeftNode.Tag, ExpressionValue)
+            Dim right = DirectCast(node.RightNode.Tag, ExpressionValue)
             Dim result As ExpressionValue = Nothing
             Select Case node.Token.TokenType
                 Case TokenType.OpDivide

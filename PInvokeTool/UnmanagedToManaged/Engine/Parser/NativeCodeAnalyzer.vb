@@ -122,7 +122,7 @@ Namespace Parser
 
             For Each macro As Macro In m_macroMap.Values
                 If macro.IsMethod Then
-                    Dim method As MethodMacro = DirectCast(macro, MethodMacro)
+                    Dim method = DirectCast(macro, MethodMacro)
                     list.Add(New NativeConstant(macro.Name, method.MethodSignature, ConstantKind.MacroMethod))
                 Else
                     list.Add(New NativeConstant(macro.Name, macro.Value))

@@ -107,7 +107,7 @@ Namespace Controls
         Private Shared Sub OnDoBackgroundWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles m_bgWorker.DoWork
             Dim result As New ResponseData
             Try
-                Dim req As RequestData = DirectCast(e.Argument, RequestData)
+                Dim req = DirectCast(e.Argument, RequestData)
                 Dim code As String = req.Text
                 Dim analyzer As NativeCodeAnalyzer = NativeCodeAnalyzerFactory.CreateForMiniParse(OsVersion.WindowsVista, req.InitialMacroList)
                 Using reader As New IO.StringReader(code)
@@ -127,7 +127,7 @@ Namespace Controls
         End Sub
 
         Private Sub OnBackgroundOperationCompleted(ByVal sender As System.Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles m_bgWorker.RunWorkerCompleted
-            Dim response As ResponseData = DirectCast(e.Result, ResponseData)
+            Dim response = DirectCast(e.Result, ResponseData)
             m_errorsTb.Text = response.ParseOutput
             If m_changed Then
                 RunWorker()

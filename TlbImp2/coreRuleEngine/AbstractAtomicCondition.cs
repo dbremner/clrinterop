@@ -66,7 +66,7 @@ namespace CoreRuleEngine
         {
             if (obj is AbstractAtomicCondition)
             {
-                AbstractAtomicCondition condition = obj as AbstractAtomicCondition;
+                var condition = obj as AbstractAtomicCondition;
                 return (GetConditionDef() == condition.GetConditionDef() &&
                                     m_operator == condition.m_operator &&
                                     m_value == condition.m_value);

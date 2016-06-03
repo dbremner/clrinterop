@@ -144,7 +144,7 @@ Namespace Transform
                     Return
                 End If
 
-                Dim field As CodeMemberField = TryCast(mem, CodeMemberField)
+                Dim field = TryCast(mem, CodeMemberField)
                 If field IsNot Nothing Then
                     Dim ntMem As NativeMember = GetNativeMember(field)
                     If ntMem IsNot Nothing Then
@@ -164,7 +164,7 @@ Namespace Transform
                     Return
                 End If
 
-                Dim field As CodeMemberField = TryCast(mem, CodeMemberField)
+                Dim field = TryCast(mem, CodeMemberField)
                 If field IsNot Nothing Then
                     Dim ntMem As NativeMember = GetNativeMember(field)
                     If ntMem IsNot Nothing Then
@@ -233,7 +233,7 @@ Namespace Transform
                 If IsType(attrib.AttributeType, GetType(StructLayoutAttribute)) Then
                     For Each arg As CodeAttributeArgument In attrib.Arguments
                         If 0 = String.CompareOrdinal(arg.Name, "CharSet") Then
-                            Dim pValue As CodeFieldReferenceExpression = TryCast(arg.Value, CodeFieldReferenceExpression)
+                            Dim pValue = TryCast(arg.Value, CodeFieldReferenceExpression)
                             If pValue IsNot Nothing Then
                                 charset = DirectCast([Enum].Parse(GetType(CharSet), pValue.FieldName), CharSet)
                                 Return True
@@ -326,7 +326,7 @@ Namespace Transform
 
             Dim digged As NativeType = nt.DigThroughTypedefAndNamedTypes()
             If digged IsNot Nothing AndAlso digged.Kind = NativeSymbolKind.BuiltinType Then
-                Dim bt As NativeBuiltinType = DirectCast(digged, NativeBuiltinType)
+                Dim bt = DirectCast(digged, NativeBuiltinType)
                 If bt.BuiltinType = BuiltinType.NativeChar Then
                     charSet = Runtime.InteropServices.CharSet.Ansi
                     Return True
@@ -340,7 +340,7 @@ Namespace Transform
         End Function
 
         Protected Function IsArrayOfCharType(ByVal nt As NativeType) As Boolean
-            Dim kind As CharSet = Runtime.InteropServices.CharSet.None
+            Dim kind = Runtime.InteropServices.CharSet.None
             Return IsArrayOfCharType(nt, kind)
         End Function
 
@@ -403,7 +403,7 @@ Namespace Transform
                 Return False
             End If
 
-            Dim pointer As NativePointer = DirectCast(nt, NativePointer)
+            Dim pointer = DirectCast(nt, NativePointer)
             Dim target As NativeType = pointer.RealTypeDigged
             If target Is Nothing Then
                 Return False
@@ -414,7 +414,7 @@ Namespace Transform
         End Function
 
         Protected Function IsPointerToCharType(ByVal param As NativeParameter) As Boolean
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             Return IsPointerToCharType(param, kind)
         End Function
 
@@ -427,7 +427,7 @@ Namespace Transform
         End Function
 
         Protected Function IsPointerToCharType(ByVal type As NativeType) As Boolean
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             Return IsPointerToCharType(type, kind)
         End Function
 
@@ -445,7 +445,7 @@ Namespace Transform
 
                 ' WCHAR is commonly typedef'd into "unsigned short".  We need to manually dig through the typedefs
                 ' and named types looking for WCHAR
-                Dim pt As NativePointer = DirectCast(digged, NativePointer)
+                Dim pt = DirectCast(digged, NativePointer)
                 Return IsCharType(pt.RealType, kind)
             End If
 
@@ -455,7 +455,7 @@ Namespace Transform
         Protected Function IsPointerToNumber(ByVal param As NativeParameter, ByRef bt As BuiltinType) As Boolean
             Dim paramType As NativeType = param.NativeTypeDigged
             If paramType.Kind = NativeSymbolKind.PointerType Then
-                Dim pointerNt As NativePointer = DirectCast(paramType, NativePointer)
+                Dim pointerNt = DirectCast(paramType, NativePointer)
                 If pointerNt.RealTypeDigged.Kind = NativeSymbolKind.BuiltinType Then
                     bt = DirectCast(pointerNt.RealTypeDigged, NativeBuiltinType).BuiltinType
                     If NativeBuiltinType.IsNumberType(bt) Then
@@ -479,8 +479,8 @@ Namespace Transform
                 Return False
             End If
 
-            Dim ptr As NativePointer = DirectCast(type, NativePointer)
-            Dim named As NativeNamedType = TryCast(ptr.RealType, NativeNamedType)
+            Dim ptr = DirectCast(type, NativePointer)
+            Dim named = TryCast(ptr.RealType, NativeNamedType)
             If named IsNot Nothing AndAlso named.IsConst Then
                 Return True
             End If
@@ -627,7 +627,7 @@ Namespace Transform
         Inherits TransformPlugin
 
         Protected Overrides Sub ProcessReturnTypeImpl(ByVal codeMethod As CodeMemberMethod, ByVal retNt As NativeType, ByVal retNtSal As NativeSalAttribute)
-            Dim bType As BooleanType = BooleanType.CStyle
+            Dim bType = BooleanType.CStyle
             If retNt IsNot Nothing AndAlso IsBooleanType(retNt, bType) Then
                 codeMethod.ReturnType = New CodeTypeReference(GetType(Boolean))
                 codeMethod.ReturnTypeCustomAttributes.Clear()
@@ -637,7 +637,7 @@ Namespace Transform
         End Sub
 
         Protected Overrides Sub ProcessSingleParameter(ByVal codeParam As System.CodeDom.CodeParameterDeclarationExpression, ByVal ntParam As NativeParameter, ByVal isDelegateParam As Boolean)
-            Dim bType As BooleanType = BooleanType.CStyle
+            Dim bType = BooleanType.CStyle
             If IsBooleanType(ntParam.NativeType, bType) Then
                 codeParam.Type = New CodeTypeReference(GetType(Boolean))
                 codeParam.CustomAttributes.Clear()
@@ -674,7 +674,7 @@ Namespace Transform
         Protected Overrides Sub ProcessSingleParameter(ByVal codeParam As System.CodeDom.CodeParameterDeclarationExpression, ByVal ntParam As NativeParameter, ByVal isDelegateParam As Boolean)
 
             ' Make sure it's a string pointer
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             If Not IsPointerToCharType(ntParam, kind) Then
                 Return
             End If
@@ -723,7 +723,7 @@ Namespace Transform
             Dim paramType As NativeType = ntParam.NativeTypeDigged
 
             ' If this isn't a string pointer then we don't want to process it 
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             If Not IsPointerToCharType(ntParam, kind) Then
                 Return
             End If
@@ -959,7 +959,7 @@ Namespace Transform
             ' If this is not an array or it's an array of characters then return.  Array's of characters should 
             ' be marshaled as StringBuilders and is handled elsewhere
             Dim ct As CodeTypeReference = Nothing
-            Dim ut As UnmanagedType = UnmanagedType.AnsiBStr
+            Dim ut = UnmanagedType.AnsiBStr
             Dim nt As NativeType = ntParam.NativeTypeDigged
             If nt.Kind = NativeSymbolKind.ArrayType Then
                 If Not ProcessArray(DirectCast(nt, NativeArray), ct, ut) Then
@@ -1132,7 +1132,7 @@ Namespace Transform
                 Return
             End If
 
-            Dim ptr As NativePointer = DirectCast(digged, NativePointer)
+            Dim ptr = DirectCast(digged, NativePointer)
             If ptr.RealType IsNot Nothing AndAlso HasBetterManagedType(ptr.RealType, codeType, codeAttrib, True) Then
 
                 Dim isValid As Boolean = True
@@ -1193,7 +1193,7 @@ Namespace Transform
 
             ' WCHAR is best as a Char structure.  Don't ever Marshal this as a CHAR* though, all of the String
             ' logic code will do that
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             If Not isPointer AndAlso IsCharType(ntType, kind) AndAlso CharSet.Unicode = kind Then
                 codeType = New CodeTypeReference(GetType(Char))
                 codeAttrib.Clear()
@@ -1426,7 +1426,7 @@ Namespace Transform
                 Return
             End If
 
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             If Not IsWin32String(ntType, kind) Then
                 Return
             End If
@@ -1443,7 +1443,7 @@ Namespace Transform
                 Return
             End If
 
-            Dim kind As CharSet = CharSet.None
+            Dim kind = CharSet.None
             Dim isConst As Boolean = False
             If Not IsWin32String(ntParam.NativeType, kind, isConst) Then
                 Return
@@ -2359,14 +2359,14 @@ Namespace Transform
         Protected Overrides Sub ProcessSingleStructField(ByVal ctd As System.CodeDom.CodeTypeDeclaration, ByVal codeField As System.CodeDom.CodeMemberField, ByVal ntMem As NativeMember)
 
             ' Analyze the type and look for a string buffer
-            Dim foundCharSet As CharSet = CharSet.None
+            Dim foundCharSet = CharSet.None
             If Not IsArrayOfCharType(ntMem.NativeType, foundCharSet) Then
                 Return
             End If
 
             ' Look at the existing charset.  If it's different than the one we found then we can't do anything
             ' and should just bail out
-            Dim existingCharset As CharSet = CharSet.Ansi
+            Dim existingCharset = CharSet.Ansi
             If MyBase.IsCharsetSpecified(ctd, existingCharset) Then
                 If existingCharset <> foundCharSet Then
                     Return
@@ -2376,7 +2376,7 @@ Namespace Transform
             End If
 
             ' Convert the types
-            Dim arrayNt As NativeArray = DirectCast(ntMem.NativeTypeDigged, NativeArray)
+            Dim arrayNt = DirectCast(ntMem.NativeTypeDigged, NativeArray)
             codeField.Type = New CodeTypeReference(GetType(String))
             codeField.CustomAttributes.Clear()
 
@@ -2446,7 +2446,7 @@ Namespace Transform
         Protected Overrides Sub ProcessSingleStructField(ByVal ctd As System.CodeDom.CodeTypeDeclaration, ByVal field As System.CodeDom.CodeMemberField, ByVal ntMem As NativeMember)
 
             Dim retNt As NativeType = ntMem.NativeType
-            Dim bType As BooleanType = BooleanType.CStyle
+            Dim bType = BooleanType.CStyle
             If retNt IsNot Nothing AndAlso IsBooleanType(retNt, bType) Then
                 field.Type = New CodeTypeReference(GetType(Boolean))
                 field.CustomAttributes.Clear()
@@ -2480,7 +2480,7 @@ Namespace Transform
 
         Protected Overrides Sub ProcessSingleUnionField(ByVal ctd As System.CodeDom.CodeTypeDeclaration, ByVal field As System.CodeDom.CodeMemberField, ByVal ntMem As NativeMember)
             Dim nt As NativeType = ntMem.NativeType
-            Dim bType As BooleanType = BooleanType.CStyle
+            Dim bType = BooleanType.CStyle
             If nt IsNot Nothing AndAlso IsBooleanType(nt, bType) Then
                 field.CustomAttributes.Add(MarshalAttributeFactory.CreateBooleanMarshalAttribute(BooleanType.CStyle))
                 field.Type = New CodeTypeReference(GetType(Boolean))

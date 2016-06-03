@@ -32,14 +32,14 @@ namespace TlbImpRuleEngine
 
         public IAction Create()
         {
-            ChangeManagedNameAction changeManagedNameAction = new ChangeManagedNameAction();
+            var changeManagedNameAction = new ChangeManagedNameAction();
             return changeManagedNameAction;
         }
 
         public IAction Create(Dictionary<string, string> parameters)
         {
-            ChangeManagedNameAction changeManagedNameAction = new ChangeManagedNameAction();
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            var changeManagedNameAction = new ChangeManagedNameAction();
             if (parameters.ContainsKey(ParameterNewName))
             {
                 changeManagedNameAction.NewName = parameters[ParameterNewName];

@@ -302,7 +302,7 @@ namespace ConsoleTool
             string message;
 
             // extract LoaderExceptions if available
-            ReflectionTypeLoadException rtle = e as ReflectionTypeLoadException;
+            var rtle = e as ReflectionTypeLoadException;
             if (rtle != null)
             {
                 StringBuilder sb = new StringBuilder();

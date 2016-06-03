@@ -38,37 +38,37 @@ Namespace Transform
             list.Add(ctm)
             IterateAttributesImpl(ctm.CustomAttributes, list)
 
-            Dim memEvent As CodeMemberEvent = TryCast(ctm, CodeMemberEvent)
+            Dim memEvent = TryCast(ctm, CodeMemberEvent)
             If memEvent IsNot Nothing Then
                 IterateMemberEventImpl(memEvent, list)
                 Return
             End If
 
-            Dim memField As CodeMemberField = TryCast(ctm, CodeMemberField)
+            Dim memField = TryCast(ctm, CodeMemberField)
             If memField IsNot Nothing Then
                 IterateMemberFieldImpl(memField, list)
                 Return
             End If
 
-            Dim memMethod As CodeMemberMethod = TryCast(ctm, CodeMemberMethod)
+            Dim memMethod = TryCast(ctm, CodeMemberMethod)
             If memMethod IsNot Nothing Then
                 IterateMemberMethodImpl(memMethod, list)
                 Return
             End If
 
-            Dim memProperty As CodeMemberProperty = TryCast(ctm, CodeMemberProperty)
+            Dim memProperty = TryCast(ctm, CodeMemberProperty)
             If memProperty IsNot Nothing Then
                 IterateMemberPropertyImpl(memProperty, list)
                 Return
             End If
 
-            Dim memSnippet As CodeSnippetTypeMember = TryCast(ctm, CodeSnippetTypeMember)
+            Dim memSnippet = TryCast(ctm, CodeSnippetTypeMember)
             If memSnippet IsNot Nothing Then
                 IterateSnippetTypeImpl(memSnippet, list)
                 Return
             End If
 
-            Dim typeDecl As CodeTypeDeclaration = TryCast(ctm, CodeTypeDeclaration)
+            Dim typeDecl = TryCast(ctm, CodeTypeDeclaration)
             If typeDecl IsNot Nothing Then
                 IterateTypeDeclarationImpl(typeDecl, list)
                 Return
@@ -100,7 +100,7 @@ Namespace Transform
 
             IterateTypeParametersImpl(ctd.TypeParameters, list)
 
-            Dim delType As CodeTypeDelegate = TryCast(ctd, CodeTypeDelegate)
+            Dim delType = TryCast(ctd, CodeTypeDelegate)
             If delType IsNot Nothing Then
                 list.Add(delType.ReturnType)
 
@@ -210,42 +210,42 @@ Namespace Transform
             End If
 
             list.Add(expr)
-            Dim primExpr As CodePrimitiveExpression = TryCast(expr, CodePrimitiveExpression)
+            Dim primExpr = TryCast(expr, CodePrimitiveExpression)
             If primExpr IsNot Nothing Then
                 list.Add(primExpr.Value)
                 Return
             End If
 
-            Dim fieldRef As CodeFieldReferenceExpression = TryCast(expr, CodeFieldReferenceExpression)
+            Dim fieldRef = TryCast(expr, CodeFieldReferenceExpression)
             If fieldRef IsNot Nothing Then
                 IterateExprImpl(fieldRef.TargetObject, list)
                 Return
             End If
 
-            Dim typeRefExpr As CodeTypeReferenceExpression = TryCast(expr, CodeTypeReferenceExpression)
+            Dim typeRefExpr = TryCast(expr, CodeTypeReferenceExpression)
             If typeRefExpr IsNot Nothing Then
                 IterateTypeRefImpl(typeRefExpr.Type, list)
                 Return
             End If
 
-            Dim binExpr As CodeBinaryOperatorExpression = TryCast(expr, CodeBinaryOperatorExpression)
+            Dim binExpr = TryCast(expr, CodeBinaryOperatorExpression)
             If binExpr IsNot Nothing Then
                 IterateExprImpl(binExpr.Left, list)
                 IterateExprImpl(binExpr.Right, list)
                 Return
             End If
 
-            Dim propSetExpr As CodePropertySetValueReferenceExpression = TryCast(expr, CodePropertySetValueReferenceExpression)
+            Dim propSetExpr = TryCast(expr, CodePropertySetValueReferenceExpression)
             If propSetExpr IsNot Nothing Then
                 Return
             End If
 
-            Dim thisExpr As CodeThisReferenceExpression = TryCast(expr, CodeThisReferenceExpression)
+            Dim thisExpr = TryCast(expr, CodeThisReferenceExpression)
             If thisExpr IsNot Nothing Then
                 Return
             End If
 
-            Dim methodInvokeExpr As CodeMethodInvokeExpression = TryCast(expr, CodeMethodInvokeExpression)
+            Dim methodInvokeExpr = TryCast(expr, CodeMethodInvokeExpression)
             If methodInvokeExpr IsNot Nothing Then
                 For Each arg As CodeExpression In methodInvokeExpr.Parameters
                     IterateExprImpl(arg, list)
@@ -254,56 +254,56 @@ Namespace Transform
                 Return
             End If
 
-            Dim methodRefExpr As CodeMethodReferenceExpression = TryCast(expr, CodeMethodReferenceExpression)
+            Dim methodRefExpr = TryCast(expr, CodeMethodReferenceExpression)
             If methodRefExpr IsNot Nothing Then
                 IterateExprImpl(methodRefExpr.TargetObject, list)
                 Return
             End If
 
-            Dim createExpr As CodeObjectCreateExpression = TryCast(expr, CodeObjectCreateExpression)
+            Dim createExpr = TryCast(expr, CodeObjectCreateExpression)
             If createExpr IsNot Nothing Then
                 IterateTypeRefImpl(createExpr.CreateType, list)
                 Return
             End If
 
-            Dim varRefExpr As CodeVariableReferenceExpression = TryCast(expr, CodeVariableReferenceExpression)
+            Dim varRefExpr = TryCast(expr, CodeVariableReferenceExpression)
             If varRefExpr IsNot Nothing Then
                 Return
             End If
 
-            Dim createArrayExpr As CodeArrayCreateExpression = TryCast(expr, CodeArrayCreateExpression)
+            Dim createArrayExpr = TryCast(expr, CodeArrayCreateExpression)
             If createArrayExpr IsNot Nothing Then
                 IterateTypeRefImpl(createArrayExpr.CreateType, list)
                 Return
             End If
 
-            Dim castExpr As CodeCastExpression = TryCast(expr, CodeCastExpression)
+            Dim castExpr = TryCast(expr, CodeCastExpression)
             If castExpr IsNot Nothing Then
                 IterateTypeRefImpl(castExpr.TargetType, list)
                 IterateExprImpl(castExpr.Expression, list)
                 Return
             End If
 
-            Dim notExpr As CodeNotExpression = TryCast(expr, CodeNotExpression)
+            Dim notExpr = TryCast(expr, CodeNotExpression)
             If notExpr IsNot Nothing Then
                 IterateExprImpl(notExpr.Expression, list)
                 Return
             End If
 
-            Dim negativeExpr As CodeNegativeExpression = TryCast(expr, CodeNegativeExpression)
+            Dim negativeExpr = TryCast(expr, CodeNegativeExpression)
             If negativeExpr IsNot Nothing Then
                 IterateExprImpl(negativeExpr.Expression, list)
                 Return
             End If
 
-            Dim shiftExpr As CodeShiftExpression = TryCast(expr, CodeShiftExpression)
+            Dim shiftExpr = TryCast(expr, CodeShiftExpression)
             If shiftExpr IsNot Nothing Then
                 IterateExprImpl(shiftExpr.Left, list)
                 IterateExprImpl(shiftExpr.Right, list)
                 Return
             End If
 
-            Dim directionalExpr As CodeDirectionalSymbolExpression = TryCast(expr, CodeDirectionalSymbolExpression)
+            Dim directionalExpr = TryCast(expr, CodeDirectionalSymbolExpression)
             If directionalExpr IsNot Nothing Then
                 IterateExprImpl(directionalExpr.Expression, list)
                 return
@@ -327,27 +327,27 @@ Namespace Transform
             ThrowIfNull(list)
 
             list.Add(state)
-            Dim retState As CodeMethodReturnStatement = TryCast(state, CodeMethodReturnStatement)
+            Dim retState = TryCast(state, CodeMethodReturnStatement)
             If retState IsNot Nothing Then
                 IterateExprImpl(retState.Expression, list)
                 Return
             End If
 
-            Dim asgState As CodeAssignStatement = TryCast(state, CodeAssignStatement)
+            Dim asgState = TryCast(state, CodeAssignStatement)
             If asgState IsNot Nothing Then
                 IterateExprImpl(asgState.Left, list)
                 IterateExprImpl(asgState.Right, list)
                 Return
             End If
 
-            Dim varDeclState As CodeVariableDeclarationStatement = TryCast(state, CodeVariableDeclarationStatement)
+            Dim varDeclState = TryCast(state, CodeVariableDeclarationStatement)
             If varDeclState IsNot Nothing Then
                 IterateExprImpl(varDeclState.InitExpression, list)
                 IterateTypeRefImpl(varDeclState.Type, list)
                 Return
             End If
 
-            Dim condState As CodeConditionStatement = TryCast(state, CodeConditionStatement)
+            Dim condState = TryCast(state, CodeConditionStatement)
             If condState IsNot Nothing Then
                 IterateExprImpl(condState.Condition, list)
                 IterateStatementsImpl(condState.TrueStatements, list)
@@ -355,17 +355,17 @@ Namespace Transform
                 Return
             End If
 
-            Dim labelState As CodeLabeledStatement = TryCast(state, CodeLabeledStatement)
+            Dim labelState = TryCast(state, CodeLabeledStatement)
             If labelState IsNot Nothing Then
                 Return
             End If
 
-            Dim gotoState As CodeGotoStatement = TryCast(state, CodeGotoStatement)
+            Dim gotoState = TryCast(state, CodeGotoStatement)
             If gotoState IsNot Nothing Then
                 Return
             End If
 
-            Dim exprState As CodeExpressionStatement = TryCast(state, CodeExpressionStatement)
+            Dim exprState = TryCast(state, CodeExpressionStatement)
             If exprState IsNot Nothing Then
                 IterateExprImpl(exprState.Expression, list)
                 Return

@@ -58,7 +58,7 @@ namespace TlbImpRuleEngine
             string nativeSignature;
             if (matchTarget is SignatureInfoMatchTarget)
             {
-                SignatureInfoMatchTarget sigInfoMatchTarget = matchTarget as SignatureInfoMatchTarget;
+                var sigInfoMatchTarget = matchTarget as SignatureInfoMatchTarget;
                 nativeSignature = sigInfoMatchTarget.NativeSignature;
             }
             else

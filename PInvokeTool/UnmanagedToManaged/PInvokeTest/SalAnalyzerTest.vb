@@ -44,7 +44,7 @@ Public Class SalAnalyzerTest
         Dim sal As New NativeSalAttribute( _
             SalEntryType.Pre, SalEntryType.Valid, _
             SalEntryType.Pre, SalEntryType.Deref, SalEntryType.ReadOnly)
-        Dim target As SalAnalyzer = New SalAnalyzer(sal)
+        Dim target = New SalAnalyzer(sal)
 
         Assert.IsTrue(target.IsIn())
     End Sub
@@ -54,7 +54,7 @@ Public Class SalAnalyzerTest
         Dim sal As New NativeSalAttribute( _
             SalEntryType.Pre, SalEntryType.Valid, _
             SalEntryType.Pre, SalEntryType.Deref, SalEntryType.NotReadOnly)
-        Dim target As SalAnalyzer = New SalAnalyzer(sal)
+        Dim target = New SalAnalyzer(sal)
 
         Assert.IsFalse(target.IsIn())
     End Sub

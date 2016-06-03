@@ -138,8 +138,8 @@ Public MustInherit Class NativeSymbol
         If oldChild Is Nothing Then : Throw New ArgumentNullException(NameOf(oldChild)) : End If
         If newChild Is Nothing Then : Throw New ArgumentNullException(NameOf(newChild)) : End If
 
-        Dim oldTyped As T = TryCast(oldChild, T)
-        Dim newTyped As T = TryCast(newChild, T)
+        Dim oldTyped = TryCast(oldChild, T)
+        Dim newTyped = TryCast(newChild, T)
         If oldTyped Is Nothing OrElse newTyped Is Nothing Then
             Throw New InvalidOperationException("Operands are of the wrong type")
         End If
@@ -183,7 +183,7 @@ Public MustInherit Class NativeSymbol
             Return
         End If
 
-        Dim newTyped As T = TryCast(newChild, T)
+        Dim newTyped = TryCast(newChild, T)
         If newTyped Is Nothing Then
             Throw New InvalidOperationException("Operands are of the wrong type")
         End If
@@ -233,7 +233,7 @@ Public MustInherit Class NativeType
 
         Dim cur As NativeType = Me
         While cur IsNot Nothing AndAlso cur.Kind = NativeSymbolKind.NamedType
-            Dim namedNt As NativeNamedType = DirectCast(cur, NativeNamedType)
+            Dim namedNt = DirectCast(cur, NativeNamedType)
             cur = namedNt.RealType
 
             If cur isNot Nothing andalso 0 = String.CompareOrdinal(cur.Name, search) Then

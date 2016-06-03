@@ -481,7 +481,7 @@ Public Class NativeSymbolBagTest
     <TestMethod()> _
     Public Sub Value2()
         Dim bag As New NativeSymbolBag()
-        Dim ntEnum As NativeEnum = New NativeEnum("Enum1")
+        Dim ntEnum = New NativeEnum("Enum1")
         ntEnum.Values.Add(New NativeEnumValue("v1", "1"))
         ntEnum.Values.Add(New NativeEnumValue("v2", "v1+1"))
         bag.AddDefinedType(ntEnum)

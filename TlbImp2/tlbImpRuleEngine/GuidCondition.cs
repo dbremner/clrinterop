@@ -63,7 +63,7 @@ namespace TlbImpRuleEngine
             Guid guid;
             if (matchTarget is TypeInfoMatchTarget)
             {
-                TypeInfoMatchTarget typeInfoMatchTarget = matchTarget as TypeInfoMatchTarget;
+                var typeInfoMatchTarget = matchTarget as TypeInfoMatchTarget;
                 guid = typeInfoMatchTarget.GUID;
             }
             else

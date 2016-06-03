@@ -369,7 +369,7 @@ Namespace Transform
             Dim it As New CodeDomIterator()
             Dim list As List(Of Object) = it.Iterate(col)
             For Each obj As Object In list
-                Dim ctdRef As CodeTypeReference = TryCast(obj, CodeTypeReference)
+                Dim ctdRef = TryCast(obj, CodeTypeReference)
                 If ctdRef IsNot Nothing AndAlso 0 = String.CompareOrdinal(ctdRef.BaseType, MarshalTypeFactory.PInvokePointerTypeName) Then
                     addPInvokePointer = True
                 End If

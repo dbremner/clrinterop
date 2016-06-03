@@ -135,8 +135,8 @@ internal class CommandLine
 
         // Temporary lists of raw arguments and options and their
         // associated values.
-        String[] aArgList = new String[aArgs.Length];
-        Option[] aOptList = new Option[aArgs.Length];
+        var aArgList = new String[aArgs.Length];
+        var aOptList = new Option[aArgs.Length];
 
         // Reset counters of raw arguments and option/value pairs found
         // so far.

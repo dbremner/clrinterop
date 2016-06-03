@@ -433,12 +433,12 @@ Namespace Controls
             End Function
 
             Public Overrides Function GetName(ByVal o As Object) As String
-                Dim row As ConstantRow = DirectCast(o, ConstantRow)
+                Dim row = DirectCast(o, ConstantRow)
                 Return row.Name
             End Function
 
             Public Overrides Function GetValue(ByVal o As Object) As String
-                Dim row As ConstantRow = DirectCast(o, ConstantRow)
+                Dim row = DirectCast(o, ConstantRow)
                 Dim c As NativeConstant = Nothing
                 If NativeStorage.TryLoadConstant(row.Name, c) Then
                     Return c.Value.Expression
@@ -449,7 +449,7 @@ Namespace Controls
             End Function
 
             Public Overrides Function TryConvertToSymbol(ByVal o As Object, ByRef symbol As NativeSymbol) As Boolean
-                Dim row As ConstantRow = DirectCast(o, ConstantRow)
+                Dim row = DirectCast(o, ConstantRow)
                 Dim cValue As NativeConstant = Nothing
                 If NativeStorage.TryLoadConstant(row.Name, cValue) Then
                     symbol = cValue
@@ -461,7 +461,7 @@ Namespace Controls
 
             Protected Overrides Function ShouldAllowCore(ByVal cur As Object) As Boolean
                 If Not ShowInvalidData Then
-                    Dim row As ConstantRow = DirectCast(cur, ConstantRow)
+                    Dim row = DirectCast(cur, ConstantRow)
                     If Not IsValidConstant(row) Then
                         Return False
                     End If
@@ -508,12 +508,12 @@ Namespace Controls
             End Function
 
             Public Overrides Function GetName(ByVal o As Object) As String
-                Dim row As ProcedureRow = DirectCast(o, ProcedureRow)
+                Dim row = DirectCast(o, ProcedureRow)
                 Return row.Name
             End Function
 
             Public Overrides Function GetValue(ByVal o As Object) As String
-                Dim row As ProcedureRow = DirectCast(o, ProcedureRow)
+                Dim row = DirectCast(o, ProcedureRow)
                 Dim proc As NativeProcedure = Nothing
                 If NativeStorage.TryLoadProcedure(row.Name, proc) Then
                     Return proc.Signature.DisplayName
@@ -523,7 +523,7 @@ Namespace Controls
             End Function
 
             Public Overrides Function TryConvertToSymbol(ByVal o As Object, ByRef symbol As NativeSymbol) As Boolean
-                Dim row As ProcedureRow = DirectCast(o, ProcedureRow)
+                Dim row = DirectCast(o, ProcedureRow)
                 Dim proc As NativeProcedure = Nothing
                 If NativeStorage.TryLoadProcedure(row.Name, proc) Then
                     symbol = proc
@@ -547,8 +547,8 @@ Namespace Controls
             End Function
 
             Public Overrides Function GetName(ByVal o As Object) As String
-                Dim definedRow As DefinedTypeRow = TryCast(o, DefinedTypeRow)
-                Dim typedefRow As TypedefTypeRow = TryCast(o, TypedefTypeRow)
+                Dim definedRow = TryCast(o, DefinedTypeRow)
+                Dim typedefRow = TryCast(o, TypedefTypeRow)
                 If definedRow IsNot Nothing Then
                     Return definedRow.Name
                 ElseIf typedefRow IsNot Nothing Then
@@ -606,10 +606,10 @@ Namespace Controls
             End Function
 
             Public Overrides Function GetName(ByVal o As Object) As String
-                Dim procRow As ProcedureRow = TryCast(o, ProcedureRow)
-                Dim constRow As ConstantRow = TryCast(o, ConstantRow)
-                Dim definedRow As DefinedTypeRow = TryCast(o, DefinedTypeRow)
-                Dim typedefRow As TypedefTypeRow = TryCast(o, TypedefTypeRow)
+                Dim procRow = TryCast(o, ProcedureRow)
+                Dim constRow = TryCast(o, ConstantRow)
+                Dim definedRow = TryCast(o, DefinedTypeRow)
+                Dim typedefRow = TryCast(o, TypedefTypeRow)
                 If definedRow IsNot Nothing Then
                     Return definedRow.Name
                 ElseIf typedefRow IsNot Nothing Then
@@ -639,10 +639,10 @@ Namespace Controls
             End Function
 
             Private Function TryGetSymbolAndValue(ByVal o As Object, ByRef symbol As NativeSymbol, ByRef value As String) As Boolean
-                Dim procRow As ProcedureRow = TryCast(o, ProcedureRow)
-                Dim constRow As ConstantRow = TryCast(o, ConstantRow)
-                Dim definedRow As DefinedTypeRow = TryCast(o, DefinedTypeRow)
-                Dim typedefRow As TypedefTypeRow = TryCast(o, TypedefTypeRow)
+                Dim procRow = TryCast(o, ProcedureRow)
+                Dim constRow = TryCast(o, ConstantRow)
+                Dim definedRow = TryCast(o, DefinedTypeRow)
+                Dim typedefRow = TryCast(o, TypedefTypeRow)
                 Dim name As String = GetName(o)
 
                 Dim ret As Boolean = True
@@ -695,7 +695,7 @@ Namespace Controls
 
             Protected Overrides Function ShouldAllowCore(ByVal cur As Object) As Boolean
                 If Not ShowInvalidData Then
-                    Dim constRow As ConstantRow = TryCast(cur, ConstantRow)
+                    Dim constRow = TryCast(cur, ConstantRow)
                     If constRow IsNot Nothing AndAlso Not ConstantsInfo.IsValidConstant(constRow) Then
                         Return False
                     End If

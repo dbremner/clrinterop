@@ -137,7 +137,7 @@ namespace TypeLibTypes.Interop
 
                 pArrayDesc = Utils.MovePointer(pArrayDesc, Marshal.OffsetOf(typeof(ARRAYDESC), "firstBound"));
 
-                List<SAFEARRAYBOUND> bounds = new List<SAFEARRAYBOUND>();
+                var bounds = new List<SAFEARRAYBOUND>();
                 int safeArrayBoundSize = Marshal.SizeOf(typeof(SAFEARRAYBOUND));
                 for( int i = 0; i < cDims; ++i)
                 {                        

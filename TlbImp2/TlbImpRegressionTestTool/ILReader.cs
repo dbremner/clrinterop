@@ -106,7 +106,7 @@ namespace ILReader
 		
 		public virtual string DisplayIL()
 		{
-			StringBuilder s = new StringBuilder();
+			var s = new StringBuilder();
 			if (Label != null)
 				s.Append(Label+":");
 			s.Append(Name + " ");					// This appends the name
@@ -1112,7 +1112,7 @@ namespace ILReader
 		
 		Opcode OpcodeNoParamVal(string s)				
 		{
-			Opcode NewOp =  new Opcode(s);
+			var NewOp =  new Opcode(s);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1121,7 +1121,7 @@ namespace ILReader
 			// This gets the parameter (stored as b) from the byte[]
 			byte b = IL[pos];
 			pos++;
-			Opcode NewOp =  new Opcode(s,b);
+			var NewOp =  new Opcode(s,b);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1130,8 +1130,8 @@ namespace ILReader
 			// This gets the parameter (stored as b) from the byte[]
 			byte b = IL[pos];
 			pos++; 
-			Index ind = new Index("V_" + b);
-			Opcode NewOp =  new Opcode(s,b);		
+			var ind = new Index("V_" + b);
+			var NewOp =  new Opcode(s,b);		
 			MakeLabel(NewOp);	
 			return NewOp;
 		}
@@ -1145,9 +1145,9 @@ namespace ILReader
 				pos++;
 			}
 			short i = BitConverter.ToInt16(b,0);
-			Index ind = new Index("V_" + i);
+			var ind = new Index("V_" + i);
 
-			Opcode NewOp =  new Opcode(s,i);
+			var NewOp =  new Opcode(s,i);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1162,7 +1162,7 @@ namespace ILReader
 			}
 			ushort i = BitConverter.ToUInt16(b,0);
 
-			Opcode NewOp =  new Opcode(s,i);
+			var NewOp =  new Opcode(s,i);
 			MakeLabel(NewOp);								// This labels the Opcode
 			return NewOp;
 		}
@@ -1177,7 +1177,7 @@ namespace ILReader
 				pos++;
 			}
 
-			Opcode NewOp =  new Opcode(s,BitConverter.ToDouble(b,0));
+			var NewOp =  new Opcode(s,BitConverter.ToDouble(b,0));
 			MakeLabel(NewOp);								// This labels the Opcode
 			return NewOp;
 		}
@@ -1192,7 +1192,7 @@ namespace ILReader
 			}
 			int i = BitConverter.ToInt32(b,0);
 
-			Opcode NewOp =  new Opcode(s,i);
+			var NewOp =  new Opcode(s,i);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1205,7 +1205,7 @@ namespace ILReader
 				b[k] = IL[pos];
 				pos++;
 			}
-			Opcode NewOp =  new Opcode(s,BitConverter.ToDouble(b,0));
+			var NewOp =  new Opcode(s,BitConverter.ToDouble(b,0));
 			MakeLabel(NewOp);			
 			return NewOp;
 		}
@@ -1220,7 +1220,7 @@ namespace ILReader
 			}
 			long i = BitConverter.ToInt64(b,0);
 
-			Opcode NewOp =  new Opcode(s,i);
+			var NewOp =  new Opcode(s,i);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1231,7 +1231,7 @@ namespace ILReader
 			Array.Copy(IL, pos, b, 0, 4);
 			pos+=4;
 			MethodBase mbase = (MethodBase)curModule.ResolveMember(BitConverter.ToInt32(b,0));
-			Opcode NewOp = new Opcode(s, mbase);
+			var NewOp = new Opcode(s, mbase);
 			NewOp.workingAssm = this.workingAssm;
 			NewOp.workingType = this.InputMeth.DeclaringType;
 			MakeLabel(NewOp);															// This labels the Opcode
@@ -1240,7 +1240,7 @@ namespace ILReader
 
 		Opcode OpcodeMethCall(string s)				
 		{
-			Opcode NewOp = OpcodeMeth(s);
+			var NewOp = OpcodeMeth(s);
 			return NewOp;
 		}
 
@@ -1254,7 +1254,7 @@ namespace ILReader
 				b[k] = IL[pos];
 				pos++;
 			}
-			Opcode NewOp =  new Opcode(s,b);
+			var NewOp =  new Opcode(s,b);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1265,7 +1265,7 @@ namespace ILReader
 			pos++;
 			int b = (int)((sbyte)k + (int)pos);
 			string s1 =string.Format("IL_{0:x4}", b);	
-			Opcode NewOp =  new Opcode(s,new Target(s1));
+			var NewOp =  new Opcode(s,new Target(s1));
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1281,7 +1281,7 @@ namespace ILReader
 			int l = BitConverter.ToInt32(b,0);
 			int TPos = l + pos;					
 			string s1 =string.Format("IL_{0:x4}", TPos);
-			Opcode NewOp =  new Opcode(s,new Target(s1));
+			var NewOp =  new Opcode(s,new Target(s1));
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1297,7 +1297,7 @@ namespace ILReader
 			}
 			Type RetType = (Type)curModule.ResolveMember(BitConverter.ToInt32(b,0));
 
-			Opcode NewOp =  new Opcode(s,RetType);
+			var NewOp =  new Opcode(s,RetType);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1312,7 +1312,7 @@ namespace ILReader
 			}
 			string str = curModule.ResolveString(BitConverter.ToInt32(b,0));
 
-			Opcode NewOp =  new Opcode(s,str);
+			var NewOp =  new Opcode(s,str);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
@@ -1328,7 +1328,7 @@ namespace ILReader
 			// We have to temporarily take out stfld field here.
 			// the stfld's order must be fixed up
 			FieldInfo ReturnField = (FieldInfo)curModule.ResolveMember(BitConverter.ToInt32(b,0));
-			Opcode NewOp =  new Opcode(s,ReturnField);
+			var NewOp =  new Opcode(s,ReturnField);
 			if (s.Equals("stfld"))
 			{
 				StfldList.Add(NewOp.ParamVal);
@@ -1395,13 +1395,13 @@ namespace ILReader
 				string s1 =string.Format("IL_{0:x4}", pos1 + j + 4*i + 5);
 				T.Add(new Target(s1));
 			}
-			Opcode NewOp =  new Opcode(s,T);
+			var NewOp =  new Opcode(s,T);
 			MakeLabel(NewOp);
 			return NewOp;
 		}
 		Opcode Prefix(string s)				
 		{
-			Opcode OpPre = new Opcode(s);
+			var OpPre = new Opcode(s);
 			MakeLabel(OpPre);							// This labels the Opcode
 			OpPre.IsPrefix = true;							// Here we designate the Opcode as a prefix
 			Opcode Next = GetOpcode();
@@ -1414,7 +1414,7 @@ namespace ILReader
 			// This gets the parameter (stored as b) from the byte[]
 			byte b = IL[pos];
 			pos++;
-			Opcode OpPre = new Opcode(s,b);
+			var OpPre = new Opcode(s,b);
 			MakeLabel(OpPre);							// This labels the Opcode
 			OpPre.IsPrefix = true;							// Here we designate the Opcode as a prefix
 			Opcode Next = GetOpcode();

@@ -63,7 +63,7 @@ namespace TlbImpRuleEngine
             TYPEKIND typeKind;
             if (matchTarget is TypeInfoMatchTarget)
             {
-                TypeInfoMatchTarget typeInfoMatchTarget = matchTarget as TypeInfoMatchTarget;
+                var typeInfoMatchTarget = matchTarget as TypeInfoMatchTarget;
                 typeKind = typeInfoMatchTarget.TypeKind;
             }
             else

@@ -925,14 +925,14 @@ Partial Class NativeStorage
 
         If nt.Kind = NativeSymbolKind.EnumType Then
             ' If this is an enum then add it to the list
-            Dim ntEnum As NativeEnum = DirectCast(nt, NativeEnum)
+            Dim ntEnum = DirectCast(nt, NativeEnum)
             For Each enumVal As NativeEnumValue In ntEnum.Values
                 Me.EnumValue.Add(dtRow, enumVal.Name, enumVal.Value.Expression)
             Next
         ElseIf nt.Kind = NativeSymbolKind.FunctionPointer Then
             ' if this is a function pointer then make sure to add the reference to the 
             ' signature
-            Dim fPtr As NativeFunctionPointer = DirectCast(nt, NativeFunctionPointer)
+            Dim fPtr = DirectCast(nt, NativeFunctionPointer)
             Dim sigRow As SignatureRow = Me.AddSignature(fPtr.Signature)
             dtRow.SignatureId = sigRow.Id
             dtRow.CallingConvention = fPtr.CallingConvention
@@ -1378,7 +1378,7 @@ Partial Class NativeStorage
         Dim existingRow As SpecializedTypeRow = Nothing
         Select Case nt.Kind
             Case NativeSymbolKind.BuiltinType
-                Dim nativeBt As NativeBuiltinType = DirectCast(nt, NativeBuiltinType)
+                Dim nativeBt = DirectCast(nt, NativeBuiltinType)
                 Me.SpecializedType.TryFindBuiltin(nativeBt.BuiltinType, nativeBt.IsUnsigned, existingRow)
             Case NativeSymbolKind.BitVectorType
                 Me.SpecializedType.TryFindBitVector(DirectCast(nt, NativeBitVector).Size, existingRow)
@@ -1395,10 +1395,10 @@ Partial Class NativeStorage
         row.Kind = nt.Kind
         Select Case nt.Kind
             Case NativeSymbolKind.BitVectorType
-                Dim bitNt As NativeBitVector = DirectCast(nt, NativeBitVector)
+                Dim bitNt = DirectCast(nt, NativeBitVector)
                 row.BitVectorSize = bitNt.Size
             Case NativeSymbolKind.BuiltinType
-                Dim builtinNt As NativeBuiltinType = DirectCast(nt, NativeBuiltinType)
+                Dim builtinNt = DirectCast(nt, NativeBuiltinType)
                 row.BuiltinType = builtinNt.BuiltinType
                 row.IsUnsigned = builtinNt.IsUnsigned
         End Select

@@ -57,7 +57,7 @@ namespace tlbimp2
         /// <returns>The blob in bytes</returns>
         public Byte[] GetBlob()
         {
-            List<byte> bytes = new List<byte>();
+            var bytes = new List<byte>();
 
             AppendProlog(bytes);
             

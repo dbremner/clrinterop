@@ -66,7 +66,7 @@ namespace tlbimp2
                     List<Rule> addAttributeRules = m_info.Settings.m_ruleSet.GetRule(
                         category, AddAttributeActionDef.GetInstance(), target);
                     foreach (Rule rule in addAttributeRules) {
-                        AddAttributeAction addAttributeAction = rule.Action as AddAttributeAction;
+                        var addAttributeAction = rule.Action as AddAttributeAction;
                         ConstructorInfo attributeCtor;
                         byte[] blob;
                         bool success = true;

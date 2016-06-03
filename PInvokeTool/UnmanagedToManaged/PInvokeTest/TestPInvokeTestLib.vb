@@ -187,7 +187,7 @@ Public Class TestPInvokeTestLib
         Dim p As IntPtr = IntPtr.Zero
         Assert.IsTrue(NativeMethods.GetPointerPointerToChar("f"c, p))
         Dim o As Object = Marshal.PtrToStructure(p, GetType(Char))
-        Dim c As Char = DirectCast(o, Char)
+        Dim c = DirectCast(o, Char)
         Assert.AreEqual("f"c, c)
     End Sub
 

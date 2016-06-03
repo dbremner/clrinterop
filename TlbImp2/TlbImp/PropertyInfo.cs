@@ -107,7 +107,7 @@ namespace tlbimp2
                 else
                     varArg = -1;
 
-                List<Type> paramTypeList = new List<Type>();
+                var paramTypeList = new List<Type>();
 
                 // Find the index part of the property's signature
                 bool skipLastRetVal = (bestFuncDesc.IsPropertyPut || bestFuncDesc.IsPropertyPutRef);

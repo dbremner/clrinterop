@@ -106,7 +106,7 @@ Imports PInvokeTest.Generated
     '<TestMethod()> _
     Public Sub GetComptureName1()
         Dim builder As New StringBuilder(256)
-        Dim count As UInteger = CUInt(builder.Capacity)
+        Dim count = CUInt(builder.Capacity)
         Assert.IsTrue(NativeMethods.GetComputerNameW(builder, count))
         Assert.AreEqual(Environment.MachineName, builder.ToString(), True)
     End Sub

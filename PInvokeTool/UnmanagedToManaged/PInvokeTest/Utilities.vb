@@ -34,24 +34,24 @@ Public Module CodeDomPrinter
     End Function
 
     Public Function Convert(ByVal expr As CodeExpression) As String
-        Dim primitiveExpr As CodePrimitiveExpression = TryCast(expr, CodePrimitiveExpression)
+        Dim primitiveExpr = TryCast(expr, CodePrimitiveExpression)
         If primitiveExpr IsNot Nothing Then
             Return primitiveExpr.Value.ToString()
         End If
 
-        Dim fieldExpr As CodeFieldReferenceExpression = TryCast(expr, CodeFieldReferenceExpression)
+        Dim fieldExpr = TryCast(expr, CodeFieldReferenceExpression)
         If fieldExpr IsNot Nothing Then
             Return String.Format("{0}.{1}", _
                 Convert(fieldExpr.TargetObject), _
                 fieldExpr.FieldName)
         End If
 
-        Dim typeExpr As CodeTypeReferenceExpression = TryCast(expr, CodeTypeReferenceExpression)
+        Dim typeExpr = TryCast(expr, CodeTypeReferenceExpression)
         If typeExpr IsNot Nothing Then
             Return ConvertNoNamespace(typeExpr.Type)
         End If
 
-        Dim opExpr As CodeBinaryOperatorExpression = TryCast(expr, CodeBinaryOperatorExpression)
+        Dim opExpr = TryCast(expr, CodeBinaryOperatorExpression)
         If opExpr IsNot Nothing Then
             Return String.Format("{0}({1})({2})", _
                 opExpr.Operator, _
@@ -291,7 +291,7 @@ Public Module GeneratedCodeVerification
     End Sub
 
     Public Sub VerifyExpression(ByVal lang As LanguageType, ByVal nativeExpr As String, ByVal managedExpr As String, ByVal managedType As String)
-        Dim trans As CodeTransform_Acc = New CodeTransform_Acc(CodeTransform_Acc.CreatePrivate(lang))
+        Dim trans = New CodeTransform_Acc(CodeTransform_Acc.CreatePrivate(lang))
         Dim nExpr As New NativeValueExpression(nativeExpr)
         Dim cExpr As CodeExpression = Nothing
         Dim codeType As CodeTypeReference = Nothing
@@ -361,7 +361,7 @@ Public Module GeneratedCodeVerification
         VerifyMember(ctd, name, cMem)
 
         ' Make sure it's a constant value
-        Dim field As CodeMemberField = TryCast(cMem, CodeMemberField)
+        Dim field = TryCast(cMem, CodeMemberField)
         Assert.IsNotNull(field)
 
         ' Get the provider
@@ -416,7 +416,7 @@ Public Module GeneratedCodeVerification
         Assert.IsNotNull(cMem)
 
         ' Make sure it's a constant value
-        Dim field As CodeMemberField = TryCast(cMem, CodeMemberField)
+        Dim field = TryCast(cMem, CodeMemberField)
         Assert.IsNotNull(field)
 
         ' Get the provider
@@ -469,7 +469,7 @@ Public Module GeneratedCodeVerification
 
         VerifyType(col, "NativeMethods", ctd)
         For Each mem As CodeTypeMember In ctd.Members
-            Dim method As CodeMemberMethod = TryCast(mem, CodeMemberMethod)
+            Dim method = TryCast(mem, CodeMemberMethod)
             If method IsNot Nothing Then
                 list.Add(method)
             End If

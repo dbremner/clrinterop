@@ -444,7 +444,7 @@ namespace WindowsTool
 
         private void OnLanguageTypeChanged(object sender, EventArgs e)
         {
-            ISignatureImportControl source = sender as ISignatureImportControl;
+            var source = sender as ISignatureImportControl;
             if (source != null)
             {
                 PInvoke.Transform.LanguageType cur = source.LanguageType;
@@ -520,7 +520,7 @@ namespace WindowsTool
             Control cur = ActiveControl;
             do
             {
-                ContainerControl container = cur as ContainerControl;
+                var container = cur as ContainerControl;
                 if (container == null || container.ActiveControl == null)
                 {
                     return cur;
@@ -539,7 +539,7 @@ namespace WindowsTool
             bool selectAllEnabled = false;          
             if (cur != null)
             {
-                TextBoxBase text_base = cur as TextBoxBase;
+                var text_base = cur as TextBoxBase;
                 if (text_base != null)
                 {
                     selectAllEnabled = true;
@@ -547,7 +547,7 @@ namespace WindowsTool
                 }
                 else
                 {
-                    DataGridView grid_view = cur as DataGridView;
+                    var grid_view = cur as DataGridView;
                     if (grid_view != null)
                     {
                         copyEnabled = true;
@@ -704,10 +704,10 @@ namespace WindowsTool
             }
 
             // extract LoaderExceptions from ReflectionTypeLoadException
-            ReflectionTypeLoadException rtle = e as ReflectionTypeLoadException;
+            var rtle = e as ReflectionTypeLoadException;
             if (rtle != null)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 for (int i = 0; i < rtle.LoaderExceptions.Length; i++)
                 {
                     if (sb.Length > 0) sb.Append('\n');
@@ -718,10 +718,10 @@ namespace WindowsTool
             }
 
             // extract LoaderMessages from UnableToGetTypesException
-            UnableToGetTypesException utgte = e as UnableToGetTypesException;
+            var utgte = e as UnableToGetTypesException;
             if (utgte != null)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 for (int i = 0; i < utgte.LoaderMessages.Length; i++)
                 {
                     if (sb.Length > 0) sb.Append('\n');
@@ -773,7 +773,7 @@ namespace WindowsTool
                 treeView.Nodes.Add(root_node);
 
                 // convert the lists to a tree view hierarchy
-                Dictionary<string, TreeNode> node_map = new Dictionary<string, TreeNode>();
+                var node_map = new Dictionary<string, TreeNode>();
 
                 foreach (TypeDescriptor descriptor in type_list)
                 {
@@ -947,7 +947,7 @@ namespace WindowsTool
 
                 if (node != null && node.Tag != null)
                 {
-                    MethodDescriptor method_descr = node.Tag as MethodDescriptor;
+                    var method_descr = node.Tag as MethodDescriptor;
 
                     if (method_descr != null)
                     {
@@ -958,7 +958,7 @@ namespace WindowsTool
                     }
                     else
                     {
-                        TypeDescriptor type_descr = (TypeDescriptor)node.Tag;
+                        var type_descr = (TypeDescriptor)node.Tag;
                         if (type_descr.IsDelegate)
                         {
                             buttonOK.Enabled = true;

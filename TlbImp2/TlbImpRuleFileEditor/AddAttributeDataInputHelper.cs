@@ -253,7 +253,7 @@ namespace TlbImpRuleFileEditor
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            List<byte> blob = new List<byte>();
+            var blob = new List<byte>();
             blob.Add(0x01);
             blob.Add(0x00);
             ParameterInfo[] parameters = m_ctor.GetParameters();

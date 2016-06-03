@@ -596,17 +596,17 @@ namespace tlbimp2
                                             // }
                                             if (ret is ConvUnionLocal && m_nativeIndirections == 0)
                                             {
-                                                ConvUnionLocal convUnion = ret as ConvUnionLocal;
+                                                var convUnion = ret as ConvUnionLocal;
                                                 convUnion.Create();
                                             }
                                             else if (ret is ConvStructLocal && m_nativeIndirections == 0)
                                             {
-                                                ConvStructLocal convStruct = ret as ConvStructLocal;
+                                                var convStruct = ret as ConvStructLocal;
                                                 convStruct.Create();
                                             }
                                             else if (ret is ConvEnumLocal && m_nativeIndirections == 0)
                                             {
-                                                ConvEnumLocal convEnum = ret as ConvEnumLocal;
+                                                var convEnum = ret as ConvEnumLocal;
                                                 convEnum.Create();
                                             }
                                         }
@@ -681,7 +681,7 @@ namespace tlbimp2
                 case VarEnum.VT_CARRAY:
                     {
                         TypeDesc elemTypeDesc = m_typeDesc.lptdesc;
-                        TypeConverter elemTypeConverter = new TypeConverter(m_info, m_typeInfo, elemTypeDesc, ConversionType.Element);
+                        var elemTypeConverter = new TypeConverter(m_info, m_typeInfo, elemTypeDesc, ConversionType.Element);
                         Type elemType = elemTypeConverter.ConvertedType;
                         result = elemType.MakeArrayType();
 
@@ -1032,7 +1032,7 @@ namespace tlbimp2
 
             if (convBase as IConvInterface != null)
             {
-                IConvInterface convInterface = convBase as IConvInterface;
+                var convInterface = convBase as IConvInterface;
 
                 // dispinterface?
                 if (convInterface.RefTypeInfo.GetTypeAttr().IsDispatch)

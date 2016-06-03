@@ -494,7 +494,7 @@ Partial Public Class NativeMethods
     <System.Diagnostics.DebuggerStepThroughAttribute(),  _
      System.CodeDom.Compiler.GeneratedCodeAttribute("P/Invoke Interop Assistant", "1.0")>  _
     Public Overloads Shared Function ReverseString(ByVal orig As String, ByRef buffer As String) As Boolean
-        Dim varbuffer As System.Text.StringBuilder = New System.Text.StringBuilder(1024)
+        Dim varbuffer = New System.Text.StringBuilder(1024)
         Dim methodRetVar As Boolean
         methodRetVar = NativeMethods.ReverseString(orig, varbuffer, 1024)
         buffer = varbuffer.ToString

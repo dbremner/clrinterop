@@ -53,8 +53,8 @@ namespace tlbimp2
                 //
                 // Collect information for a list of interfaces & event interface types
                 //
-                List<Type> intfList = new List<Type>();         // interface list
-                List<Type> eventIntfList = new List<Type>();    // event interface list
+                var intfList = new List<Type>();         // interface list
+                var eventIntfList = new List<Type>();    // event interface list
                 TypeInfo defaultInterfaceTypeInfo = null;
 
                 int nCount = attr.cImplTypes;
@@ -160,7 +160,7 @@ namespace tlbimp2
                 //
                 // Build implemented type list in a specific order
                 //
-                List<Type> implTypeList = new List<Type>();
+                var implTypeList = new List<Type>();
                 if (hasDefaultInterface)
                 {
                     implTypeList.Add(intfList[0]);
@@ -320,7 +320,7 @@ namespace tlbimp2
             {
                 using (TypeAttr attr = typeInfo.GetTypeAttr())
                 {
-                    Dictionary<Guid, bool> processedInterfaces = new Dictionary<Guid, bool>();
+                    var processedInterfaces = new Dictionary<Guid, bool>();
 
                     // Iterate through every interface and override the methods
                     // Process the default interface first

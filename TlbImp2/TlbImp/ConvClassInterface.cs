@@ -92,7 +92,7 @@ namespace tlbimp2
             //
             // Prepare list of implemented interfaces
             //
-            List<Type> implTypes = new List<Type>();
+            var implTypes = new List<Type>();
             if (defaultInterfaceType != null)
                 implTypes.Add(defaultInterfaceType);
             if (defaultSourceInterfaceType != null)
@@ -255,7 +255,7 @@ namespace tlbimp2
             TypeInfo defaultInterfaceTypeInfo;
             if (converterAssemblyInfo.ClassInterfaceMap.GetExclusiveDefaultInterfaceForCoclass(typeInfo, out defaultInterfaceTypeInfo))
             {
-                IConvInterface convInterface = info.GetTypeRef(ConvType.Interface, defaultInterfaceTypeInfo) as IConvInterface;
+                var convInterface = info.GetTypeRef(ConvType.Interface, defaultInterfaceTypeInfo) as IConvInterface;
                 convInterface.AssociateWithExclusiveClassInterface(this);
             }
         }

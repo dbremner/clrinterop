@@ -43,8 +43,8 @@ namespace TypeLibTypes.Interop
         }
         public string[] GetNames(int memid, int len)
         {
-            string[] strarray = new string[len];
-            IntPtr[] ptrArray = new IntPtr[len];
+            var strarray = new string[len];
+            var ptrArray = new IntPtr[len];
             GCHandle gch = GCHandle.Alloc(ptrArray, GCHandleType.Pinned);
             m_typeInfo.GetNames(memid, gch.AddrOfPinnedObject(), strarray.Length, out len);
             gch.Free();

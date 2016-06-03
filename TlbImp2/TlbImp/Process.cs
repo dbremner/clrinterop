@@ -232,7 +232,7 @@ namespace tlbimp2
             // during creation of class interface, we'll need to create interface & event interface, which
             // could have parameters resolve back to coclass which requires certain class interface
             // So split into two stages so that when we are doing creation all necessary information are inplace
-            List<ConvClassInterfaceLocal> convClassInterfaceLocals = new List<ConvClassInterfaceLocal>();
+            var convClassInterfaceLocals = new List<ConvClassInterfaceLocal>();
 
             // 
             // Phase 1 : Create ConvClassInterfaceLocal instances and associate interface with class interfaces
@@ -520,7 +520,7 @@ namespace tlbimp2
             // This is a restriction of reflection API that when you override a method in parent interface, the method info
             // is needed so the type must be already created and loaded
             //
-            List<TypeInfo> coclassList = new List<TypeInfo>();
+            var coclassList = new List<TypeInfo>();
             int nCount = tlb.GetTypeInfoCount();
             for (int n = 0; n < nCount; ++n)
             {
@@ -646,18 +646,18 @@ namespace tlbimp2
             // Build an array of EventItfInfo & generate event provider / event sink helpers
             //
 
-            Event.TCEAdapterGenerator eventAdapterGenerator = new Event.TCEAdapterGenerator();
-            List<Event.EventItfInfo> eventItfList = new List<Event.EventItfInfo>();
+            var eventAdapterGenerator = new Event.TCEAdapterGenerator();
+            var eventItfList = new List<Event.EventItfInfo>();
 
             foreach (IConvBase symbol in m_converterInfo.GetAllConvBase)
             {
-                IConvInterface convInterface = symbol as IConvInterface;
+                var convInterface = symbol as IConvInterface;
                 if (convInterface != null)
                 {
                     if (convInterface.EventInterface != null)
                     {
                         Debug.Assert(convInterface.EventInterface is ConvEventInterfaceLocal);
-                        ConvEventInterfaceLocal local = convInterface.EventInterface as ConvEventInterfaceLocal;
+                        var local = convInterface.EventInterface as ConvEventInterfaceLocal;
 
                         Type eventInterfaceType = convInterface.EventInterface.ManagedType;
 

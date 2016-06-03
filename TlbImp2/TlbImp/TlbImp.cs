@@ -312,8 +312,8 @@ internal class TlbImp
             return false;
         }
 
-        List<string> assemblyRefList = new List<string>();
-        List<string> typeLibRefList = new List<string>();
+        var assemblyRefList = new List<string>();
+        var typeLibRefList = new List<string>();
 
         // Get the name of the COM typelib.
         Options.m_strTypeLibName = cmdLine.GetNextArg();

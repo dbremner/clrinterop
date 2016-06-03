@@ -982,7 +982,7 @@ namespace SignatureGenerator
             bool contains_reference = false;
             if (fi.FieldType.IsValueType)
             {
-                StructureNativeType snt = nt as StructureNativeType;
+                var snt = nt as StructureNativeType;
                 if (snt != null)
                 {
                     StructureDefinition definition = (StructureDefinition)snt.Definition;

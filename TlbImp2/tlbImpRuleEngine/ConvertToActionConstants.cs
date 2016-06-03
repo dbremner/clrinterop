@@ -60,7 +60,7 @@ namespace TlbImpRuleEngine
             if (s_typeConvertToMapping == null)
             {
                 s_typeConvertToMapping = new Dictionary<string, List<string>>();
-                List<string> temp = new List<string>();
+                var temp = new List<string>();
                 temp.Add(UnmanagedType.Error.ToString());
                 s_typeConvertToMapping.Add("int", temp);
                 temp = new List<string>();

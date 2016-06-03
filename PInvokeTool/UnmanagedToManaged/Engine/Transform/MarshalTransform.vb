@@ -83,7 +83,7 @@ Namespace Transform
         Friend Sub Process(ByVal ctd As CodeTypeDeclaration)
 
             ' First check and see if it is a delegate type, if so run the delegate hueristics
-            Dim ctdDel As CodeTypeDelegate = TryCast(ctd, CodeTypeDelegate)
+            Dim ctdDel = TryCast(ctd, CodeTypeDelegate)
             If ctdDel IsNot Nothing AndAlso ctdDel.UserData.Contains(TransformConstants.DefinedType) Then
                 ProcessDelegate(ctdDel)
                 Return
@@ -91,7 +91,7 @@ Namespace Transform
 
             ' Now run the hueristics over the actual members of the type
             If ctd.UserData.Contains(TransformConstants.DefinedType) Then
-                Dim nt As NativeDefinedType = TryCast(ctd.UserData(TransformConstants.DefinedType), NativeDefinedType)
+                Dim nt = TryCast(ctd.UserData(TransformConstants.DefinedType), NativeDefinedType)
                 If nt IsNot Nothing Then
                     Select Case nt.Kind
                         Case NativeSymbolKind.StructType
@@ -111,7 +111,7 @@ Namespace Transform
             For Each mem As CodeTypeMember In col
 
                 ' Look at procedures
-                Dim codeProc As CodeMemberMethod = TryCast(mem, CodeMemberMethod)
+                Dim codeProc = TryCast(mem, CodeMemberMethod)
                 If codeProc IsNot Nothing AndAlso codeProc.UserData.Contains(TransformConstants.Procedure) Then
                     list.Add(codeProc)
                 End If

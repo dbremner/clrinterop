@@ -609,7 +609,7 @@ namespace tlbimp2
             }
 
             int cParams = func.cParams;
-            List<TypeConverter> typeConverterList = new List<TypeConverter>();
+            var typeConverterList = new List<TypeConverter>();
             short n;
             for (n = 0; n < cParams; ++n)
             {
@@ -712,7 +712,7 @@ namespace tlbimp2
                     }
                     if (convertToRule != null)
                     {
-                        ConvertToAction convertToAction = convertToRule.Action as ConvertToAction;
+                        var convertToAction = convertToRule.Action as ConvertToAction;
                         Type typeReturn;
                         CustomAttributeBuilder customAttribute;
                         ParameterAttributes fixedParameterAttributes;
@@ -764,7 +764,7 @@ namespace tlbimp2
                 }
                 if (convertToRule != null)
                 {
-                    ConvertToAction convertToAction = convertToRule.Action as ConvertToAction;
+                    var convertToAction = convertToRule.Action as ConvertToAction;
                     Type typeReturn;
                     CustomAttributeBuilder customAttribute;
                     ParameterAttributes fixedParameterAttributes;
@@ -1513,7 +1513,7 @@ namespace tlbimp2
             int retArgId;
             TypeConverter[] paramTypeConverters = GenerateParameterTypes(info, memberInfo, func, isNewEnumMember, varArg, out lcidArg, out isStandardOleCall, out retTypeConverter, out returnKind, out retArgId);
 
-            Type[] paramTypes = new Type[paramTypeConverters.Length];
+            var paramTypes = new Type[paramTypeConverters.Length];
             for (int i = 0; i < paramTypeConverters.Length; ++i)
                 paramTypes[i] = paramTypeConverters[i].ConvertedType;
 
@@ -2219,10 +2219,10 @@ namespace tlbimp2
             TypeLib parentTypeLib = parentType.GetContainingTypeLib();
             TypeLib thisTypeLib = extendedType.GetContainingTypeLib();
 
-            string asmName = parentTypeLib.GetCustData(CustomAttributeGuids.GUID_ExportedFromComPlus) as string;
+            var asmName = parentTypeLib.GetCustData(CustomAttributeGuids.GUID_ExportedFromComPlus) as string;
             if (asmName != null)
             {
-                string parentName = parentType.GetCustData(CustomAttributeGuids.GUID_ManagedName) as string;
+                var parentName = parentType.GetCustData(CustomAttributeGuids.GUID_ManagedName) as string;
                 Type parentManagedType = parentInterface.RealManagedType;
                 if (parentName != null && parentManagedType != null &&
                     parentManagedType.IsClass)
