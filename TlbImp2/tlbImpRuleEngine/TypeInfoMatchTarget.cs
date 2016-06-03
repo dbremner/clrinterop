@@ -22,6 +22,7 @@ namespace TlbImpRuleEngine
 
         public TypeInfoMatchTarget(TypeLib typeLib, TypeInfo typeInfo, TYPEKIND typeKind)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             m_typeLib = typeLib;
             m_typeInfo = typeInfo;
             m_typeKind = typeKind;

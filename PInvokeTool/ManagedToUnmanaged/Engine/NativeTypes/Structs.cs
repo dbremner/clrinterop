@@ -49,6 +49,7 @@ namespace SignatureGenerator
         public StructureNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             if (desc.Type.IsValueType || desc.IsStructField)
             {
                 // the only allowed UnmanagedType is Struct
@@ -433,6 +434,7 @@ namespace SignatureGenerator
 
             public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
             {
+                if (printer == null) throw new ArgumentNullException(nameof(printer));
                 base.PrintTo(printer, logPrinter, flags);
 
                 printer.Print(OutputType.Keyword, (definition.isUnion ? "union" : "struct"));
@@ -516,6 +518,7 @@ namespace SignatureGenerator
 
         public static StructureDefinition Get(NativeTypeDesc desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             return NativeTypeDefinition.Get<StructureDefinition>(
                 new TypeDefKey(desc.Type, (desc.Flags & MarshalFlags.TypeDefKeyFlags)));
         }
@@ -525,6 +528,7 @@ namespace SignatureGenerator
 
         protected override void Initialize(TypeDefKey key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             Type type = key.Type;
 
             Debug.Assert(type.IsValueType || Utility.HasLayout(type));
@@ -1143,6 +1147,7 @@ namespace SignatureGenerator
 
         public override void GetDefinitionsRecursive(NativeTypeDefinitionSet set, NativeTypeDefinition parentDef)
         {
+            if (set == null) throw new ArgumentNullException(nameof(set));
             foreach (NativeField nf in fields)
             {
                 DefinedNativeType def_type = nf.Type as DefinedNativeType;

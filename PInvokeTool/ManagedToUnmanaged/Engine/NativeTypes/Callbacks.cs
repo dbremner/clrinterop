@@ -20,6 +20,7 @@ namespace SignatureGenerator
         public CallbackNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(typeof(Delegate).IsAssignableFrom(desc.Type));
 
             UnmanagedType[] allowed_unmanaged_types;
@@ -117,6 +118,7 @@ namespace SignatureGenerator
 
             public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
             {
+                if (printer == null) throw new ArgumentNullException(nameof(printer));
                 base.PrintTo(printer, logPrinter, flags);
 
                 printer.Print(OutputType.Keyword, "struct");
@@ -167,6 +169,7 @@ namespace SignatureGenerator
 
         public static NativeTypeDefinition Get(NativeTypeDesc desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             // when a delegate is marshaled as an unmanaged function pointer, its
             // parameters and return type have P/Invoke's default marshaling behavior
             // regardless of whether the function pointer is passed to a static entry
@@ -181,6 +184,7 @@ namespace SignatureGenerator
 
         protected override void Initialize(TypeDefKey key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             Debug.Assert(typeof(Delegate).IsAssignableFrom(key.Type));
 
             base.Initialize(key);
@@ -279,6 +283,7 @@ namespace SignatureGenerator
 
         public static NativeTypeDefinition Get(NativeTypeDesc desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             // delegates are marshaled as _Delegate COM interface
             // UUID = FB6AB00F-5096-3AF8-A33D-D7885A5FA829
 
@@ -288,6 +293,7 @@ namespace SignatureGenerator
 
         protected override void Initialize(TypeDefKey key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             Debug.Assert(typeof(Delegate).IsAssignableFrom(key.Type));
 
             base.Initialize(key);
@@ -303,6 +309,7 @@ namespace SignatureGenerator
 
         public override void PrintTo(ICodePrinter printer, ILogPrinter logPrinter, PrintFlags flags)
         {
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
             printer.Print(OutputType.Identifier, "MIDL_INTERFACE");
             printer.Print(OutputType.Operator, "(");
             printer.Print(OutputType.Literal, Utility.StringToLiteral("FB6AB00F-5096-3AF8-A33D-D7885A5FA829"));

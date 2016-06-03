@@ -34,6 +34,7 @@ namespace TlbImpRuleEngine
 
         public static ParameterDirection GetParameterDirection(string directionStr)
         {
+            if (directionStr == null) throw new ArgumentNullException(nameof(directionStr));
             if (directionStr.Equals(ParameterDirectionIn))
             {
                 return ParameterDirection.IN;

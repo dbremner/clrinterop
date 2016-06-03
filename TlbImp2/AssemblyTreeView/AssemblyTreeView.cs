@@ -28,6 +28,7 @@ namespace AssemblyTreeViewer
 
         public AssemblyTreeView(IContainer container)
         {
+            if (container == null) throw new ArgumentNullException(nameof(container));
             container.Add(this);
 
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace AssemblyTreeViewer
 
         public void SetAssembly(Assembly assembly)
         {
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
             m_assembly = assembly;
             m_types = m_assembly.GetTypes();
             Array.Sort(m_types, new TypeComparer());

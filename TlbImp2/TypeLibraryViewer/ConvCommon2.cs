@@ -14,6 +14,8 @@ namespace TypeLibraryTreeView
         /// </summary>
         static public int GetIndexOfFirstMethod(TypeInfo type, TypeAttr attr)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (attr == null) throw new ArgumentNullException(nameof(attr));
             if (attr.typekind != TypeLibTypes.Interop.TYPEKIND.TKIND_DISPATCH) return 0;
 
             int nIndex = 0;
@@ -59,6 +61,8 @@ namespace TypeLibraryTreeView
         /// </summary>
         static public void ResolveAlias(TypeInfo type, TypeDesc typeDesc, out TypeInfo realType, out TypeAttr realAttr)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (typeDesc == null) throw new ArgumentNullException(nameof(typeDesc));
             if ((VarEnum)typeDesc.vt != VarEnum.VT_USERDEFINED)
             {
                 // Already resolved

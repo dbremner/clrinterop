@@ -20,6 +20,7 @@ namespace SignatureGenerator
         public CharNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             UnmanagedType ut = ValidateUnmanagedType(desc, MarshalType.Char, UnmanagedType.AsAny);
             if (ut == UnmanagedType.AsAny)
             {
@@ -84,6 +85,7 @@ namespace SignatureGenerator
         public StringNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             // the "String *" or "StringBuilder *" type is not allowed
             CheckPointersToReferenceType(desc);
 
@@ -286,6 +288,7 @@ namespace SignatureGenerator
 
         public override void PrintPostIdentifierTo(ICodePrinter printer, PrintFlags flags)
         {
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
             if (fixedLength.HasValue)
             {
                 printer.Print(OutputType.Operator, "[");

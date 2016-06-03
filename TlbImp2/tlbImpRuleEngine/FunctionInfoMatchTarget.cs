@@ -22,6 +22,7 @@ namespace TlbImpRuleEngine
 
         public FunctionInfoMatchTarget(TypeInfo parentTypeInfo, int index)
         {
+            if (parentTypeInfo == null) throw new ArgumentNullException(nameof(parentTypeInfo));
             m_interfaceTypeInfo = parentTypeInfo;
             m_index = index;
             m_funcDesc = parentTypeInfo.GetFuncDesc(m_index);

@@ -731,11 +731,13 @@ namespace SignatureGenerator
 
         public static bool IsPInvoke(MethodInfo method)
         {
+            if (method == null) throw new ArgumentNullException(nameof(method));
             return ((method.Attributes & MethodAttributes.PinvokeImpl) == MethodAttributes.PinvokeImpl);
         }
 
         public static bool IsRCWMethod(MethodInfo method)
         {
+            if (method == null) throw new ArgumentNullException(nameof(method));
             return (method.DeclaringType.IsImport &&
                 (method.GetMethodImplementationFlags() & MethodImplAttributes.InternalCall) == 
                 MethodImplAttributes.InternalCall);
@@ -1109,6 +1111,7 @@ namespace SignatureGenerator
 
         protected NativeType(NativeTypeDesc desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             this.isByrefParameter = desc.IsByRefParam;
             this.descMarshalsIn = desc.MarshalsIn;
             this.descMarshalsOut = desc.MarshalsOut;
@@ -1243,6 +1246,8 @@ namespace SignatureGenerator
 
         protected UnmanagedType ValidateUnmanagedType(NativeTypeDesc desc, UnmanagedType[] allowedUnmanagedTypes)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
+            if (allowedUnmanagedTypes == null) throw new ArgumentNullException(nameof(allowedUnmanagedTypes));
             if (allowedUnmanagedTypes.Length == 0)
             {
                 if (desc.MarshalAs != null)
@@ -1261,6 +1266,8 @@ namespace SignatureGenerator
         protected UnmanagedType ValidateUnmanagedType(NativeTypeDesc desc, UnmanagedType[] allowedUnmanagedTypes,
             UnmanagedType defaultUnmanagedType)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
+            if (allowedUnmanagedTypes == null) throw new ArgumentNullException(nameof(allowedUnmanagedTypes));
             if (desc.MarshalAs != null)
             {
                 UnmanagedType ut = desc.MarshalAs.Value;
@@ -1280,6 +1287,7 @@ namespace SignatureGenerator
 
         protected void CheckPointersToReferenceType(NativeTypeDesc desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(!desc.Type.IsValueType);
 
             if (desc.PointerIndirections > 0)
@@ -1443,6 +1451,7 @@ namespace SignatureGenerator
 
         protected void VerifyMarshalDirection(NativeTypeDesc desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             // process only top-level items
             if (desc.IsArrayElement || desc.IsStructField) return;
 
@@ -1510,6 +1519,7 @@ namespace SignatureGenerator
         /// </summary>
         protected void ExplainMemoryManagement(NativeTypeDesc desc, string subject)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             if (desc.IsCallbackParam)
             {
                 if (desc.IsByRefParam)
@@ -1584,6 +1594,7 @@ namespace SignatureGenerator
 
         public void PrintMarshalDirection(ICodePrinter printer, PrintFlags flags)
         {
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
             // print /*[in]*/, /*[out]*/, or /*[in,out]*/ for indirected parameter types
             if (MarshalsAsPointerWithKnownDirection)
             {
@@ -1706,6 +1717,7 @@ namespace SignatureGenerator
         protected DefinedNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             this.name = Utility.GetNameOfType(desc.Type);
 
             // count the total level of indirections
@@ -1840,6 +1852,7 @@ namespace SignatureGenerator
 
         protected virtual void Initialize(TypeDefKey key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             this.platform64bit = ((key.Flags & MarshalFlags.Platform64Bit) == MarshalFlags.Platform64Bit);
         }
 

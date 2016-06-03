@@ -67,6 +67,7 @@ public class TlbImpCode
     //**************************************************************************
     public static int Run(TlbImpOptions options)
     {
+        if (options == null) throw new ArgumentNullException(nameof(options));
         s_Options = options;
 
         Output.SetSilent(options.m_bSilentMode);
@@ -597,6 +598,7 @@ public class TlbImpCode
                                            bool isPreserveSig,
                                            String ruleSetFileName)
     {
+        if (TypeLib == null) throw new ArgumentNullException(nameof(TypeLib));
         // Detemine the assembly file name.
         String asmFileName = Path.GetFileName(strAssemblyFileName);
 

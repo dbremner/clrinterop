@@ -22,6 +22,7 @@ namespace TlbImpRuleEngine
 
         public FieldInfoMatchTarget(TypeInfo parentTypeInfo, int index)
         {
+            if (parentTypeInfo == null) throw new ArgumentNullException(nameof(parentTypeInfo));
             m_parentTypeInfo = parentTypeInfo;
             m_index = index;
             m_varDesc = m_parentTypeInfo.GetVarDesc(m_index);

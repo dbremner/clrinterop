@@ -28,6 +28,7 @@ namespace TlbImpRuleFileEditor
 
         public ConvertToActionWizard(ConvertToAction fixedConvertToAction)
         {
+            if (fixedConvertToAction == null) throw new ArgumentNullException(nameof(fixedConvertToAction));
             InitializeComponent();
             m_fixedConvertToAction = fixedConvertToAction;
             m_direction = fixedConvertToAction.Direction;

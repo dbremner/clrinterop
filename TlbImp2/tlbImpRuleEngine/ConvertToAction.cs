@@ -49,6 +49,7 @@ namespace TlbImpRuleEngine
 
         public IAction Create(Dictionary<string, string> parameters)
         {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             ConvertToAction convertToAction = new ConvertToAction();
             if (parameters.ContainsKey(ParameterDirection))
             {
@@ -194,6 +195,7 @@ namespace TlbImpRuleEngine
 
         public string GetParameterValue(string parameterName)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (parameterName.Equals(ConvertToActionDef.ParameterDirection))
             {
                 return m_direction;
@@ -222,6 +224,7 @@ namespace TlbImpRuleEngine
 
         public bool SetParameterValue(string parameterName, string value)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (value == null)
                 return false;
 
@@ -276,6 +279,7 @@ namespace TlbImpRuleEngine
         public static Dictionary<string, string> GetConvertToAttributeDictionary(
             string convertToAttributes)
         {
+            if (convertToAttributes == null) throw new ArgumentNullException(nameof(convertToAttributes));
             string attributes = convertToAttributes.Substring(1, convertToAttributes.Length - 2);
             string[] attributePairs = attributes.Split(';');
             Dictionary<string, string> attributePairDictionary = new Dictionary<string, string>();

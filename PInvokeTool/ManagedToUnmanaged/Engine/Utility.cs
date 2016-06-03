@@ -38,6 +38,7 @@ namespace SignatureGenerator
 
         public override object[] GetCustomAttributes(Type attributeType, bool inherit)
         {
+            if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));
             List<object> attrs = new List<object>();
             for (int i = 0; i < customAttributes.Length; i++)
             {
@@ -91,6 +92,7 @@ namespace SignatureGenerator
 
         public Set(ICollection<T> collection, Transformer<T> forwardTransformer)
         {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
             dictionary = new Dictionary<T, List<T>>(collection.Count);
 
             foreach (T item in collection)

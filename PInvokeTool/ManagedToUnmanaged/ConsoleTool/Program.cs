@@ -435,6 +435,7 @@ namespace ConsoleTool
 
         private static void GenerateMethod(MethodInfo method)
         {
+            if (method == null) throw new ArgumentNullException(nameof(method));
             NativeSignature native_sig;
 
             Debug.WriteLine(method.DeclaringType.FullName + "::" + method.Name);

@@ -172,6 +172,8 @@ namespace SignatureGenerator
 
         public static void PrintTo(ICodePrinter printer, string typeNameStr)
         {
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
+            if (typeNameStr == null) throw new ArgumentNullException(nameof(typeNameStr));
             // - words starting with upper-case letter are identifiers
             // - words starting with lower-case letter or underscore are keywords
             // - * is an operator

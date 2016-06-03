@@ -29,6 +29,7 @@ namespace TlbImpRuleEngine
         public SignatureInfoMatchTarget(TypeInfo interfaceTypeInfo, int functionIndex,
             ElemDesc elemDesc, int parameterIndex)
         {
+            if (interfaceTypeInfo == null) throw new ArgumentNullException(nameof(interfaceTypeInfo));
             m_interfaceTypeInfo = interfaceTypeInfo;
             m_functionIndex = functionIndex;
             m_funcDesc = interfaceTypeInfo.GetFuncDesc(m_functionIndex);

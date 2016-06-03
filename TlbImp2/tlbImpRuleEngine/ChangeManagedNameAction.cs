@@ -39,6 +39,7 @@ namespace TlbImpRuleEngine
         public IAction Create(Dictionary<string, string> parameters)
         {
             ChangeManagedNameAction changeManagedNameAction = new ChangeManagedNameAction();
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             if (parameters.ContainsKey(ParameterNewName))
             {
                 changeManagedNameAction.NewName = parameters[ParameterNewName];
@@ -94,6 +95,7 @@ namespace TlbImpRuleEngine
 
         public string GetParameterValue(string parameterName)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (parameterName.Equals(ChangeManagedNameActionDef.ParameterNewName))
             {
                 return m_newName;
@@ -106,6 +108,7 @@ namespace TlbImpRuleEngine
 
         public bool SetParameterValue(string parameterName, string value)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (parameterName.Equals(ChangeManagedNameActionDef.ParameterNewName))
             {
                 if (value != null)

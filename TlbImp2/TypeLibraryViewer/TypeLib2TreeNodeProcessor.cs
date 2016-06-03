@@ -67,6 +67,7 @@ namespace TypeLibraryTreeView
 
         public static void SetTlbTreeNodeImage(TreeNode treeNode)
         {
+            if (treeNode == null) throw new ArgumentNullException(nameof(treeNode));
             treeNode.ImageKey = GetTlbTreeNodeImageKey(treeNode);
             treeNode.SelectedImageKey = treeNode.ImageKey;
             treeNode.StateImageKey = treeNode.ImageKey;

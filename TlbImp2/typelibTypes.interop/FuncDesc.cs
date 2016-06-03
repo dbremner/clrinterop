@@ -107,7 +107,8 @@ namespace TypeLibTypes.Interop
 
         public TypeInfo GetUserDefinedTypeInfo(TypeInfo typeinfo)
         {
-            return typeinfo.GetRefTypeInfo(hreftype);        
+            if (typeinfo == null) throw new ArgumentNullException(nameof(typeinfo));
+            return typeinfo.GetRefTypeInfo(hreftype);
         }
 
         public int vt { get { return m_vt; } }
@@ -168,6 +169,7 @@ namespace TypeLibTypes.Interop
     {
         public ElemDesc(FuncDesc funcdesc, int index)
         {
+            if (funcdesc == null) throw new ArgumentNullException(nameof(funcdesc));
             m_parent = funcdesc;
             IntPtr pParam = funcdesc.m_funcdesc.lprgelemdescParam;
             IntPtr pElemDesc = Utils.MovePointer(pParam, index * Marshal.SizeOf(typeof(ELEMDESC)));

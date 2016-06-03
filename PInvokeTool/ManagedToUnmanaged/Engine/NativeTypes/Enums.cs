@@ -21,6 +21,7 @@ namespace SignatureGenerator
         public EnumNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type.IsEnum);
 
             Type underlying_type = Enum.GetUnderlyingType(desc.Type);
@@ -142,6 +143,7 @@ namespace SignatureGenerator
 
         public static EnumDefinition Get(NativeTypeDesc desc, UnmanagedType underlyingType)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             return NativeTypeDefinition.Get<EnumDefinition>(
                 new TypeDefKeyWithUnmanagedType(desc.Type, (desc.Flags & MarshalFlags.TypeDefKeyFlags), underlyingType));
         }
@@ -151,6 +153,7 @@ namespace SignatureGenerator
 
         protected override void Initialize(TypeDefKey key)
         {
+            if (key == null) throw new ArgumentNullException(nameof(key));
             Debug.Assert(key.Type.IsEnum && key is TypeDefKeyWithUnmanagedType);
 
             Type type = key.Type;

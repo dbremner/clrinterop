@@ -22,6 +22,7 @@ namespace TlbImpRuleFileEditor
 
         public InsertionHighlight(IContainer container)
         {
+            if (container == null) throw new ArgumentNullException(nameof(container));
             container.Add(this);
 
             InitializeComponent();

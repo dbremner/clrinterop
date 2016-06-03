@@ -134,7 +134,8 @@ namespace ILReader
 		}
 		public static string PrintTypeWithAssem(Type t, Assembly workingAssm)
 		{
-			string s = "";
+		    if (t == null) throw new ArgumentNullException(nameof(t));
+		    string s = "";
 			if (!t.IsPrimitive && (t != typeof(string)) && (t!=typeof(object)) &&  (t.Assembly != workingAssm))
 						s = ("[" + t.Assembly.GetName().Name + "]");
 			return (s + t);
@@ -142,7 +143,8 @@ namespace ILReader
 		}
 		public static string PrintMethod(MethodBase mb, Assembly workingAssm, Type workingType)
 		{
-			StringBuilder s = new StringBuilder();
+		    if (mb == null) throw new ArgumentNullException(nameof(mb));
+		    StringBuilder s = new StringBuilder();
 			if (typeof(MethodInfo).IsInstanceOfType(mb))
 			{
 				s.Append(PrintTypeWithAssem(((MethodInfo)mb).ReturnType, workingAssm));

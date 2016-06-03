@@ -17,6 +17,7 @@ namespace TypeLibTypes.Interop
 
         public IntPtr GetTypeLibAttr(ITypeLib typeLib)
         {
+            if (typeLib == null) throw new ArgumentNullException(nameof(typeLib));
             IntPtr ret;
             typeLib.GetLibAttr(out ret);
             return ret;
@@ -24,11 +25,13 @@ namespace TypeLibTypes.Interop
 
         public void ReleaseTypeLibAttr(ITypeLib typeLib, IntPtr typeLibAttr)
         {
+            if (typeLib == null) throw new ArgumentNullException(nameof(typeLib));
             typeLib.ReleaseTLibAttr(typeLibAttr);
         }
 
         public IntPtr GetTypeAttr(ITypeInfo typeInfo)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             IntPtr ret;
             typeInfo.GetTypeAttr(out ret);
             return ret;
@@ -36,11 +39,13 @@ namespace TypeLibTypes.Interop
 
         public void ReleaseTypeAttr(ITypeInfo typeInfo, IntPtr typeAttr)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             typeInfo.ReleaseTypeAttr(typeAttr);
         }
 
         public IntPtr GetFuncDesc(ITypeInfo typeInfo, int index)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             IntPtr ret;
             typeInfo.GetFuncDesc(index, out ret);
             return ret;
@@ -48,11 +53,13 @@ namespace TypeLibTypes.Interop
 
         public void ReleaseFuncDesc(ITypeInfo typeInfo, IntPtr funcDesc)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             typeInfo.ReleaseFuncDesc(funcDesc);
         }
 
         public IntPtr GetVarDesc(ITypeInfo typeInfo, int index)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             IntPtr ret;
             typeInfo.GetVarDesc(index, out ret);
             return ret;
@@ -60,6 +67,7 @@ namespace TypeLibTypes.Interop
 
         public void ReleaseVarDesc(ITypeInfo typeInfo, IntPtr varDesc)
         {
+            if (typeInfo == null) throw new ArgumentNullException(nameof(typeInfo));
             typeInfo.ReleaseVarDesc(varDesc);
         }
 

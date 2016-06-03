@@ -61,6 +61,7 @@ namespace TlbImpRuleEngine
 
         public bool IsTrue(string subjectValue, string objectValue)
         {
+            if (objectValue == null) throw new ArgumentNullException(nameof(objectValue));
             string[] isAnyStringArray = objectValue.Split(new char[] { ';' });
             return isAnyStringArray.Any(oneValue => oneValue.Equals(subjectValue));
         }
@@ -150,6 +151,7 @@ namespace TlbImpRuleEngine
 
         public bool IsTrue(string subjectValue, string objectValue)
         {
+            if (subjectValue == null) throw new ArgumentNullException(nameof(subjectValue));
             return subjectValue.Contains(objectValue);
         }
 
@@ -286,6 +288,7 @@ namespace TlbImpRuleEngine
 
         public bool IsTrue(string subjectValue, string objectValue)
         {
+            if (subjectValue == null) throw new ArgumentNullException(nameof(subjectValue));
             return !subjectValue.Contains(objectValue);
         }
 

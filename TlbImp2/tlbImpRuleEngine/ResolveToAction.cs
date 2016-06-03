@@ -41,6 +41,7 @@ namespace TlbImpRuleEngine
 
         public IAction Create(Dictionary<string, string> parameters)
         {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             ResolveToAction resolveToAction = new ResolveToAction();
             foreach (string parameterName in parameterNames)
             {
@@ -110,6 +111,7 @@ namespace TlbImpRuleEngine
 
         public string GetParameterValue(string parameterName)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (parameterName.Equals(ResolveToActionDef.ParameterAssemblyName))
             {
                 return m_assemblyName;
@@ -126,6 +128,7 @@ namespace TlbImpRuleEngine
 
         public bool SetParameterValue(string parameterName, string value)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (parameterName.Equals(ResolveToActionDef.ParameterAssemblyName))
             {
                 if (value != null)

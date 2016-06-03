@@ -126,6 +126,7 @@ namespace SignatureGenerator
         public ArrayNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type.IsArray || desc.Type == typeof(System.Array));
 
             this.platform64bit = desc.IsPlatform64Bit;
@@ -465,6 +466,7 @@ namespace SignatureGenerator
 
         public override void PrintPostIdentifierTo(ICodePrinter printer, PrintFlags flags)
         {
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
             switch (arrayKind)
             {
                 case ArrayKind.Invalid:

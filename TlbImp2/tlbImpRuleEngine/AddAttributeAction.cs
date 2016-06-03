@@ -50,6 +50,7 @@ namespace TlbImpRuleEngine
         public IAction Create(Dictionary<string, string> parameters)
         {
             AddAttributeAction addAttributeAction = new AddAttributeAction();
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             if (parameters.ContainsKey(ParameterAssemblyName))
             {
                 addAttributeAction.AssemblyName = parameters[ParameterAssemblyName];
@@ -168,6 +169,7 @@ namespace TlbImpRuleEngine
 
         public string GetParameterValue(string parameterName)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (parameterName.Equals(AddAttributeActionDef.ParameterAssemblyName))
             {
                 return m_assemblyName;
@@ -192,6 +194,7 @@ namespace TlbImpRuleEngine
 
         public bool SetParameterValue(string parameterName, string value)
         {
+            if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
             if (value == null)
                 return false;
 
@@ -269,6 +272,7 @@ namespace TlbImpRuleEngine
 
         public static bool GetBlobByString(string data, out byte[] blob)
         {
+            if (data == null) throw new ArgumentNullException(nameof(data));
             blob = null;
             try
             {
@@ -290,6 +294,7 @@ namespace TlbImpRuleEngine
 
         public static string GetStringByBlob(byte[] blob)
         {
+            if (blob == null) throw new ArgumentNullException(nameof(blob));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < blob.Length; i++)
             {

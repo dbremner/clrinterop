@@ -66,6 +66,7 @@ namespace SignatureGenerator
         public InterfaceNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             UnmanagedType[] allowed_unmanaged_types;
 
             if (desc.Type == typeof(System.Object))
@@ -300,6 +301,7 @@ namespace SignatureGenerator
         public CustomMarshaledNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.MarshalAs != null && desc.MarshalAs.Value == UnmanagedType.CustomMarshaler);
 
             bool added_error = false;

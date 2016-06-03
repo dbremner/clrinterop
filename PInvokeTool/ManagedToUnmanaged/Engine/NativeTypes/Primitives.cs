@@ -81,6 +81,7 @@ namespace SignatureGenerator
         public PrimitiveNativeType(NativeTypeDesc desc, UnmanagedType[] allowedUnmanagedTypes)
             : this(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             UnmanagedType unmng_type = ValidateUnmanagedType(desc, allowedUnmanagedTypes);
 
             if (desc.Type == typeof(bool))
@@ -108,6 +109,7 @@ namespace SignatureGenerator
         protected PrimitiveNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             this.platform64bit = desc.IsPlatform64Bit;
 
             // count the total level of indirections
@@ -123,6 +125,7 @@ namespace SignatureGenerator
 
         protected internal static void PrintNameTo(TypeName typeName, int indirections, ICodePrinter printer, PrintFlags flags)
         {
+            if (printer == null) throw new ArgumentNullException(nameof(printer));
             string output;
 
             if ((flags & PrintFlags.UsePlainC) == PrintFlags.UsePlainC)
@@ -185,6 +188,7 @@ namespace SignatureGenerator
         public DateNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type == typeof(DateTime));
 
             ValidateUnmanagedType(desc, MarshalType.Struct);
@@ -208,6 +212,7 @@ namespace SignatureGenerator
         public DecimalNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type == typeof(Decimal));
 
             UnmanagedType[] allowed_unmanaged_types =
@@ -283,6 +288,7 @@ namespace SignatureGenerator
         public GuidNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type == typeof(System.Guid));
 
             if (ValidateUnmanagedType(desc, MarshalType.Guid) == UnmanagedType.LPStruct)
@@ -326,6 +332,7 @@ namespace SignatureGenerator
         public HandleNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(
                 desc.Type == typeof(System.Runtime.InteropServices.HandleRef) ||
                 typeof(System.Runtime.InteropServices.SafeHandle).IsAssignableFrom(desc.Type) ||
@@ -354,6 +361,7 @@ namespace SignatureGenerator
         public ColorNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type == typeof(System.Drawing.Color));
 
             // non-default marshaling is not supported
@@ -379,6 +387,7 @@ namespace SignatureGenerator
         public VariableArgumentListNativeType(NativeTypeDesc desc)
             : base(desc)
         {
+            if (desc == null) throw new ArgumentNullException(nameof(desc));
             Debug.Assert(desc.Type == typeof(System.ArgIterator));
 
             // non-default marshaling is not supported

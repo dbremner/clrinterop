@@ -631,6 +631,7 @@ public class AssemPrinter
     }
     public string ProcessAttributeString(string input)
     {
+        if (input == null) throw new ArgumentNullException(nameof(input));
         String[] pieces = input.Split(new Char[] { ',', ' ' });
         ArrayList processed = new ArrayList();
         // if the attribute doesn't have Public string, it means it is private.

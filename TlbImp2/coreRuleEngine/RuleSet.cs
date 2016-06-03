@@ -47,6 +47,7 @@ namespace CoreRuleEngine
         public List<Rule> GetRule(ICategory category, IActionDef actionDef, IMatchTarget target)
         {
             List<Rule> matchedRuleList = new List<Rule>();
+            if (category == null) throw new ArgumentNullException(nameof(category));
             string key = GetRuleKeyString(category.GetCategoryName());
             if (!m_ruleDict.ContainsKey(key))
                 return matchedRuleList;
@@ -64,6 +65,7 @@ namespace CoreRuleEngine
 
         public void AddRule(Rule rule)
         {
+            if (rule == null) throw new ArgumentNullException(nameof(rule));
             string key = GetRuleKeyString(rule.Category.GetCategoryName());
             if (!m_ruleDict.ContainsKey(key))
                 m_ruleDict[key] = new List<Rule>();
