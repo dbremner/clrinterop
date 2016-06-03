@@ -19,7 +19,7 @@ namespace WindowsTool
     [Serializable]
     class UnableToGetTypesException : ApplicationException
     {
-        private string[] loaderMessages;
+        private readonly string[] loaderMessages;
 
         public string[] LoaderMessages
         {
@@ -77,9 +77,9 @@ namespace WindowsTool
 
         #region Fields and Properties
 
-        private AppDomain reflectingDomain;
-        private string assemblyPath;
-        private RemoteReflector remoteReflector;
+        private readonly AppDomain reflectingDomain;
+        private readonly string assemblyPath;
+        private readonly RemoteReflector remoteReflector;
 
         public string AssemblyPath
         {
@@ -162,9 +162,9 @@ namespace WindowsTool
         private const BindingFlags bindingFlags =
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
-        private Assembly assembly;
-        private Dictionary<Guid, MethodInfo> methodMap;
-        private Dictionary<Guid, Type> typeMap;
+        private readonly Assembly assembly;
+        private readonly Dictionary<Guid, MethodInfo> methodMap;
+        private readonly Dictionary<Guid, Type> typeMap;
 
         #endregion
 

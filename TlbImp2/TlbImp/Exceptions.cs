@@ -30,7 +30,7 @@ namespace tlbimp2
     /// </summary>
     class TlbImpInvalidTypeConversionException : ApplicationException
     {
-        private TypeInfo m_type;
+        private readonly TypeInfo m_type;
 
         public TlbImpInvalidTypeConversionException(TypeInfo type)
         {
@@ -51,8 +51,8 @@ namespace tlbimp2
     /// </summary>
     class TlbImpGeneralException : ApplicationException
     {
-        private ErrorCode m_errorID;
-        private bool m_needToPrintLogo;
+        private readonly ErrorCode m_errorID;
+        private readonly bool m_needToPrintLogo;
 
         public TlbImpGeneralException(string str, ErrorCode errorID)
             : this(str, errorID, false)

@@ -17,7 +17,7 @@ namespace CoreRuleEngine
 
         private AndConditionDef() { }
 
-        private static AndConditionDef s_andConditionDef = new AndConditionDef();
+        private static readonly AndConditionDef s_andConditionDef = new AndConditionDef();
 
         public static AndConditionDef GetInstance()
         {

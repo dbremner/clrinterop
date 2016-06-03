@@ -861,10 +861,10 @@ namespace tlbimp2.Event
             il.Emit(OpCodes.Ret);
         }
 
-        private ModuleBuilder m_OutputModule;
-        private String m_strDestTypeName;
-        private Type m_EventItfType;
-        private Type m_SrcItfType;
-        private Type m_SinkHelperType;
+        private readonly ModuleBuilder m_OutputModule;
+        private readonly String m_strDestTypeName;
+        private readonly Type m_EventItfType;
+        private readonly Type m_SrcItfType;
+        private readonly Type m_SinkHelperType;
     }
 }

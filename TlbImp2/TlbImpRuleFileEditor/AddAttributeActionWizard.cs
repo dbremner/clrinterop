@@ -15,7 +15,7 @@ namespace TlbImpRuleFileEditor
 {
     public partial class AddAttributeActionWizard : Form
     {
-        private AddAttributeAction m_fixedAddAttributeAction;
+        private readonly AddAttributeAction m_fixedAddAttributeAction;
 
         string m_assembly;
 

@@ -92,7 +92,7 @@ namespace TypeLibTypes.Interop
         public bool IsProxy { get { return (wTypeFlags & TYPEFLAGS.TYPEFLAG_FPROXY) != 0; } }
 
         private TYPEATTR m_typeAttr;
-        private IntPtr m_ipTypeAttr;
+        private readonly IntPtr m_ipTypeAttr;
         private ITypeInfo m_typeInfo;
     }
 }

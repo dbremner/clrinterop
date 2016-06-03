@@ -13,7 +13,7 @@ namespace TlbImpRuleFileEditor
 {
     public partial class NativeSignatureInputHelper : Form
     {
-        string m_fixedTypeString;
+        readonly string m_fixedTypeString;
 
         string m_typeString;
 

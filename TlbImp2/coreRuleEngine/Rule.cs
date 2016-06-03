@@ -13,7 +13,7 @@ namespace CoreRuleEngine
     /// </summary>
     public class Rule
     {
-        private ICategory m_applyCategory;
+        private readonly ICategory m_applyCategory;
 
         private ICondition m_condition;
         

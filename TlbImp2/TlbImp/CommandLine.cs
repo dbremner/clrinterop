@@ -20,8 +20,8 @@ namespace tlbimp2 {
 
 internal class Option
 {
-    private String m_strName;
-    private String m_strValue;
+    private readonly String m_strName;
+    private readonly String m_strValue;
 
     public Option(String strName, String strValue)
     {
@@ -35,9 +35,9 @@ internal class Option
 
 internal class Abbrevs
 {
-    private String[] m_aOptions;
-    private bool[] m_bRequiresValue;
-    private bool[] m_bCanHaveValue;
+    private readonly String[] m_aOptions;
+    private readonly bool[] m_bRequiresValue;
+    private readonly bool[] m_bCanHaveValue;
 
     public Abbrevs(String[] aOptions)
     {
@@ -120,11 +120,11 @@ internal class Abbrevs
 
 internal class CommandLine
 {
-    private String[] m_aArgList;
-    private Option[] m_aOptList;
+    private readonly String[] m_aArgList;
+    private readonly Option[] m_aOptList;
     private int m_iArgCursor;
     private int m_iOptCursor;
-    private Abbrevs m_sValidOptions;
+    private readonly Abbrevs m_sValidOptions;
 
     public CommandLine(String[] aArgs, String[] aValidOpts)
     {

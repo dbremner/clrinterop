@@ -10,7 +10,7 @@ namespace TlbImpRegressionTestTool
 {
     public partial class SettingsForm : Form
     {
-        private TestCaseSettings m_settings;
+        private readonly TestCaseSettings m_settings;
 
         private string m_testedCommandText;
 

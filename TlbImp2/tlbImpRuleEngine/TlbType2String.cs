@@ -37,7 +37,7 @@ namespace TlbImpRuleEngine
             "CURRENCY", "DATE", "DECIMAL", "VARIANT_BOOL",
         };
 
-        private static List<string> s_tlbUserDefinedTypes = new List<string>();
+        private static readonly List<string> s_tlbUserDefinedTypes = new List<string>();
 
         #region Public methods
 
@@ -273,8 +273,8 @@ namespace TlbImpRuleEngine
 
         private int m_nativeIndirections;                   // level of indirections
         private TypeDesc m_typeDesc;                        // Type description
-        private TypeInfo m_interfaceType;
-        private StringBuilder m_typeStringBuilder;          // Result string
+        private readonly TypeInfo m_interfaceType;
+        private readonly StringBuilder m_typeStringBuilder;          // Result string
 
         #endregion
     }

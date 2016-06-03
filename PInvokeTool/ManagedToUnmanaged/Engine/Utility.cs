@@ -17,7 +17,7 @@ namespace SignatureGenerator
 
     internal class ParameterInfoEx : ParameterInfo
     {
-        private object[] customAttributes;
+        private readonly object[] customAttributes;
 
         public ParameterInfoEx(ParameterAttributes attrs, Type type, object defaultValue, MemberInfo member,
             object[] customAttributes, string name, int position)
@@ -65,8 +65,8 @@ namespace SignatureGenerator
             OnStack, ForwardYielded, Yielded
         }
 
-        private Dictionary<T, List<T>> dictionary;
-        private Transformer<T> forwardTransformer;
+        private readonly Dictionary<T, List<T>> dictionary;
+        private readonly Transformer<T> forwardTransformer;
 
         #region Construction
 

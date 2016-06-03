@@ -11,7 +11,7 @@ namespace TlbImpRuleEngine
 
         private PreserveSigActionDef() { }
 
-        private static PreserveSigActionDef s_PreserveSigActionDef =
+        private static readonly PreserveSigActionDef s_PreserveSigActionDef =
             new PreserveSigActionDef();
 
         public static PreserveSigActionDef GetInstance()

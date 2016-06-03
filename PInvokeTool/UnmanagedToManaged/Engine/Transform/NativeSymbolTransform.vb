@@ -9,7 +9,7 @@ Namespace Transform
     ''' <remarks></remarks>
     Public Class NativeSymbolTransform
 
-        Private m_it As New NativeSymbolIterator()
+        Private ReadOnly m_it As New NativeSymbolIterator()
 
         Public Sub New()
         End Sub

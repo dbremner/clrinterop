@@ -13,7 +13,7 @@ namespace TlbImpRuleEngine
 
         private NativeSignatureConditionDef() { }
 
-        private static NativeSignatureConditionDef s_nativeSignatureConditionDef
+        private static readonly NativeSignatureConditionDef s_nativeSignatureConditionDef
             = new NativeSignatureConditionDef();
 
         public static NativeSignatureConditionDef GetInstance()

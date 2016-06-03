@@ -10,15 +10,15 @@ namespace TlbImpRuleEngine
     {
         private const string TypeString = "Function";
 
-        private TypeInfo m_interfaceTypeInfo;
+        private readonly TypeInfo m_interfaceTypeInfo;
 
-        private int m_index;
+        private readonly int m_index;
 
-        private FuncDesc m_funcDesc;
+        private readonly FuncDesc m_funcDesc;
 
         private string m_name;
 
-        private string m_nativeParentTypeName;
+        private readonly string m_nativeParentTypeName;
 
         public FunctionInfoMatchTarget(TypeInfo parentTypeInfo, int index)
         {

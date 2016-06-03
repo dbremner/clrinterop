@@ -298,8 +298,8 @@ namespace tlbimp2.Event
 
         }
 
-        private Type m_InputType;
-        private Type m_EventItfType;
-        private ModuleBuilder m_OutputModule;
+        private readonly Type m_InputType;
+        private readonly Type m_EventItfType;
+        private readonly ModuleBuilder m_OutputModule;
     }
 }

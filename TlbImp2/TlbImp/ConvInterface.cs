@@ -528,7 +528,7 @@ namespace tlbimp2
             return allMembers;
         }
 
-        private static InterfaceMemberInfoComparer s_comparer = new InterfaceMemberInfoComparer();
+        private static readonly InterfaceMemberInfoComparer s_comparer = new InterfaceMemberInfoComparer();
 
         class InterfaceMemberInfoComparer : IComparer<InterfaceMemberInfo>
         {
@@ -574,19 +574,19 @@ namespace tlbimp2
 
         #region Private members
 
-        string m_basicName;                                     // Non-decorated name
+        readonly string m_basicName;                                     // Non-decorated name
         string m_recommendedName;                               // Recommended name, generated from basic name
         string m_uniqueName;                                    // Unique member name. Generated from original name
-        FuncDesc m_refFuncDesc;                                 // Corresponding FuncDesc, if this MemberInfo is a function (property)
-        VarDesc m_refVarDesc;                                   // Corresponding VarDesc, if this MemberInfo is a dispatch property
-        InterfaceMemberType m_memberType;                       
-        TypeLibTypes.Interop.INVOKEKIND m_invokeKind;                                
-        int m_memId;                                            // Member ID specified using [id]
-        private int m_dispId;                                   // Usually = MemberID unless explicitly overridden with GUID_DispIdOverride
+        readonly FuncDesc m_refFuncDesc;                                 // Corresponding FuncDesc, if this MemberInfo is a function (property)
+        readonly VarDesc m_refVarDesc;                                   // Corresponding VarDesc, if this MemberInfo is a dispatch property
+        readonly InterfaceMemberType m_memberType;                       
+        TypeLibTypes.Interop.INVOKEKIND m_invokeKind;
+        readonly int m_memId;                                            // Member ID specified using [id]
+        private readonly int m_dispId;                                   // Usually = MemberID unless explicitly overridden with GUID_DispIdOverride
         private InterfacePropertyInfo m_propertyInfo;
-        private TypeInfo m_typeInfo;
-        private int m_index;
-        private bool m_dispIdIsOverriden;                       // Whether the dispid is overridden by Guid_DispIdOverride
+        private readonly TypeInfo m_typeInfo;
+        private readonly int m_index;
+        private readonly bool m_dispIdIsOverriden;                       // Whether the dispid is overridden by Guid_DispIdOverride
 
         #endregion
     }
@@ -872,8 +872,8 @@ namespace tlbimp2
         private TypeDesc m_propertyTypeDesc;
         private InterfaceMemberInfo m_bestMemInfo;
         private ConversionType m_conversionType;
-        private PropertyKind m_propertyKind;
-        private TypeInfo m_typeInfo;
+        private readonly PropertyKind m_propertyKind;
+        private readonly TypeInfo m_typeInfo;
         private bool m_hasInvalidGetter;
 
         #endregion
@@ -1347,14 +1347,14 @@ namespace tlbimp2
 
         #region Private members
 
-        private ConverterInfo m_info;                               
-        private TypeInfo m_typeInfo;                                // Unmanaged type
-        private TypeInfo m_nonAliasedTypeInfo;                      // Type info that is not an alias
-        private Type m_managedType;                                 // Managed type
+        private readonly ConverterInfo m_info;                               
+        private readonly TypeInfo m_typeInfo;                                // Unmanaged type
+        private readonly TypeInfo m_nonAliasedTypeInfo;                      // Type info that is not an alias
+        private readonly Type m_managedType;                                 // Managed type
         private List<InterfaceMemberInfo> m_allMembers;             // Member list
-        private bool m_bSupportsDispatch;                           // Whether this interface supports IDispatch. Could be dual or dispinterface
+        private readonly bool m_bSupportsDispatch;                           // Whether this interface supports IDispatch. Could be dual or dispinterface
         private ConvEventInterfaceLocal m_convEventInterfaceLocal;  // Corresponding event interface. Always generated instead of refering to a external one
-        private bool m_implementsIEnumerable;                       // Whether this interface explicitly implements IEnumerabe
+        private readonly bool m_implementsIEnumerable;                       // Whether this interface explicitly implements IEnumerabe
         private IConvClassInterface m_classInterface;
 
         #endregion

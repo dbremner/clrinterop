@@ -9,7 +9,7 @@ Namespace Controls
     Public Class SymbolDisplayControl
 
         Private m_ns As NativeStorage
-        Private m_conv As BasicConverter
+        Private ReadOnly m_conv As BasicConverter
 
         ''' <summary>
         ''' Kind of search being performed

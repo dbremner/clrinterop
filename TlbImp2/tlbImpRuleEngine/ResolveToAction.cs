@@ -12,7 +12,7 @@ namespace TlbImpRuleEngine
 
         private ResolveToActionDef() { }
 
-        private static ResolveToActionDef s_resolveToActionDef =
+        private static readonly ResolveToActionDef s_resolveToActionDef =
             new ResolveToActionDef();
 
         public static ResolveToActionDef GetInstance()

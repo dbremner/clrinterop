@@ -21,7 +21,7 @@ namespace ConsoleTool
         {
             private readonly ConsoleColor[] colors;
 
-            public static CodeColorScheme Default = new CodeColorScheme(
+            public static readonly CodeColorScheme Default = new CodeColorScheme(
                 ConsoleColor.Cyan,
                 ConsoleColor.White,
                 ConsoleColor.White,
@@ -60,7 +60,7 @@ namespace ConsoleTool
         {
             private readonly ConsoleColor[] colors;
 
-            public static LogColorScheme Default = new LogColorScheme(
+            public static readonly LogColorScheme Default = new LogColorScheme(
                 ConsoleColor.White,
                 ConsoleColor.Yellow,
                 ConsoleColor.Red);

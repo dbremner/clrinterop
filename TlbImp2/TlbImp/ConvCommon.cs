@@ -138,12 +138,12 @@ namespace tlbimp2
         [StructLayout(LayoutKind.Sequential)]
         private struct DECIMAL
         {
-            short wReserved;
-            public byte scale;
-            public byte sign;
-            public uint hi32;
-            public uint low32;
-            public uint mid32;
+            readonly short wReserved;
+            public readonly byte scale;
+            public readonly byte sign;
+            public readonly uint hi32;
+            public readonly uint low32;
+            public readonly uint mid32;
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace TlbImpRuleEngine
     {
         private const string CategoryName = "Function";
 
-        private static FunctionCategory s_category = new FunctionCategory();
+        private static readonly FunctionCategory s_category = new FunctionCategory();
 
         private FunctionCategory() { }
 
@@ -47,7 +47,7 @@ namespace TlbImpRuleEngine
     {
         private const string CategoryName = "Field";
 
-        private static FieldCategory s_category = new FieldCategory();
+        private static readonly FieldCategory s_category = new FieldCategory();
 
         private FieldCategory() { }
 
@@ -70,7 +70,7 @@ namespace TlbImpRuleEngine
     {
         private const string s_categoryName = "Type";
 
-        private static TypeCategory s_category = new TypeCategory();
+        private static readonly TypeCategory s_category = new TypeCategory();
 
         private TypeCategory() { }
 
@@ -93,7 +93,7 @@ namespace TlbImpRuleEngine
     {
         private const string s_categoryName = "Signature";
 
-        private static SignatureCategory s_category = new SignatureCategory();
+        private static readonly SignatureCategory s_category = new SignatureCategory();
 
         private SignatureCategory() { }
 

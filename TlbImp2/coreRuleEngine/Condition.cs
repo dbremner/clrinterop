@@ -63,7 +63,7 @@ namespace CoreRuleEngine
     /// </summary>
     public abstract class AbstractConditionManager
     {
-        private Dictionary<string, IConditionDef> m_registeredConditionDef =
+        private readonly Dictionary<string, IConditionDef> m_registeredConditionDef =
             new Dictionary<string, IConditionDef>();
 
         /// <summary>

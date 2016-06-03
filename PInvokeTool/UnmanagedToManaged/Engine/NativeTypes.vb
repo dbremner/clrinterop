@@ -299,7 +299,7 @@ Public MustInherit Class NativeDefinedType
     Inherits NativeType
 
     Private m_isAnonymous As Boolean
-    Private m_members As New List(Of NativeMember)
+    Private ReadOnly m_members As New List(Of NativeMember)
 
     ''' <summary>
     ''' Whether or not this type is anonymous
@@ -423,7 +423,7 @@ End Class
 Public Class NativeEnum
     Inherits NativeDefinedType
 
-    Private m_list As New List(Of NativeEnumValue)
+    Private ReadOnly m_list As New List(Of NativeEnumValue)
 
     Public Overrides ReadOnly Property Kind() As NativeSymbolKind
         Get
@@ -1944,7 +1944,7 @@ End Enum
 Public Class NativeValue
     Inherits NativeExtraSymbol
 
-    Private m_valueKind As NativeValueKind
+    Private ReadOnly m_valueKind As NativeValueKind
     Private m_value As Object
 
     ''' <summary>
@@ -2304,7 +2304,7 @@ End Class
 Public Class NativeSalAttribute
     Inherits NativeExtraSymbol
 
-    Private m_list As New List(Of NativeSalEntry)
+    Private ReadOnly m_list As New List(Of NativeSalEntry)
 
     Public Overrides ReadOnly Property Kind() As NativeSymbolKind
         Get
@@ -2392,7 +2392,7 @@ Public Class NativeSignature
 
     Private m_returnType As NativeType
     Private m_returnTypeSalAttribute As NativeSalAttribute = New NativeSalAttribute()
-    Private m_paramList As New List(Of NativeParameter)
+    Private ReadOnly m_paramList As New List(Of NativeParameter)
 
     ''' <summary>
     ''' Return type of the NativeProcedure

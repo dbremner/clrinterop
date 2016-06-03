@@ -17,7 +17,7 @@ namespace TypeLibraryTreeView
     {
         private ImageList typeLibIconList;
         private System.ComponentModel.IContainer components;
-        FormDaemon m_daemon;
+        readonly FormDaemon m_daemon;
         private DisplayLevel m_displayLevel = DisplayLevel.All;
 
         public void SetTypeLibrary(TypeLib typeLib)

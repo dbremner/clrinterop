@@ -818,7 +818,7 @@ public class TlbImpCode
     internal static TypeLibConverter s_TypeLibConverter = new TypeLibConverter();
 
     // Array of type libraries just to keep the references alive.
-    private static Dictionary<string, System.Runtime.InteropServices.ComTypes.ITypeLib> s_RefTypeLibraries = new Dictionary<string,System.Runtime.InteropServices.ComTypes.ITypeLib>();
+    private static readonly Dictionary<string, System.Runtime.InteropServices.ComTypes.ITypeLib> s_RefTypeLibraries = new Dictionary<string,System.Runtime.InteropServices.ComTypes.ITypeLib>();
 }
 
 //******************************************************************************

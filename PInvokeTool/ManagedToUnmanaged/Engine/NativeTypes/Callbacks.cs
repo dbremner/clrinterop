@@ -88,7 +88,7 @@ namespace SignatureGenerator
         [Serializable]
         class ForwardDeclaration : NativeTypeDefinition
         {
-            private FunctionPtrDefinition definition;
+            private readonly FunctionPtrDefinition definition;
 
             public ForwardDeclaration(FunctionPtrDefinition definition)
             {

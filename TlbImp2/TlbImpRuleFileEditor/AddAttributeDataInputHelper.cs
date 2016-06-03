@@ -14,9 +14,9 @@ namespace TlbImpRuleFileEditor
 {
     public partial class AddAttributeDataInputHelper : Form
     {
-        Type m_type;
-        
-        ConstructorInfo m_ctor;
+        readonly Type m_type;
+
+        readonly ConstructorInfo m_ctor;
         
         string m_data;
 

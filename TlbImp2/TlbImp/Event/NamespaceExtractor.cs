@@ -14,7 +14,7 @@ namespace tlbimp2.Event
     using System;
     internal static class NameSpaceExtractor
     {
-        private static char NameSpaceSeperator = '.';
+        private static readonly char NameSpaceSeperator = '.';
 
         public static String ExtractNameSpace(String FullyQualifiedTypeName)
         {

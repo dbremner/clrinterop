@@ -73,7 +73,7 @@ namespace TypeLibTypes.Interop
         public bool IsHasDiskImage { get { return (wLibFlags & LIBFLAGS.LIBFLAG_FHASDISKIMAGE) != 0; } }
 
         private ITypeLib m_typelib;
-        private IntPtr m_ipAttr;
+        private readonly IntPtr m_ipAttr;
         private TYPELIBATTR m_attr;
     }
 }

@@ -95,11 +95,11 @@ namespace tlbimp2
             }
         }
 
-        private Assembly m_assembly;
-        private TypeLib m_typeLib;
-        private ConverterInfo m_info;
-        private ClassInterfaceMap m_classInterfaceMap;
-        private string m_tlbNamespace;
+        private readonly Assembly m_assembly;
+        private readonly TypeLib m_typeLib;
+        private readonly ConverterInfo m_info;
+        private readonly ClassInterfaceMap m_classInterfaceMap;
+        private readonly string m_tlbNamespace;
     }
 
     struct ConverterSettings
@@ -226,8 +226,8 @@ namespace tlbimp2
                 convType = _convType;
             }
 
-            public string typeName;
-            public ConvType convType;
+            public readonly string typeName;
+            public readonly ConvType convType;
 
             #region IComparable<GlobalNameEntry> Members
 
@@ -796,9 +796,9 @@ namespace tlbimp2
                 return m_properties.ContainsKey(name);
             }
 
-            private Dictionary<string, List<Type[]>> m_methods = new Dictionary<string,List<Type[]>>();
-            private Dictionary<string, bool> m_events = new Dictionary<string, bool>();
-            private Dictionary<string, bool> m_properties = new Dictionary<string, bool>();
+            private readonly Dictionary<string, List<Type[]>> m_methods = new Dictionary<string,List<Type[]>>();
+            private readonly Dictionary<string, bool> m_events = new Dictionary<string, bool>();
+            private readonly Dictionary<string, bool> m_properties = new Dictionary<string, bool>();
         }
 
         /// <summary>
@@ -939,26 +939,26 @@ namespace tlbimp2
             
 
         // Type library currently being converted
-        private TypeLib m_typeLib;
+        private readonly TypeLib m_typeLib;
         // Library ID of m_typeLib
-        private Guid m_libid;
+        private readonly Guid m_libid;
         // Reflection Emit helper to generate types for the interop assembly
-        private ModuleBuilder m_moduleBuilder;
+        private readonly ModuleBuilder m_moduleBuilder;
         // Callback to client to resolve assemblies and notify of events
-        private System.Runtime.InteropServices.ITypeLibImporterNotifySink m_resolver;
+        private readonly System.Runtime.InteropServices.ITypeLibImporterNotifySink m_resolver;
         // LIBID to assembly mapping table
-        private Dictionary<Guid, ConverterAssemblyInfo> m_typeLibMappingTable;
+        private readonly Dictionary<Guid, ConverterAssemblyInfo> m_typeLibMappingTable;
         // Symbol table for type references
-        private Dictionary<string, IConvBase> m_symbolTable;
+        private readonly Dictionary<string, IConvBase> m_symbolTable;
         // Settings for converter
         private ConverterSettings m_settings;
 
         // Mapping from TypeBuilder to NameTable (Dictionary<string, Type[]>)
         // Used for generating unique member names
-        private Dictionary<string, MemberTable> m_memberTables;
+        private readonly Dictionary<string, MemberTable> m_memberTables;
 
         // Mapping from Type/TypeBuilder to IConvBase
-        private Hashtable m_typeTable;
+        private readonly Hashtable m_typeTable;
 
         private SortedDictionary<string, string> m_globalNameTable;         // maps a internal name to a unique managed name 
                                                                             // so that we could find the assigned name for a existing type
@@ -968,7 +968,7 @@ namespace tlbimp2
 
         private ClassInterfaceMap m_classInterfaceMap;
     
-        private bool m_bTransformDispRetVal;
-        private Dictionary<TypeBuilder, bool> m_defaultMemberTable;
+        private readonly bool m_bTransformDispRetVal;
+        private readonly Dictionary<TypeBuilder, bool> m_defaultMemberTable;
     }
 }

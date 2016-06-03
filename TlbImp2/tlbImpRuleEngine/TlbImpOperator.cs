@@ -35,7 +35,7 @@ namespace TlbImpRuleEngine
     {
         private EqualAnyOperator() { }
 
-        private static EqualAnyOperator s_equalAnyOperator = new EqualAnyOperator();
+        private static readonly EqualAnyOperator s_equalAnyOperator = new EqualAnyOperator();
 
         public static EqualAnyOperator GetInstance()
         {
@@ -78,7 +78,7 @@ namespace TlbImpRuleEngine
     {
         private EqualOperator() { }
 
-        private static EqualOperator s_equalOperator = new EqualOperator();
+        private static readonly EqualOperator s_equalOperator = new EqualOperator();
 
         public static EqualOperator GetInstance()
         {
@@ -125,7 +125,7 @@ namespace TlbImpRuleEngine
     {
         private ContainsOperator() { }
 
-        private static ContainsOperator s_containsOperator = new ContainsOperator();
+        private static readonly ContainsOperator s_containsOperator = new ContainsOperator();
 
         public static ContainsOperator GetInstance()
         {
@@ -167,7 +167,7 @@ namespace TlbImpRuleEngine
     {
         private MatchOperator() { }
 
-        private static MatchOperator s_matchOperator = new MatchOperator();
+        private static readonly MatchOperator s_matchOperator = new MatchOperator();
 
         public static MatchOperator GetInstance()
         {
@@ -215,7 +215,7 @@ namespace TlbImpRuleEngine
     {
         private NotEqualOperator() { }
 
-        private static NotEqualOperator s_notEqualOperator = new NotEqualOperator();
+        private static readonly NotEqualOperator s_notEqualOperator = new NotEqualOperator();
 
         public static NotEqualOperator GetInstance()
         {
@@ -262,7 +262,7 @@ namespace TlbImpRuleEngine
     {
         private NotContainsOperator() { }
 
-        private static NotContainsOperator s_notContainsOperator = new NotContainsOperator();
+        private static readonly NotContainsOperator s_notContainsOperator = new NotContainsOperator();
 
         public static NotContainsOperator GetInstance()
         {

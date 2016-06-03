@@ -286,8 +286,8 @@ namespace SignatureGenerator
 
         private Log _log;
 
-        private bool isFunctionPointer;
-        private bool isComInterop;
+        private readonly bool isFunctionPointer;
+        private readonly bool isComInterop;
 
         private string name;
         private CallingConvention callingConvention;
@@ -751,9 +751,9 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private string name;
-        private NativeType type;
-        private object defaultValue;
+        private readonly string name;
+        private readonly NativeType type;
+        private readonly object defaultValue;
 
         #endregion
 
@@ -918,9 +918,9 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private string name;
-        private NativeType type;
-        private bool containsManagedReference;
+        private readonly string name;
+        private readonly NativeType type;
+        private readonly bool containsManagedReference;
         private int? offset;
 
         #endregion
@@ -1790,7 +1790,7 @@ namespace SignatureGenerator
         /// <summary>
         /// Type definitions are shared by all referring parameters/fields.
         /// </summary>
-        private static Dictionary<TypeDefKey, NativeTypeDefinition> cache = new Dictionary<TypeDefKey, NativeTypeDefinition>();
+        private static readonly Dictionary<TypeDefKey, NativeTypeDefinition> cache = new Dictionary<TypeDefKey, NativeTypeDefinition>();
 
         #endregion
 

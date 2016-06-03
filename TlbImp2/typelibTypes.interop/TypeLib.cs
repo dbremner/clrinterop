@@ -96,7 +96,7 @@ namespace TypeLibTypes.Interop
 
         public ITypeLib GetTypeLib() { return m_typelib; }
 
-        private ITypeLib m_typelib;
-        private ITypeLib2 m_typeLib2;
+        private readonly ITypeLib m_typelib;
+        private readonly ITypeLib2 m_typeLib2;
     }
 }

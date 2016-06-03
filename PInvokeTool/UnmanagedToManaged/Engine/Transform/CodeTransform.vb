@@ -29,9 +29,9 @@ Namespace Transform
     ''' <remarks></remarks>
     Friend Class CodeTransform
 
-        Private m_lang As LanguageType
-        Private m_typeMap As New Dictionary(Of String, NativeSymbol)(StringComparer.Ordinal)
-        Private m_symbolValueMap As New Dictionary(Of String, NativeSymbol)(StringComparer.Ordinal)
+        Private ReadOnly m_lang As LanguageType
+        Private ReadOnly m_typeMap As New Dictionary(Of String, NativeSymbol)(StringComparer.Ordinal)
+        Private ReadOnly m_symbolValueMap As New Dictionary(Of String, NativeSymbol)(StringComparer.Ordinal)
 
         Public Sub New(ByVal lang As LanguageType)
             m_lang = lang

@@ -12,7 +12,7 @@ namespace TlbImpRuleEngine
 
         private ConvertToActionDef() { }
 
-        private static ConvertToActionDef s_convertToActionDef =
+        private static readonly ConvertToActionDef s_convertToActionDef =
             new ConvertToActionDef();
 
         public static ConvertToActionDef GetInstance()

@@ -11,7 +11,7 @@ namespace CoreRuleEngine
     /// </summary>
     public abstract class AbstractCategoryManager
     {
-        private Dictionary<string, ICategory> m_registeredCategory;
+        private readonly Dictionary<string, ICategory> m_registeredCategory;
 
         public AbstractCategoryManager()
         {

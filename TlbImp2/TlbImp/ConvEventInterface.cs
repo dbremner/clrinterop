@@ -251,7 +251,7 @@ namespace tlbimp2
 
         #region Private members
 
-        private IConvInterface m_convInterface;
+        private readonly IConvInterface m_convInterface;
         private Dictionary<InterfaceMemberInfo, Type> m_delegateTypes;                     // Keeps a mapping of delegate types & function id. Created on-demand.
         private string m_eventProviderName;
         #endregion 

@@ -18,7 +18,7 @@ namespace TlbImpRuleEngine
 
         private TypeKindConditionDef() { }
 
-        private static TypeKindConditionDef s_typeKindConditionDef
+        private static readonly TypeKindConditionDef s_typeKindConditionDef
             = new TypeKindConditionDef();
 
         public static TypeKindConditionDef GetInstance()

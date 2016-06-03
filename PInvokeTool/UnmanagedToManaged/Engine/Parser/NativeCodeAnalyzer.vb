@@ -13,12 +13,12 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class NativeCodeAnalyzerResult
-        Private m_macroMap As New Dictionary(Of String, Macro)
-        Private m_typedefList As New List(Of NativeTypeDef)
-        Private m_definedTypeListt As New List(Of NativeDefinedType)
-        Private m_procList As New List(Of NativeProcedure)
-        Private m_constList As New List(Of NativeConstant)
-        Private m_ep As New ErrorProvider
+        Private ReadOnly m_macroMap As New Dictionary(Of String, Macro)
+        Private ReadOnly m_typedefList As New List(Of NativeTypeDef)
+        Private ReadOnly m_definedTypeListt As New List(Of NativeDefinedType)
+        Private ReadOnly m_procList As New List(Of NativeProcedure)
+        Private ReadOnly m_constList As New List(Of NativeConstant)
+        Private ReadOnly m_ep As New ErrorProvider
 
         ''' <summary>
         ''' Final set of the macros once the code is analyzed
@@ -144,10 +144,10 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class NativeCodeAnalyzer
-        Private m_includePathList As New List(Of String)
+        Private ReadOnly m_includePathList As New List(Of String)
         Private m_followIncludes As Boolean = True
         Private m_customIncludeMap As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
-        Private m_initialMacroList As New List(Of Macro)
+        Private ReadOnly m_initialMacroList As New List(Of Macro)
         Private m_includeInitialMacroInResult As Boolean = True
         Private m_trace As Boolean
 

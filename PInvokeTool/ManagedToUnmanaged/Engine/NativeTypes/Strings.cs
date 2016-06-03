@@ -62,8 +62,8 @@ namespace SignatureGenerator
         #region Fields
 
         private int? fixedLength;
-        private bool fixedLengthAnsi;
-        private bool immutable;
+        private readonly bool fixedLengthAnsi;
+        private readonly bool immutable;
 
         #endregion
 

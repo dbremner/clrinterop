@@ -20,8 +20,8 @@ Namespace Transform
     Friend Class MarshalTransform
 
         Private m_kind As TransformKindFlags
-        Private m_trans As CodeTransform
-        Private m_list As New List(Of TransformPlugin)
+        Private ReadOnly m_trans As CodeTransform
+        Private ReadOnly m_list As New List(Of TransformPlugin)
 
         Friend Property Kind() As TransformKindFlags
             Get

@@ -924,7 +924,7 @@ Namespace Transform
     Friend Class ArrayParameterTransformPlugin
         Inherits TransformPlugin
 
-        Private m_trans As CodeTransform
+        Private ReadOnly m_trans As CodeTransform
 
         Public Overrides ReadOnly Property TransformKind() As TransformKindFlags
             Get
@@ -1220,7 +1220,7 @@ Namespace Transform
     Friend Class PointerToKnownTypeTransformPlugin
         Inherits TransformPlugin
 
-        Private m_trans As CodeTransform
+        Private ReadOnly m_trans As CodeTransform
 
         Public Overrides ReadOnly Property TransformKind() As TransformKindFlags
             Get

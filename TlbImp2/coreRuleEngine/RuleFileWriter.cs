@@ -11,7 +11,7 @@ namespace CoreRuleEngine
     /// </summary>
     public class RuleFileWriter
     {
-        private RuleSet m_ruleSet;
+        private readonly RuleSet m_ruleSet;
 
         private XmlDocument m_doc;
 

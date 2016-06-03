@@ -10,21 +10,21 @@ namespace TlbImpRuleEngine
     {
         private const string TypeString = "Signature";
 
-        private TypeInfo m_interfaceTypeInfo;
+        private readonly TypeInfo m_interfaceTypeInfo;
 
-        private int m_functionIndex;
+        private readonly int m_functionIndex;
 
-        private FuncDesc m_funcDesc;
+        private readonly FuncDesc m_funcDesc;
 
-        private string m_name;
+        private readonly string m_name;
 
-        private string m_nativeParentFunctionName;
+        private readonly string m_nativeParentFunctionName;
 
-        private ElemDesc m_elemDesc;
+        private readonly ElemDesc m_elemDesc;
 
-        private int m_parameterIndex;
+        private readonly int m_parameterIndex;
 
-        private string m_nativeSignature;
+        private readonly string m_nativeSignature;
 
         public SignatureInfoMatchTarget(TypeInfo interfaceTypeInfo, int functionIndex,
             ElemDesc elemDesc, int parameterIndex)

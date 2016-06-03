@@ -9,9 +9,9 @@ namespace TlbImpRegressionTestTool
 {
     class TestCaseSet
     {
-        private string m_testCaseFilePath;
+        private readonly string m_testCaseFilePath;
 
-        private List<TestCase> m_list = new List<TestCase>();
+        private readonly List<TestCase> m_list = new List<TestCase>();
 
         public readonly string TestCaseElementName = "TestCase";
 

@@ -15,7 +15,7 @@ namespace CoreRuleEngine
 
         private NotConditionDef() { }
 
-        private static NotConditionDef s_notConditionDef = new NotConditionDef();
+        private static readonly NotConditionDef s_notConditionDef = new NotConditionDef();
 
         public static NotConditionDef GetInstance()
         {

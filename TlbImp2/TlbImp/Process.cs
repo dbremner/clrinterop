@@ -322,8 +322,8 @@ namespace tlbimp2
 
         #region Private members
 
-        TypeLib                     m_typeLib;                      // Corresponding type library
-        List<DefaultInterfaceInfo>  m_defaultInterfaceInfoList;     // List of DefaultInterfaceInfo that maintains the mapping
+        readonly TypeLib                     m_typeLib;                      // Corresponding type library
+        readonly List<DefaultInterfaceInfo>  m_defaultInterfaceInfoList;     // List of DefaultInterfaceInfo that maintains the mapping
                                                     
 
         #endregion

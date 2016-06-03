@@ -11,7 +11,7 @@ namespace TypeLibTypes.Interop
     {
         private static IDaemon s_daemon;
 
-        private static object m_lock = new object();
+        private static readonly object m_lock = new object();
 
         public static bool InitTypeLibResourceManager(IDaemon daemon)
         {

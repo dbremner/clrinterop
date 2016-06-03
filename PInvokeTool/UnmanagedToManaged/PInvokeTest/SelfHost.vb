@@ -40,7 +40,7 @@ Imports PInvokeTest.Generated
         m_nameList.Clear()
     End Sub
 
-    Private m_nameList As New List(Of String)
+    Private ReadOnly m_nameList As New List(Of String)
 
     Private Function CaptureWindowNameCb(ByVal intPtr As IntPtr, ByVal param2 As IntPtr) As Integer
         Dim builder As New StringBuilder(256)

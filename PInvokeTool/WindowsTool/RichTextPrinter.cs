@@ -21,13 +21,13 @@ namespace WindowsTool
     {
         #region Fields
 
-        private RichTextBox textBox;
+        private readonly RichTextBox textBox;
         private int indentLevel;
 
         private const int spacesPerIndent = 4;
 
-        private static Color[] logColors;
-        private static Color[] codeColors;
+        private static readonly Color[] logColors;
+        private static readonly Color[] codeColors;
 
         #endregion
 

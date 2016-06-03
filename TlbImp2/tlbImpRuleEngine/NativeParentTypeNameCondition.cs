@@ -12,7 +12,7 @@ namespace TlbImpRuleEngine
 
         private NativeParentTypeNameConditionDef() { }
 
-        private static NativeParentTypeNameConditionDef s_nativeParentTypeNameConditionDef
+        private static readonly NativeParentTypeNameConditionDef s_nativeParentTypeNameConditionDef
             = new NativeParentTypeNameConditionDef();
 
         public static NativeParentTypeNameConditionDef GetInstance()

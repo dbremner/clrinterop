@@ -28,7 +28,7 @@ namespace ILReader
 	}
 	public class Index								
 	{
-		string Name;
+	    readonly string Name;
 
 		public Index() { Name = ""; }
 		public Index(string name) { Name = name; }
@@ -41,7 +41,7 @@ namespace ILReader
 
 	public class Target								
 	{
-		string Name;
+	    readonly string Name;
 
 		public Target() { Name = ""; }
 		public Target(string name) { Name = name; }
@@ -219,10 +219,9 @@ namespace ILReader
 	
 	public class ExceptionInstruction: Opcode		
 	{
-		
-		int Position;
-		ExceptionHandler ExceptionHandlerType;
-		Type CatchType;
+	    readonly int Position;
+	    readonly ExceptionHandler ExceptionHandlerType;
+	    readonly Type CatchType;
 		public ExceptionInstruction(int p, ExceptionHandler e, Type c)
 		{
 			Position = p;
@@ -263,18 +262,18 @@ namespace ILReader
 
 	public class ILReader							
 	{
-		ArrayList MethodOpcodes;		// This arraylist will contain all the opcodes as they are read from the method body.
-		MethodBase	InputMeth;			// This is the MethodInfo of the input method
-		MethodBody methodBody; 	//the Method Body object of the input method.
-		Module curModule; 	//this is the module of the input method.
-		ArrayList ExceptionHandlers;// This keeps track of the exception blocks in a method.
-		byte[] IL;	// This is the byte[] that will be parsed for IL.
+	    readonly ArrayList MethodOpcodes;		// This arraylist will contain all the opcodes as they are read from the method body.
+	    readonly MethodBase	InputMeth;			// This is the MethodInfo of the input method
+	    readonly MethodBody methodBody; 	//the Method Body object of the input method.
+	    readonly Module curModule; 	//this is the module of the input method.
+	    readonly ArrayList ExceptionHandlers;// This keeps track of the exception blocks in a method.
+	    readonly byte[] IL;	// This is the byte[] that will be parsed for IL.
 		int pos, pos1;	// pos is tracks the position in the byte[], so that the Reader knows what to read next.
 				// pos1 tracks the position, but stops at the beginning of every Opcode, so that labels may be made
 				// based on the Opcodes position in the array.
-		Assembly workingAssm;
+	    readonly Assembly workingAssm;
 
-		ArrayList StfldList = new ArrayList(); // This array is used to store the special opcodes "stfld" whose order can change over the run
+	    readonly ArrayList StfldList = new ArrayList(); // This array is used to store the special opcodes "stfld" whose order can change over the run
 
 		void MakeLabel(Opcode op)				
 		{

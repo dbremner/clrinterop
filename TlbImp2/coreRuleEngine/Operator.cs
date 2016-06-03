@@ -35,7 +35,7 @@ namespace CoreRuleEngine
     /// </summary>
     public abstract class AbstractOperatorManager
     {
-        private Dictionary<string, IOperator> m_registeredOperator;
+        private readonly Dictionary<string, IOperator> m_registeredOperator;
 
         public AbstractOperatorManager()
         {

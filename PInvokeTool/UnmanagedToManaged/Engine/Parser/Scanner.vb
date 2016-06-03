@@ -26,7 +26,7 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class ScannerMark
-        Private m_index As Integer
+        Private ReadOnly m_index As Integer
         Private m_lineNumber As Integer
 
         Friend ReadOnly Property Index() As Integer
@@ -72,7 +72,7 @@ Namespace Parser
 
         <DebuggerDisplay("{Display}")> _
         Private Class ScannerBuffer
-            Private m_text As String
+            Private ReadOnly m_text As String
             Private m_index As Integer
             Private m_lineNumber As Integer
 
@@ -206,14 +206,14 @@ Namespace Parser
 #End Region
 
         Private m_errorProvider As New ErrorProvider
-        Private m_options As ScannerOptions
-        Private m_readerBag As TextReaderBag
+        Private ReadOnly m_options As ScannerOptions
+        Private ReadOnly m_readerBag As TextReaderBag
 
         ''' <summary>
         ''' Stream we are reading from
         ''' </summary>
         ''' <remarks></remarks>
-        Private m_buffer As ScannerBuffer
+        Private ReadOnly m_buffer As ScannerBuffer
 
         ''' <summary>
         ''' Options for the Scanner

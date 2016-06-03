@@ -6,8 +6,8 @@ Imports System.Collections.Generic
 ''' </summary>
 ''' <remarks></remarks>
 Public Class NativeSymbolRelationship
-    Private m_parent As NativeSymbol
-    Private m_symbol As NativeSymbol
+    Private ReadOnly m_parent As NativeSymbol
+    Private ReadOnly m_symbol As NativeSymbol
 
     Public ReadOnly Property Parent() As NativeSymbol
         Get

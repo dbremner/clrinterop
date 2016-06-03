@@ -15,7 +15,7 @@ namespace TlbImpRuleFileEditor
 
         private string m_managedTypeFullName;
 
-        private ResolveToAction m_fixedResolveToAction;
+        private readonly ResolveToAction m_fixedResolveToAction;
 
         public ResolveToActionWizard()
         {

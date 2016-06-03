@@ -11,7 +11,7 @@ namespace TlbImpRuleEngine
 
         private ChangeManagedNameActionDef() { }
 
-        private static ChangeManagedNameActionDef s_changeManagedNameActionDef =
+        private static readonly ChangeManagedNameActionDef s_changeManagedNameActionDef =
             new ChangeManagedNameActionDef();
 
         public static ChangeManagedNameActionDef GetInstance()

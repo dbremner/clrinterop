@@ -16,9 +16,9 @@ namespace SignatureGenerator
 {
     class DebugTests
     {
-        private static bool runningOn64Bit = (IntPtr.Size == 8);
+        private static readonly bool runningOn64Bit = (IntPtr.Size == 8);
 
-        private static string[] testAssemblies = new string[]
+        private static readonly string[] testAssemblies = new string[]
                 {
                     "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                     "System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",

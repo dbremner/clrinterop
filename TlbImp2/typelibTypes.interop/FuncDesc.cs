@@ -49,8 +49,8 @@ namespace TypeLibTypes.Interop
         public bool HasDefault { get { return (PARAMFLAG.PARAMFLAG_FHASDEFAULT & wParamFlags) != 0; } }
         public bool HasCustData { get { return (PARAMFLAG.PARAMFLAG_FHASCUSTDATA & wParamFlags) != 0; } }
 
-        private IntPtr m_lpVarValue;
-        private PARAMFLAG m_paramflag;
+        private readonly IntPtr m_lpVarValue;
+        private readonly PARAMFLAG m_paramflag;
         private Object m_parent;                    // hold on to parent to avoid GC hole 
                                                     // because we need the memory pointed by IntPtr to be alive
     }
@@ -68,7 +68,7 @@ namespace TypeLibTypes.Interop
         public bool IsLCID { get { return (IDLFLAG.IDLFLAG_FLCID & wIDLFlags) != 0; } }
         public bool IsRetval { get { return (IDLFLAG.IDLFLAG_FRETVAL & wIDLFlags) != 0; } }
 
-        private IDLFLAG m_wIDLFlags;
+        private readonly IDLFLAG m_wIDLFlags;
     }
 
     public class TypeDesc
@@ -114,7 +114,7 @@ namespace TypeLibTypes.Interop
         public int vt { get { return m_vt; } }
 
         IntPtr m_lptdesc;
-        private int m_vt;
+        private readonly int m_vt;
         private Object  m_parent;                   // hold on to parent to avoid GC hole 
                                                     // because we need the memory pointed by IntPtr to be alive
     }
@@ -160,7 +160,7 @@ namespace TypeLibTypes.Interop
             }
         }
 
-        private IntPtr m_lpValue;
+        private readonly IntPtr m_lpValue;
         private Object m_parent;                    // hold on to parent to avoid GC hole 
                                                     // because we need the memory pointed by IntPtr to be alive
     }

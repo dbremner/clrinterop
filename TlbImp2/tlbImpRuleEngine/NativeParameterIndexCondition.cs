@@ -18,7 +18,7 @@ namespace TlbImpRuleEngine
 
         private NativeParameterIndexConditionDef() { }
 
-        private static NativeParameterIndexConditionDef s_paramIndexConditionDef
+        private static readonly NativeParameterIndexConditionDef s_paramIndexConditionDef
             = new NativeParameterIndexConditionDef();
 
         public static NativeParameterIndexConditionDef GetInstance()

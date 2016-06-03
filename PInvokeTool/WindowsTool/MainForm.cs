@@ -80,10 +80,10 @@ namespace WindowsTool
 
         #region Fields and Properties
 
-        private Properties.Settings userSettings = Properties.Settings.Default;
+        private readonly Properties.Settings userSettings = Properties.Settings.Default;
 
-        private ICodePrinter codePrinter;
-        private ILogPrinter logPrinter;
+        private readonly ICodePrinter codePrinter;
+        private readonly ILogPrinter logPrinter;
 
         private bool firstTimeActivated;
         private bool printing;

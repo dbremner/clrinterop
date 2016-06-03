@@ -47,8 +47,8 @@ namespace tlbimp2.Event
 
         private String m_strEventItfName;
         private String m_strSrcItfName;
-        private String m_strEventProviderName;
-        private Type m_eventItfType;
-        private Type m_srcItfType;
+        private readonly String m_strEventProviderName;
+        private readonly Type m_eventItfType;
+        private readonly Type m_srcItfType;
     }
 }

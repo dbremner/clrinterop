@@ -9,7 +9,7 @@ Namespace Controls
     Public Class SelectSymbolDialog
         Private m_ns As NativeStorage
         Private m_type As SearchKind
-        Private m_searchGrid As SearchDataGrid
+        Private ReadOnly m_searchGrid As SearchDataGrid
         Private m_bag As NativeSymbolBag
 
         <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _

@@ -17,7 +17,7 @@ public class AssemPrinter
     Assembly CurrentAssembly = null;
     StringCompare sc = new StringCompare();
     int fails = 0;
-    BindingFlags bf = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static;
+    readonly BindingFlags bf = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static;
 
     private void ConnectEvent()
     {

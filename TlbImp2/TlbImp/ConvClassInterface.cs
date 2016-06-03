@@ -223,14 +223,14 @@ namespace tlbimp2
 
         #region Private members
 
-        private TypeInfo m_coclassTypeInfo;                         // TypeInfo of the coclass
+        private readonly TypeInfo m_coclassTypeInfo;                         // TypeInfo of the coclass
 
-        private TypeInfo m_defaultInterfaceTypeInfo;                // TypeInfo of the default interface
-        private TypeInfo m_defaultSourceInterfaceTypeInfo;          // TypeInfo of the default source interface
+        private readonly TypeInfo m_defaultInterfaceTypeInfo;                // TypeInfo of the default interface
+        private readonly TypeInfo m_defaultSourceInterfaceTypeInfo;          // TypeInfo of the default source interface
         private IConvInterface m_convInterface;                     // IConvInterface for the default interface
         private IConvInterface m_convSourceInterface;               // IConvInterface for the default source interface
 
-        private bool m_isExclusive;                                 // see IConvClassInterface.IsExclusive for details
+        private readonly bool m_isExclusive;                                 // see IConvClassInterface.IsExclusive for details
   
         #endregion
     }
@@ -311,7 +311,7 @@ namespace tlbimp2
 
         #endregion
 
-        private TypeInfo m_typeInfo;        // Corresponding type info
-        private Type m_managedType;         // Corresponding managed type. Already created in a different DLL
+        private readonly TypeInfo m_typeInfo;        // Corresponding type info
+        private readonly Type m_managedType;         // Corresponding managed type. Already created in a different DLL
     }
 }

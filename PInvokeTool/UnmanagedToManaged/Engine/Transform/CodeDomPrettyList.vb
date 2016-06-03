@@ -10,7 +10,7 @@ Namespace Transform
     ''' </summary>
     ''' <remarks></remarks>
     Public Class CodeDomPrettyList
-        Private m_bag As NativeSymbolBag
+        Private ReadOnly m_bag As NativeSymbolBag
         Private m_resolvedTypeDefList As List(Of NativeTypeDef)
 
         Public Sub New(ByVal bag As NativeSymbolBag)

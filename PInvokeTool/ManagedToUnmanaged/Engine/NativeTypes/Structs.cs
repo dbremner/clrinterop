@@ -18,7 +18,7 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private bool byDefaultInOnly;
+        private readonly bool byDefaultInOnly;
 
         #endregion
 
@@ -404,7 +404,7 @@ namespace SignatureGenerator
         [Serializable]
         class ForwardDeclaration : NativeTypeDefinition
         {
-            private StructureDefinition definition;
+            private readonly StructureDefinition definition;
 
             public ForwardDeclaration(StructureDefinition definition)
             {

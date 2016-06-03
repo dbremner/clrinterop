@@ -285,7 +285,7 @@ namespace SignatureGenerator
 
     static class CppKeywords
     {
-        private static Set<string> table;
+        private static readonly Set<string> table;
 
         static CppKeywords()
         {

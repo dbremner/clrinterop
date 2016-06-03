@@ -16,7 +16,7 @@ namespace CoreRuleEngine
 
         private OrConditionDef() { }
 
-        private static OrConditionDef s_orConditionDef = new OrConditionDef();
+        private static readonly OrConditionDef s_orConditionDef = new OrConditionDef();
 
         public static OrConditionDef GetInstance()
         {

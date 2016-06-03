@@ -12,12 +12,12 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class ParseResult
-        Private m_errorProvider As New ErrorProvider
+        Private ReadOnly m_errorProvider As New ErrorProvider
         Private m_bag As New NativeSymbolBag
-        Private m_definedList As New List(Of NativeDefinedType)
-        Private m_typedefList As New List(Of NativeTypeDef)
-        Private m_procList As New List(Of NativeProcedure)
-        Private m_parsedList As New List(Of NativeType)
+        Private ReadOnly m_definedList As New List(Of NativeDefinedType)
+        Private ReadOnly m_typedefList As New List(Of NativeTypeDef)
+        Private ReadOnly m_procList As New List(Of NativeProcedure)
+        Private ReadOnly m_parsedList As New List(Of NativeType)
 
         Public Sub New()
 
@@ -87,7 +87,7 @@ Namespace Parser
 
     Public Class ParseException
         Inherits Exception
-        Private m_isError As Boolean = True
+        Private ReadOnly m_isError As Boolean = True
         Private m_isStreamOk As Boolean
 
         Friend ReadOnly Property IsError() As Boolean
@@ -185,8 +185,8 @@ Namespace Parser
         Private m_parsing As Boolean
         Private m_scanner As Scanner
         Private m_result As ParseResult
-        Private m_errorProvider As New ErrorProvider
-        Private m_salTable As New Dictionary(Of String, SalEntryType)(StringComparer.OrdinalIgnoreCase)
+        Private ReadOnly m_errorProvider As New ErrorProvider
+        Private ReadOnly m_salTable As New Dictionary(Of String, SalEntryType)(StringComparer.OrdinalIgnoreCase)
 
         Private ReadOnly Property DisplayString() As String
             Get

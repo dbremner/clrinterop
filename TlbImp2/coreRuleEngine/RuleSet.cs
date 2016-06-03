@@ -17,7 +17,7 @@ namespace CoreRuleEngine
         /// Key is the key string returned from GetRuleKeyString;
         /// Value is Rule List.
         /// </summary>
-        private Dictionary<string, List<Rule>> m_ruleDict;
+        private readonly Dictionary<string, List<Rule>> m_ruleDict;
 
         /// <summary>
         /// Load the rules from rule xml file.

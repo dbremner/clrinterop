@@ -14,7 +14,7 @@ namespace TlbImpRuleEngine
 
         private AddAttributeActionDef() { }
 
-        private static AddAttributeActionDef s_addAttributeActionDef =
+        private static readonly AddAttributeActionDef s_addAttributeActionDef =
             new AddAttributeActionDef();
 
         public static AddAttributeActionDef GetInstance()

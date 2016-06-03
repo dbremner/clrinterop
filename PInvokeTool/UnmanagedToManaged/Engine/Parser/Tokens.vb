@@ -127,8 +127,8 @@ Namespace Parser
 
     <DebuggerDisplay("{TokenType} - {Value}")> _
     Public Class Token
-        Private m_tokenType As TokenType
-        Private m_value As String
+        Private ReadOnly m_tokenType As TokenType
+        Private ReadOnly m_value As String
 
         ''' <summary>
         ''' Type of the token

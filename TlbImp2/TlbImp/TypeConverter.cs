@@ -1108,16 +1108,16 @@ namespace tlbimp2
         #endregion 
         #region Private data members
 
-        private ConverterInfo m_info;                       // ConverterInfo
+        private readonly ConverterInfo m_info;                       // ConverterInfo
         private int m_nativeIndirections;                         // level of indirections
-        private TypeInfo m_typeInfo;                        // TypeInfo owner
+        private readonly TypeInfo m_typeInfo;                        // TypeInfo owner
         private TypeDesc m_typeDesc;                        // Type description
-        private ConversionType m_conversionType;            // Conversion Type - parameter, return value, field
+        private readonly ConversionType m_conversionType;            // Conversion Type - parameter, return value, field
         private bool m_conversionLoss;                      // Conversion loss?
         private CustomAttributeBuilder m_attribute;         // MarshalAsAttribute for the type
         private Type m_convertedType;                       // Converted type
-        private ParamDesc m_paramDesc;                      // Parameter information
-        private bool m_convertingNewEnumMember;             // Are we creating the new enum member?
+        private readonly ParamDesc m_paramDesc;                      // Parameter information
+        private readonly bool m_convertingNewEnumMember;             // Are we creating the new enum member?
         private UnmanagedType m_unmanagedType;              // Corresponding unmanaged type. 
                                                             // Unfortunately we cannot get it from CustomAttributeBuilder
         private bool m_useDefaultMarshal;                   // Whether we marshal by default or marshal by UnmanagedType

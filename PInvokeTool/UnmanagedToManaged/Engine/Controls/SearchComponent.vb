@@ -19,8 +19,8 @@ Namespace Controls
         Private m_isSearching As Boolean
         Private m_delayTime As TimeSpan = TimeSpan.FromSeconds(0.2)
         Private m_enumerator As IEnumerator
-        Private m_found As New List(Of Object)
-        Private m_filter As Filter
+        Private ReadOnly m_found As New List(Of Object)
+        Private ReadOnly m_filter As Filter
 
         ''' <summary>
         ''' Whether or not the search is completed

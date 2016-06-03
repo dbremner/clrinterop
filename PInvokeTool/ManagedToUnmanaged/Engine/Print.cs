@@ -129,7 +129,7 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private Log log = new Log(true);
+        private readonly Log log = new Log(true);
 
         private const string IndentMarker = "#>";
         private const string UnindentMarker = "#<";
@@ -266,15 +266,15 @@ namespace SignatureGenerator
                 this.String = str;
             }
 
-            public OutputType OutputType;
-            public string String;
+            public readonly OutputType OutputType;
+            public readonly string String;
         }
 
         #endregion
 
         #region Fields
 
-        private List<PrintEntry> list = new List<PrintEntry>();
+        private readonly List<PrintEntry> list = new List<PrintEntry>();
 
         private const string NewLineMarker = "\\n";
         private const string IndentMarker = "#>";

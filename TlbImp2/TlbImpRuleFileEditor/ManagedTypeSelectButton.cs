@@ -9,7 +9,7 @@ namespace TlbImpRuleFileEditor
 {
     public partial class ManagedTypeSelectButton : Button
     {
-        private TextBox m_textBox;
+        private readonly TextBox m_textBox;
 
         public ManagedTypeSelectButton(TextBox textBox)
         {

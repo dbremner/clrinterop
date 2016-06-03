@@ -6,7 +6,7 @@ namespace TlbImpRegressionTestTool
 {
     class TestCaseStatusChangeEventArgs : EventArgs
     {
-        private TestCase m_testCase;
+        private readonly TestCase m_testCase;
 
         internal TestCaseStatusChangeEventArgs(TestCase testCase)
         {

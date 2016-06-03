@@ -32,7 +32,7 @@ Public Class ProcedureFinder
         End Get
     End Property
 
-    Private m_dllMap As New Dictionary(Of String, IntPtr)
+    Private ReadOnly m_dllMap As New Dictionary(Of String, IntPtr)
     Private m_loaded As Boolean = False
 
     ''' <summary>

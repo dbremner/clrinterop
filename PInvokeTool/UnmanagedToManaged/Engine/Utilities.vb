@@ -21,8 +21,8 @@ End Module
 ''' <remarks></remarks>
 Public Class ErrorProvider
 
-    Private m_warningList As New List(Of String)
-    Private m_errorList As New List(Of String)
+    Private ReadOnly m_warningList As New List(Of String)
+    Private ReadOnly m_errorList As New List(Of String)
 
     ''' <summary>
     ''' Errors
@@ -126,7 +126,7 @@ Friend Class EnumerableShim(Of T)
     Private Class EnumeratorShim
         Implements IEnumerator(Of T)
 
-        Private m_enumerator As IEnumerator
+        Private ReadOnly m_enumerator As IEnumerator
 
         Public Sub New(ByVal e As IEnumerator)
             m_enumerator = e
@@ -168,7 +168,7 @@ Friend Class EnumerableShim(Of T)
 
     End Class
 
-    Private m_enumerable As IEnumerable
+    Private ReadOnly m_enumerable As IEnumerable
 
     Public Sub New(ByVal e As IEnumerable)
         m_enumerable = e

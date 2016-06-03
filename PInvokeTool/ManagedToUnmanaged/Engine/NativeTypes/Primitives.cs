@@ -203,7 +203,7 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private bool isLPStruct;
+        private readonly bool isLPStruct;
 
         #endregion
 
@@ -279,7 +279,7 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private bool isLPStruct;
+        private readonly bool isLPStruct;
 
         #endregion
 

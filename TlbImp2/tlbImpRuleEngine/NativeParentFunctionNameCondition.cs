@@ -11,7 +11,7 @@ namespace TlbImpRuleEngine
 
         private NativeParentFunctionNameConditionDef() { }
 
-        private static NativeParentFunctionNameConditionDef s_nativeParentFunctionNameConditionDef
+        private static readonly NativeParentFunctionNameConditionDef s_nativeParentFunctionNameConditionDef
             = new NativeParentFunctionNameConditionDef();
 
         public static NativeParentFunctionNameConditionDef GetInstance()

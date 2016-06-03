@@ -35,7 +35,7 @@ Public Class NativeTypeEqualityComparer
         End Get
     End Property
 
-    Private m_type As ComparerType
+    Private ReadOnly m_type As ComparerType
 
     Private Sub New(ByVal type As ComparerType)
         m_type = type

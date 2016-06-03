@@ -31,7 +31,7 @@ Namespace Transform
     ''' <remarks></remarks>
     Public Class SalEntrySet
         Private m_type As SalEntryListType
-        Private m_list As New List(Of SalEntry)
+        Private ReadOnly m_list As New List(Of SalEntry)
 
         Public Property Type() As SalEntryListType
             Get
@@ -68,10 +68,10 @@ Namespace Transform
     ''' </summary>
     ''' <remarks></remarks>
     Public Class SalAnalyzer
-        Private m_sal As NativeSalAttribute
-        Private m_preList As New List(Of SalEntrySet)
-        Private m_itemList As New List(Of SalEntrySet)
-        Private m_postList As New List(Of SalEntrySet)
+        Private ReadOnly m_sal As NativeSalAttribute
+        Private ReadOnly m_preList As New List(Of SalEntrySet)
+        Private ReadOnly m_itemList As New List(Of SalEntrySet)
+        Private ReadOnly m_postList As New List(Of SalEntrySet)
 
         Public Sub New(ByVal sal As NativeSalAttribute)
             m_sal = sal

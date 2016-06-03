@@ -22,8 +22,8 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class TextReaderBag
-        Private m_name As String
-        Private m_reader As TextReader
+        Private ReadOnly m_name As String
+        Private ReadOnly m_reader As TextReader
 
         ''' <summary>
         ''' Name of the stream

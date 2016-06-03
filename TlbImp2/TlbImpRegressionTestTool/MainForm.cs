@@ -13,7 +13,7 @@ namespace TlbImpRegressionTestTool
 {
     public partial class MainForm : Form
     {
-        private TestCaseSettings m_settings;
+        private readonly TestCaseSettings m_settings;
 
         private TestCaseSet m_testCaseSet;
 
@@ -34,7 +34,7 @@ namespace TlbImpRegressionTestTool
         public static readonly string StatusColumnName = "Status";
 
         delegate void EnableRunMenuItemDelegate(bool enabled);
-        private EnableRunMenuItemDelegate m_enableRunMenuItemDelegate;
+        private readonly EnableRunMenuItemDelegate m_enableRunMenuItemDelegate;
 
         public MainForm()
         {

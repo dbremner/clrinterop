@@ -10,15 +10,15 @@ namespace TlbImpRuleEngine
     {
         private TypeLib m_typeLib;
 
-        private TypeInfo m_typeInfo;
+        private readonly TypeInfo m_typeInfo;
 
-        private TYPEKIND m_typeKind;
+        private readonly TYPEKIND m_typeKind;
 
-        private string m_typeString;
+        private readonly string m_typeString;
 
         private string m_name;
 
-        private Guid m_guid;
+        private readonly Guid m_guid;
 
         public TypeInfoMatchTarget(TypeLib typeLib, TypeInfo typeInfo, TYPEKIND typeKind)
         {

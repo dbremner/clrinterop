@@ -28,8 +28,8 @@ namespace SignatureGenerator
 
         #region Fields
 
-        private bool platform64bit;
-        private bool isInOnly;
+        private readonly bool platform64bit;
+        private readonly bool isInOnly;
         private ArrayKind arrayKind;
         private NativeType elementType;
         private int length;

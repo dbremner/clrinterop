@@ -86,7 +86,7 @@ namespace CoreRuleEngine
     /// </summary>
     public abstract class AbstractActionManager
     {
-        private Dictionary<string, IActionDef> m_registeredActionDef;
+        private readonly Dictionary<string, IActionDef> m_registeredActionDef;
 
         public AbstractActionManager()
         {

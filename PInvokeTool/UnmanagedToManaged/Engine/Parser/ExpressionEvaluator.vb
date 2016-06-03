@@ -7,8 +7,8 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class ExpressionEvaluator
-        Private m_parser As New ExpressionParser()
-        Private m_opts As ScannerOptions
+        Private ReadOnly m_parser As New ExpressionParser()
+        Private ReadOnly m_opts As ScannerOptions
 
         Public Sub New()
             m_opts = New ScannerOptions()

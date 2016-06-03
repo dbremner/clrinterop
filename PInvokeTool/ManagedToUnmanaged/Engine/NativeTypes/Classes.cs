@@ -18,7 +18,7 @@ namespace SignatureGenerator
     {
         #region Fields
 
-        private bool isVariant;
+        private readonly bool isVariant;
         private bool isUndefined;
 
         #endregion

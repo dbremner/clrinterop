@@ -14,7 +14,7 @@ namespace TlbImpRuleEngine
 
         private GuidConditionDef() { }
 
-        private static GuidConditionDef s_guidConditionDef
+        private static readonly GuidConditionDef s_guidConditionDef
             = new GuidConditionDef();
 
         public static GuidConditionDef GetInstance()

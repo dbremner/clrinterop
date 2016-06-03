@@ -6,9 +6,9 @@ namespace CoreRuleEngine
 {
     public class AppendSubconditionException : Exception
     {
-        private AbstractCompositeCondition m_parentCondition;
+        private readonly AbstractCompositeCondition m_parentCondition;
 
-        private ICondition m_subCondition;
+        private readonly ICondition m_subCondition;
 
         public AppendSubconditionException(AbstractCompositeCondition condition, ICondition subCondition)
         {
@@ -35,7 +35,7 @@ namespace CoreRuleEngine
 
     public abstract class ParseRuleFileException : Exception
     {
-        private string m_ruleName;
+        private readonly string m_ruleName;
 
         public ParseRuleFileException(string ruleName)
         {
@@ -82,7 +82,7 @@ namespace CoreRuleEngine
 
     public abstract class WriteRuleFileException : Exception
     {
-        private string m_ruleName;
+        private readonly string m_ruleName;
 
         public WriteRuleFileException(string ruleName)
         {

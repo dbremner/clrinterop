@@ -12,9 +12,9 @@ Namespace Parser
     ''' </summary>
     ''' <remarks></remarks>
     Public Class PreProcessorOptions
-        Private m_macroList As New List(Of Macro)
+        Private ReadOnly m_macroList As New List(Of Macro)
         Private m_followIncludes As Boolean
-        Private m_includePathList As New List(Of String)
+        Private ReadOnly m_includePathList As New List(Of String)
         Private m_trace As Boolean
 
         ''' <summary>
@@ -163,7 +163,7 @@ Namespace Parser
         Private Class PreProcessorEvaluator
             Inherits ExpressionEvaluator
 
-            Private m_engine As PreProcessorEngine
+            Private ReadOnly m_engine As PreProcessorEngine
 
             Public Sub New(ByVal engine As PreProcessorEngine)
                 m_engine = engine
@@ -267,12 +267,12 @@ Namespace Parser
         End Class
 
         Private m_options As PreProcessorOptions
-        Private m_macroMap As New Dictionary(Of String, Macro)
+        Private ReadOnly m_macroMap As New Dictionary(Of String, Macro)
         Private m_processing As Boolean
         Private m_scanner As Scanner
         Private m_outputStream As TextWriter
         Private m_errorProvider As New ErrorProvider()
-        Private m_eval As PreProcessorEvaluator
+        Private ReadOnly m_eval As PreProcessorEvaluator
         Private m_metadataMap As New Dictionary(Of String, String)(StringComparer.OrdinalIgnoreCase)
 
         ''' <summary>

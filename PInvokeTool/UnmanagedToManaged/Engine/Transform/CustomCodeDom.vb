@@ -101,9 +101,9 @@ Namespace Transform
     Friend Class CodeShiftExpression
         Inherits CodeCustomExpression
 
-        Private m_leftExpr As CodeExpression
-        Private m_rightExpr As CodeExpression
-        Private m_shiftLeft As Boolean
+        Private ReadOnly m_leftExpr As CodeExpression
+        Private ReadOnly m_rightExpr As CodeExpression
+        Private ReadOnly m_shiftLeft As Boolean
 
         Public ReadOnly Property Left() As CodeExpression
             Get
@@ -197,8 +197,8 @@ Namespace Transform
     Friend Class CodeDirectionalSymbolExpression
         Inherits CodeCustomExpression
 
-        Private m_symbolExpr As CodeExpression
-        Private m_direction As FieldDirection
+        Private ReadOnly m_symbolExpr As CodeExpression
+        Private ReadOnly m_direction As FieldDirection
 
         Public ReadOnly Property Expression() As CodeExpression
             Get

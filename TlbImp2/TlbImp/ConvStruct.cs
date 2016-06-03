@@ -215,7 +215,7 @@ namespace tlbimp2
 
         #endregion
 
-        private TypeInfo m_typeInfo;        // Corresponding type info
-        private Type m_managedType;         // Corresponding managed type. Already created in a different DLL
+        private readonly TypeInfo m_typeInfo;        // Corresponding type info
+        private readonly Type m_managedType;         // Corresponding managed type. Already created in a different DLL
     }
 }

@@ -10,15 +10,15 @@ namespace TlbImpRuleEngine
     {
         private const string TypeString = "Field";
 
-        private TypeInfo m_parentTypeInfo;
+        private readonly TypeInfo m_parentTypeInfo;
 
-        private int m_index;
+        private readonly int m_index;
 
-        private VarDesc m_varDesc;
+        private readonly VarDesc m_varDesc;
 
         private string m_name;
 
-        private string m_nativeParentTypeName;
+        private readonly string m_nativeParentTypeName;
 
         public FieldInfoMatchTarget(TypeInfo parentTypeInfo, int index)
         {

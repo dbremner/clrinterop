@@ -23,18 +23,18 @@ Namespace Controls
         Inherits DataGridView
 
         Private WithEvents m_timer As New Timer
-        Private m_nameColumn As DataGridViewColumn
-        Private m_valueColumn As DataGridViewColumn
+        Private ReadOnly m_nameColumn As DataGridViewColumn
+        Private ReadOnly m_valueColumn As DataGridViewColumn
         Private m_ns As NativeStorage
         Private m_search As IncrementalSearch
         Private m_searchText As String
         Private m_showInvalidData As Boolean
-        Private m_list As New List(Of Object)
+        Private ReadOnly m_list As New List(Of Object)
         Private m_kind As SearchKind
         Private m_info As SearchDataGridInfo
         Private m_handleCreated As Boolean
         Private m_selectionBag As NativeSymbolBag
-        Private m_selectionList As New List(Of String)
+        Private ReadOnly m_selectionList As New List(Of String)
 
         ''' <summary>
         ''' Have to do this to prevent the designer from serializing my columns

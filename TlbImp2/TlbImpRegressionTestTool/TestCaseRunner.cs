@@ -11,10 +11,10 @@ namespace TlbImpRegressionTestTool
 {
     class TestCaseRunner
     {
-        private TestCase m_testCase;
-        private TestCaseSettings m_settings;
-        private string m_outputDirectory;
-        private int m_id;
+        private readonly TestCase m_testCase;
+        private readonly TestCaseSettings m_settings;
+        private readonly string m_outputDirectory;
+        private readonly int m_id;
 
         public TestCaseRunner(TestCase testCase, TestCaseSettings settings, int id)
         {

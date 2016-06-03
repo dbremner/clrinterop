@@ -18,7 +18,7 @@ namespace TlbImpRuleFileEditor
             textBoxName.Text = ruleName;
         }
 
-        private ICategory m_fixedCategory;
+        private readonly ICategory m_fixedCategory;
 
         public RuleForm(ICategory fixedCategory, string ruleName)
         {

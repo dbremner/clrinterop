@@ -26,12 +26,12 @@ namespace tlbimp2
         /// <summary>
         /// Fixed args in the custom attribute blob
         /// </summary>
-        private List<Object> m_fixedArgs;
+        private readonly List<Object> m_fixedArgs;
 
         /// <summary>
         /// Optional named args in the custom attribute
         /// </summary>
-        private List<Object> m_namedArgs;
+        private readonly List<Object> m_namedArgs;
 
         /// <summary>
         /// Constructor

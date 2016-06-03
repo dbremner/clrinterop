@@ -38,8 +38,8 @@ namespace SignatureGenerator
             }
         }
 
-        private List<LogEntry> entries;
-        private bool preserveOrder;
+        private readonly List<LogEntry> entries;
+        private readonly bool preserveOrder;
 
         public bool IsEmpty
         {

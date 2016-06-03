@@ -77,7 +77,7 @@ namespace TypeLibTypes.Interop
         public bool IsImmediateBind { get { return ((int)wVarFlags & (int)VARFLAGS.VARFLAG_FIMMEDIATEBIND) != 0; } }
 
         private ITypeInfo m_typeinfo;
-        private IntPtr m_ipVarDesc;
+        private readonly IntPtr m_ipVarDesc;
         private VARDESC m_vardesc;
     }
 }

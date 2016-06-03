@@ -11,7 +11,7 @@ namespace TlbImpRuleFileEditor
 {
     class RuleSet2TreeNodeProcessor
     {
-        private static Font s_emptyConditionFont = new Font("Verdana", 8,
+        private static readonly Font s_emptyConditionFont = new Font("Verdana", 8,
                 FontStyle.Italic);
 
         private const string IMAGE_KEY_RULES = "Rules";

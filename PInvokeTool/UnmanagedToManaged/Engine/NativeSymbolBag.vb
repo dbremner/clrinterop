@@ -7,11 +7,11 @@ Imports System.Collections.Generic
 ''' <remarks></remarks>
 Public Class NativeSymbolBag
 
-    Private m_constMap As New Dictionary(Of String, NativeConstant)(StringComparer.Ordinal)
-    Private m_definedMap As New Dictionary(Of String, NativeDefinedType)(StringComparer.Ordinal)
-    Private m_typeDefMap As New Dictionary(Of String, NativeTypeDef)(StringComparer.Ordinal)
-    Private m_procMap As New Dictionary(Of String, NativeProcedure)(StringComparer.Ordinal)
-    Private m_valueMap As New Dictionary(Of String, NativeSymbol)(StringComparer.Ordinal)
+    Private ReadOnly m_constMap As New Dictionary(Of String, NativeConstant)(StringComparer.Ordinal)
+    Private ReadOnly m_definedMap As New Dictionary(Of String, NativeDefinedType)(StringComparer.Ordinal)
+    Private ReadOnly m_typeDefMap As New Dictionary(Of String, NativeTypeDef)(StringComparer.Ordinal)
+    Private ReadOnly m_procMap As New Dictionary(Of String, NativeProcedure)(StringComparer.Ordinal)
+    Private ReadOnly m_valueMap As New Dictionary(Of String, NativeSymbol)(StringComparer.Ordinal)
     Private m_storageLookup As NativeStorage
 
     Public ReadOnly Property Count() As Integer

@@ -116,9 +116,9 @@ Namespace Parser
     Public Class MethodMacro
         Inherits Macro
 
-        Private m_paramList As List(Of String)
-        Private m_bodyList As List(Of Token)
-        Private m_fullBodyList As List(Of Token)
+        Private ReadOnly m_paramList As List(Of String)
+        Private ReadOnly m_bodyList As List(Of Token)
+        Private ReadOnly m_fullBodyList As List(Of Token)
 
         ''' <summary>
         ''' Text parameters of the macro

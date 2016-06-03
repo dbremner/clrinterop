@@ -203,8 +203,8 @@ namespace TypeLibTypes.Interop
                 return null;
         }
 
-        private ITypeInfo m_typeInfo;
-        private ITypeInfo2 m_typeInfo2;
+        private readonly ITypeInfo m_typeInfo;
+        private readonly ITypeInfo2 m_typeInfo2;
     }
 
 }

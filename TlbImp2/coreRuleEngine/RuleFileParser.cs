@@ -10,7 +10,7 @@ namespace CoreRuleEngine
     /// </summary>
     public class RuleFileParser
     {
-        private XmlDocument m_doc;
+        private readonly XmlDocument m_doc;
 
         public RuleFileParser(string ruleFilePath)
         {

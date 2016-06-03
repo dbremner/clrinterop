@@ -20,7 +20,7 @@ namespace TlbImpRuleEngine
 
     public class IGetParentNativeNameUnsupportedException : Exception
     {
-        private object m_matchTarget;
+        private readonly object m_matchTarget;
 
         public IGetParentNativeNameUnsupportedException(object matchTarget)
         {
@@ -38,9 +38,9 @@ namespace TlbImpRuleEngine
 
     public class NoActionParameterException : Exception
     {
-        private string m_actionName;
+        private readonly string m_actionName;
 
-        private string m_missingParameterName;
+        private readonly string m_missingParameterName;
 
         public NoActionParameterException(string actionName, string missingParameterName)
         {

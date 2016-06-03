@@ -11,7 +11,7 @@ namespace TlbImpRuleFileEditor
 {
     public partial class ChangeManagedNameActionDialog : Form
     {
-        private ChangeManagedNameAction m_fixedChangeManagedNameAction;
+        private readonly ChangeManagedNameAction m_fixedChangeManagedNameAction;
 
         private string m_newName;
 
