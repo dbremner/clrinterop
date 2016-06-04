@@ -690,7 +690,7 @@ internal class TlbImp
         }
     }
 
-    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
     public static extern int SearchPath(String path, String fileName, String extension, int numBufferChars, StringBuilder buffer, int[] filePart);
 
     internal static TlbImpOptions s_Options = null;
