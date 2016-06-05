@@ -1,56 +1,35 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PInvokeHostApp", "HostApp\PInvokeHostApp.vbproj", "{42BFD534-5054-4F73-BFC6-DD447D07BB50}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PInvokeTestLib", "PInvokeTestLib\PInvokeTestLib.vcproj", "{6BE02529-628E-43C8-B413-99BA9AE348FD}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StorageGenerator", "StorageGenerator\StorageGenerator.vbproj", "{99633762-B441-49B5-BA5A-504353ED21DF}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E0E8B1A-5CD8-4184-8173-01547B524F25}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 	ProjectSection(SolutionItems) = preProject
 		localtestrun.testrunconfig = localtestrun.testrunconfig
 		UnmanagedToManaged.vsmdi = UnmanagedToManaged.vsmdi
 	EndProjectSection
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PInvokeHostApp", "HostApp\PInvokeHostApp.vbproj", "{42BFD534-5054-4F73-BFC6-DD447D07BB50}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PInvokeTestLib", "PInvokeTestLib\PInvokeTestLib.vcxproj", "{6BE02529-628E-43C8-B413-99BA9AE348FD}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "StorageGenerator", "StorageGenerator\StorageGenerator.vbproj", "{99633762-B441-49B5-BA5A-504353ED21DF}"
+EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PInvoke", "Engine\PInvoke.vbproj", "{993F376E-970F-462F-A3BF-DD8EBEDE9319}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PInvokeTest", "PInvokeTest\PInvokeTest.vbproj", "{85A9F7F0-C91D-49EB-82FF-3797F32307D7}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HeaderFileProcessor", "ConsoleTool\HeaderFileProcessor.vbproj", "{02A2D028-228A-4C28-A4FF-6350F1BD2F17}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = UnmanagedToManaged.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -123,5 +102,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = UnmanagedToManaged.vsmdi
 	EndGlobalSection
 EndGlobal
