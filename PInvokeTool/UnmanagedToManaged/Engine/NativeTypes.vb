@@ -1,6 +1,7 @@
 ﻿' Copyright (c) Microsoft Corporation.  All rights reserved.
 Imports System.Collections.Generic
 Imports System.CodeDom
+Imports System.Linq
 Imports System.Text
 Imports PInvoke.Contract
 
@@ -163,12 +164,7 @@ Public MustInherit Class NativeSymbol
     End Function
 
     Protected Function GetListChild(Of T As NativeSymbol)(ByVal list As List(Of T)) As IEnumerable(Of NativeSymbol)
-        Dim symList As New List(Of NativeSymbol)
-        For Each value As T In list
-            symList.Add(value)
-        Next
-
-        Return symList
+        Return list.Cast(Of NativeSymbol)().ToList()
     End Function
 
 
@@ -342,12 +338,7 @@ Public MustInherit Class NativeDefinedType
     End Sub
 
     Public Overrides Function GetChildren() As System.Collections.Generic.IEnumerable(Of NativeSymbol)
-        Dim list As New List(Of NativeSymbol)
-        For Each member As NativeMember In Members
-            list.Add(member)
-        Next
-
-        Return list
+        Return Members.Cast(Of NativeSymbol)().ToList()
     End Function
 
     Public Overrides Sub ReplaceChild(ByVal oldChild As NativeSymbol, ByVal newChild As NativeSymbol)
@@ -456,12 +447,7 @@ Public Class NativeEnum
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Overrides Function GetChildren() As System.Collections.Generic.IEnumerable(Of NativeSymbol)
-        Dim list As New List(Of NativeSymbol)
-        For Each pair As NativeEnumValue In Me.Values
-            list.Add(pair)
-        Next
-
-        Return list
+        Return Me.Values.Cast(Of NativeSymbol)().ToList()
     End Function
 
     Public Overrides Sub ReplaceChild(ByVal oldChild As NativeSymbol, ByVal newChild As NativeSymbol)

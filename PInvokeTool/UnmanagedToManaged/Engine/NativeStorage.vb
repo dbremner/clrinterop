@@ -1,4 +1,5 @@
 ﻿' Copyright (c) Microsoft Corporation.  All rights reserved.
+Imports System.Linq
 Imports System.Threading
 Imports System.Text
 Imports Microsoft.Win32
@@ -124,17 +125,13 @@ Partial Class NativeStorage
         End Function
 
         Public Function FindByNamePattern(ByVal pattern As String) As List(Of DefinedTypeRow)
-            Dim list As New List(Of DefinedTypeRow)
             Dim filter As String = String.Format( _
                 "{0} LIKE '{1}'", _
                 NameColumn.ColumnName, _
                 pattern)
             Dim rows() As DataRow = Me.Select(filter)
-            For Each dtRow As DefinedTypeRow In rows
-                list.Add(dtRow)
-            Next
 
-            Return list
+            Return rows.Cast(Of DefinedTypeRow)().ToList()
         End Function
 
     End Class
@@ -184,10 +181,7 @@ Partial Class NativeStorage
                 Return False
             End If
 
-            erows = New List(Of MemberRow)
-            For Each row As DataRow In rows
-                erows.Add(DirectCast(row, MemberRow))
-            Next
+            erows = rows.Cast(Of MemberRow)().ToList()
             Return True
         End Function
     End Class
@@ -227,10 +221,7 @@ Partial Class NativeStorage
                 Return False
             End If
 
-            erows = New List(Of EnumValueRow)
-            For Each row As DataRow In rows
-                erows.Add(DirectCast(row, EnumValueRow))
-            Next
+            erows = rows.Cast(Of EnumValueRow)().ToList()
             Return True
         End Function
 
@@ -242,10 +233,7 @@ Partial Class NativeStorage
                 Return False
             End If
 
-            erows = New List(Of EnumValueRow)
-            For Each row As DataRow In rows
-                erows.Add(DirectCast(row, EnumValueRow))
-            Next
+            erows = rows.Cast(Of EnumValueRow)().ToList()
             Return True
         End Function
 
@@ -310,17 +298,13 @@ Partial Class NativeStorage
         End Function
 
         Public Function FindByNamePattern(ByVal pattern As String) As List(Of TypedefTypeRow)
-            Dim list As New List(Of TypedefTypeRow)
             Dim filter As String = String.Format( _
                 "{0} LIKE '{1}'", _
                 NameColumn.ColumnName, _
                 pattern)
             Dim rows() As DataRow = Me.Select(filter)
-            For Each dtRow As TypedefTypeRow In rows
-                list.Add(dtRow)
-            Next
 
-            Return list
+            Return rows.Cast(Of TypedefTypeRow)().ToList()
         End Function
 
         Public Function TryFindById(ByVal id As Integer, ByRef drow As TypedefTypeRow) As Boolean
@@ -336,16 +320,12 @@ Partial Class NativeStorage
         End Function
 
         Public Function FindByTarget(ByVal typeRef As TypeReference) As List(Of TypedefTypeRow)
-            Dim list As New List(Of TypedefTypeRow)
             Dim filter As String = String.Format( _
                 "{0}={1} AND {2}={3}", _
                 RealTypeIdColumn.ColumnName, typeRef.Id, _
                 RealTypeKindRawColumn, CInt(typeRef.Kind))
-            For Each trow As TypedefTypeRow In Me.Select(filter)
-                list.Add(trow)
-            Next
 
-            Return list
+            Return Me.Select(filter).Cast(Of TypedefTypeRow)().ToList()
         End Function
     End Class
 
@@ -627,17 +607,13 @@ Partial Class NativeStorage
     Partial Class ConstantDataTable
 
         Public Function FindByNamePattern(ByVal pattern As String) As List(Of ConstantRow)
-            Dim list As New List(Of ConstantRow)
             Dim filter As String = String.Format( _
                 "{0} LIKE '{1}'", _
                 NameColumn.ColumnName, _
                 pattern)
             Dim rows() As DataRow = Me.Select(filter)
-            For Each dtRow As ConstantRow In rows
-                list.Add(dtRow)
-            Next
 
-            Return list
+            Return rows.Cast(Of ConstantRow)().ToList()
         End Function
 
         Public Function TryFindByName(ByVal name As String, ByRef row As ConstantRow) As Boolean
@@ -721,17 +697,13 @@ Partial Class NativeStorage
         End Function
 
         Public Function FindByNamePattern(ByVal pattern As String) As List(Of ProcedureRow)
-            Dim list As New List(Of ProcedureRow)
             Dim filter As String = String.Format( _
                 "{0} LIKE '{1}'", _
                 NameColumn.ColumnName, _
                 pattern)
             Dim rows() As DataRow = Me.Select(filter)
-            For Each dtRow As ProcedureRow In rows
-                list.Add(dtRow)
-            Next
 
-            Return list
+            Return rows.Cast(Of ProcedureRow)().ToList()
         End Function
 
     End Class

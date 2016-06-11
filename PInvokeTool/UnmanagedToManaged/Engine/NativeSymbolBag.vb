@@ -1,5 +1,6 @@
 ﻿' Copyright (c) Microsoft Corporation.  All rights reserved.
 Imports System.Collections.Generic
+Imports System.Linq
 
 ''' <summary>
 ''' Bag for NativeType instances which is used for querying and type resolution
@@ -328,17 +329,11 @@ Public Class NativeSymbolBag
             list.Add(definedNt)
         Next
 
-        For Each typedefNt As NativeTypeDef In m_typeDefMap.Values
-            list.Add(typedefNt)
-        Next
+        list.AddRange(m_typeDefMap.Values.Cast(Of NativeSymbol)())
 
-        For Each proc As NativeProcedure In m_procMap.Values
-            list.Add(proc)
-        Next
+        list.AddRange(m_procMap.Values.Cast(Of NativeSymbol)())
 
-        For Each c As NativeConstant In m_constMap.Values
-            list.Add(c)
-        Next
+        list.AddRange(m_constMap.Values.Cast(Of NativeSymbol)())
 
         Dim iter As New NativeSymbolIterator()
         Return iter.FindAllNativeSymbolRelationships(list)

@@ -1,5 +1,6 @@
 ﻿' Copyright (c) Microsoft Corporation.  All rights reserved.
 Imports System.Collections.Generic
+Imports System.Linq
 
 ''' <summary>
 ''' Parent Child symbol
@@ -54,12 +55,8 @@ Public Class NativeSymbolIterator
 
     Public Function FindAllNativeSymbols(ByVal enumerable As IEnumerable(Of NativeSymbol)) As List(Of NativeSymbol)
         Dim found As List(Of NativeSymbolRelationship) = FindAllReachableChildrenImpl(enumerable)
-        Dim list As New List(Of NativeSymbol)
-        For Each rel As NativeSymbolRelationship In found
-            list.Add(rel.Symbol)
-        Next
 
-        Return list
+        Return (From rel In found Select rel.Symbol).ToList()
     End Function
 
     Public Function FindAllNativeSymbols(ByVal ns As NativeSymbol) As List(Of NativeSymbol)

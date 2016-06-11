@@ -1,5 +1,6 @@
 ﻿' Copyright (c) Microsoft Corporation.  All rights reserved.
 Imports System.Collections.Generic
+Imports System.Linq
 
 #Region "Constants"
 
@@ -190,21 +191,11 @@ End Class
 Public Module EnumUtil
 
     Public Function GetAllValues(Of T)() As List(Of T)
-        Dim list As New List(Of T)
-        For Each cur As T In System.Enum.GetValues(GetType(T))
-            list.Add(cur)
-        Next
-
-        Return list
+        Return System.Enum.GetValues(GetType(T)).Cast(Of T)().ToList()
     End Function
 
     Public Function GetAllValuesObject(Of T)() As Object()
-        Dim list As New List(Of Object)
-        For Each cur As T In System.Enum.GetValues(GetType(T))
-            list.Add(cur)
-        Next
-
-        Return list.ToArray()
+        Return System.Enum.GetValues(GetType(T)).Cast(Of T)().Cast(Of Object)().ToArray()
     End Function
 
     Public Function GetAllValuesObjectExcept(Of T)(ByVal except As T) As Object()
