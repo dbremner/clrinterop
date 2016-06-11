@@ -18,7 +18,8 @@ namespace SignatureGenerator
     {
         private static readonly bool runningOn64Bit = (IntPtr.Size == 8);
 
-        private static readonly string[] testAssemblies = new string[]
+        //TODO check versions
+        private static readonly string[] testAssemblies = 
                 {
                     "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                     "System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
@@ -210,7 +211,8 @@ namespace SignatureGenerator
 
             Console.WriteLine("  compiling the generated file...");
 
-            ProcessStartInfo start_info = new ProcessStartInfo(
+            //TODO need to change path
+            var start_info = new ProcessStartInfo(
                 @"c:\Program Files (x86)\Microsoft Visual Studio 8\VC\bin\cl.exe", "/DUNICODE " + file_name);
             start_info.WorkingDirectory = Directory.GetCurrentDirectory();
             start_info.UseShellExecute = false;

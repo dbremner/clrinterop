@@ -55,6 +55,7 @@ Friend Module Contract
         Dim trace As New StackTrace
         Dim text As String = message
         text = text & Environment.NewLine & trace.ToString
+        'TODO should the next line say text
         Throw New ContractException(message)
     End Sub
 End Module

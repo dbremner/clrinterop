@@ -169,6 +169,7 @@ namespace TlbImpRegressionTestTool
 
         private bool FileExist(string path)
         {
+            //TODO would File.Exists() work?
             var file = new FileInfo(path);
             return file.Exists;
         }

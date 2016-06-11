@@ -41,6 +41,9 @@ Namespace Parser
             End Get
         End Property
 
+        'TODO nasty bug here, the LineNumber property is never set
+        'and will always be zero. It isn't clear whether Scanner.Mark and 
+        'Scanner.Rollback rely on the existing behavior
         Friend Sub New(ByVal index As Integer, ByVal lineNumber As Integer)
             m_index = index
         End Sub
