@@ -13,7 +13,7 @@ namespace CoreRuleEngine
     {
         private readonly Dictionary<string, ICategory> m_registeredCategory;
 
-        public AbstractCategoryManager()
+        protected AbstractCategoryManager()
         {
             m_registeredCategory = new Dictionary<string, ICategory>();
         }

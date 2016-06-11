@@ -37,7 +37,7 @@ namespace CoreRuleEngine
     {
         private readonly string m_ruleName;
 
-        public ParseRuleFileException(string ruleName)
+        protected ParseRuleFileException(string ruleName)
         {
             m_ruleName = ruleName;
         }
@@ -84,7 +84,7 @@ namespace CoreRuleEngine
     {
         private readonly string m_ruleName;
 
-        public WriteRuleFileException(string ruleName)
+        protected WriteRuleFileException(string ruleName)
         {
             m_ruleName = ruleName;
         }

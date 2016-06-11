@@ -37,7 +37,7 @@ namespace CoreRuleEngine
     {
         private readonly Dictionary<string, IOperator> m_registeredOperator;
 
-        public AbstractOperatorManager()
+        protected AbstractOperatorManager()
         {
             m_registeredOperator = new Dictionary<string, IOperator>();
         }

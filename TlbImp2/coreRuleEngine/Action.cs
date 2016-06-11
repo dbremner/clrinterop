@@ -88,7 +88,7 @@ namespace CoreRuleEngine
     {
         private readonly Dictionary<string, IActionDef> m_registeredActionDef;
 
-        public AbstractActionManager()
+        protected AbstractActionManager()
         {
             m_registeredActionDef = new Dictionary<string, IActionDef>();
         }
