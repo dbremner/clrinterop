@@ -108,9 +108,8 @@ namespace CoreRuleEngine
         /// </summary>
         public List<IActionDef> GetPossibleActionDefList(ICategory category)
         {
-            List<IActionDef> actionDefList = new List<IActionDef>();
-            Dictionary<string, IActionDef>.Enumerator enumerator =
-                m_registeredActionDef.GetEnumerator();
+            var actionDefList = new List<IActionDef>();
+            var enumerator = m_registeredActionDef.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 if (enumerator.Current.Value.CanApplyToCategory(category))

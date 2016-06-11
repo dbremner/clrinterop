@@ -73,7 +73,7 @@ namespace WindowsTool
 
         public void PrintLn()
         {
-            StringBuilder sb = new StringBuilder("\r\n", 2 + indentLevel * spacesPerIndent);
+            var sb = new StringBuilder("\r\n", 2 + indentLevel * spacesPerIndent);
             sb.Append(' ', indentLevel * spacesPerIndent);
 
             textBox.AppendText(sb.ToString());

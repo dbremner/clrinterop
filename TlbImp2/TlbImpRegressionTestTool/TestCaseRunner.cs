@@ -22,7 +22,7 @@ namespace TlbImpRegressionTestTool
             m_settings = settings;
             m_id = id;
 
-            FileInfo file = new FileInfo(testCase.TestedTarget);
+            var file = new FileInfo(testCase.TestedTarget);
             m_outputDirectory = file.DirectoryName;
         }
 
@@ -56,7 +56,7 @@ namespace TlbImpRegressionTestTool
         {
             try
             {
-                FileInfo file = new FileInfo(fileName);
+                var file = new FileInfo(fileName);
                 if (file.Exists)
                     file.Delete();
             }
@@ -71,8 +71,8 @@ namespace TlbImpRegressionTestTool
         {
             try
             {
-                FileStream file1 = new FileStream(fileFullPath1, FileMode.Open, FileAccess.Read);
-                FileStream file2 = new FileStream(fileFullPath2, FileMode.Open, FileAccess.Read);
+                var file1 = new FileStream(fileFullPath1, FileMode.Open, FileAccess.Read);
+                var file2 = new FileStream(fileFullPath2, FileMode.Open, FileAccess.Read);
                 if (file1.Length != file2.Length)
                 {
                     file1.Close();
@@ -140,9 +140,9 @@ namespace TlbImpRegressionTestTool
         private void PrinterAssemblyInPlace(string assemblyFileFullPath, string workingDirectory)
         {
             // Create an AppDomain to load the assembly printer.
-            AppDomainSetup options = new AppDomainSetup();
+            var options = new AppDomainSetup();
             options.ApplicationBase = workingDirectory;
-            AppDomain domain = AppDomain.CreateDomain("AssemPrinter", null, options);
+            var domain = AppDomain.CreateDomain("AssemPrinter", null, options);
             if (domain == null)
             {
                 MessageBox.Show("Cannot Create AppDomain.");
@@ -169,7 +169,7 @@ namespace TlbImpRegressionTestTool
 
         private bool FileExist(string path)
         {
-            FileInfo file = new FileInfo(path);
+            var file = new FileInfo(path);
             return file.Exists;
         }
     }

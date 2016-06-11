@@ -29,9 +29,8 @@ namespace CoreRuleEngine
 
         public List<Rule> GetAllRules()
         {
-            List<Rule> rules = new List<Rule>();
-            Dictionary<string, List<Rule>>.Enumerator enumerator =
-                m_ruleDict.GetEnumerator();
+            var rules = new List<Rule>();
+            var enumerator = m_ruleDict.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 List<Rule> value = enumerator.Current.Value;
@@ -46,7 +45,7 @@ namespace CoreRuleEngine
         /// </summary>
         public List<Rule> GetRule(ICategory category, IActionDef actionDef, IMatchTarget target)
         {
-            List<Rule> matchedRuleList = new List<Rule>();
+            var matchedRuleList = new List<Rule>();
             if (category == null) throw new ArgumentNullException(nameof(category));
             string key = GetRuleKeyString(category.GetCategoryName());
             if (!m_ruleDict.ContainsKey(key))
@@ -83,8 +82,7 @@ namespace CoreRuleEngine
 
         public void RemoveRule(Rule rule)
         {
-            Dictionary<string, List<Rule>>.Enumerator enumerator =
-                m_ruleDict.GetEnumerator();
+            var enumerator = m_ruleDict.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 List<Rule> value = enumerator.Current.Value;

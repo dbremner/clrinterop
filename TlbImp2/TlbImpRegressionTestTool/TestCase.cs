@@ -77,7 +77,7 @@ namespace TlbImpRegressionTestTool
             set
             {
                 m_testCaseStatus = value;
-                TestCaseStatusChangeEventArgs e = new TestCaseStatusChangeEventArgs(this);
+                var e = new TestCaseStatusChangeEventArgs(this);
                 StatusChange(this, e);
             }
         }

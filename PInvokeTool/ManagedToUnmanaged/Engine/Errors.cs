@@ -70,12 +70,12 @@ namespace SignatureGenerator
 #if DEBUG
         static Errors()
         {
-            Set<int> codes = new Set<int>();
+            var codes = new Set<int>();
 
             // verify integrity of error codes
             foreach (FieldInfo fi in typeof(Errors).GetFields(BindingFlags.Public | BindingFlags.Static))
             {
-                ErrorDesc error_desc = (ErrorDesc)fi.GetValue(null);
+                var error_desc = (ErrorDesc)fi.GetValue(null);
 
                 switch (error_desc.Severity)
                 {

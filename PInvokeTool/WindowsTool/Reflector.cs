@@ -98,7 +98,7 @@ namespace WindowsTool
 
         public Reflector(string assemblyPath)
         {
-            AppDomainSetup setup = new AppDomainSetup();
+            var setup = new AppDomainSetup();
             setup.ApplicationBase = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             
             this.assemblyPath = assemblyPath;
@@ -199,7 +199,7 @@ namespace WindowsTool
             typeDescs = new List<TypeDescriptor>();
 
             // let's keep track of the types for which we have descriptors
-            Dictionary<Type, TypeDescriptor> map = new Dictionary<Type, TypeDescriptor>();
+            var map = new Dictionary<Type, TypeDescriptor>();
 
             Type[] types;
             try
@@ -403,7 +403,7 @@ namespace WindowsTool
 
             // signature is null - will be created when first needed
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             
             TypeToString(sb, info.ReturnType);
 

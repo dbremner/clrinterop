@@ -238,7 +238,7 @@ namespace ConsoleTool
                                     PrintLogo();
                                 }
 
-                                using (TextWriterPrinter twp = new TextWriterPrinter(Console.Error))
+                                using (var twp = new TextWriterPrinter(Console.Error))
                                 {
                                     ConsoleErrors.ERROR_UnrecognizedOption.PrintTo(twp, args[i]);
                                 }
@@ -257,7 +257,7 @@ namespace ConsoleTool
 
                 if (String.IsNullOrEmpty(AssemblyFilePath))
                 {
-                    using (TextWriterPrinter twp = new TextWriterPrinter(Console.Error))
+                    using (var twp = new TextWriterPrinter(Console.Error))
                     {
                         ConsoleErrors.ERROR_AssemblyFileNotSpecified.PrintTo(twp);
                     }
@@ -305,7 +305,7 @@ namespace ConsoleTool
             var rtle = e as ReflectionTypeLoadException;
             if (rtle != null)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 for (int i = 0; i < rtle.LoaderExceptions.Length; i++)
                 {
                     if (sb.Length > 0) sb.Append(' ');
@@ -501,7 +501,7 @@ namespace ConsoleTool
             if (options.UsePlainCDataTypes) p_flags |= PrintFlags.UsePlainC;
             if (options.PrintMarshalDirection) p_flags |= PrintFlags.PrintMarshalDirection;
 
-            LogMemoryPrinter log_mem_printer = new LogMemoryPrinter();
+            var log_mem_printer = new LogMemoryPrinter();
 
             // print definitions first
             if (!options.SuppressTypeDefinitions)
@@ -548,7 +548,7 @@ namespace ConsoleTool
             // code will go to standard output
             if (options.UseColorConsoleOutput)
             {
-                ConsolePrinter console_printer = new ConsolePrinter();
+                var console_printer = new ConsolePrinter();
                 codePrinter = console_printer;
                 logPrinter = console_printer; // ConsolePrinter writes log to stderr
             }

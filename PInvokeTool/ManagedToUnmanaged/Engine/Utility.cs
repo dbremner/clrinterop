@@ -174,7 +174,7 @@ namespace SignatureGenerator
 
         public virtual IEnumerator<T> GetEnumerator()
         {
-            Dictionary<T, WalkState> returned_items = new Dictionary<T, WalkState>(this.Count);
+            var returned_items = new Dictionary<T, WalkState>(this.Count);
 
             foreach (KeyValuePair<T, List<T>> pair in dictionary)
             {
@@ -347,7 +347,7 @@ namespace SignatureGenerator
         /// </summary>
         internal static string StringToLiteral(string str)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append('"');
 
             for (int i = 0; i < str.Length; i++)

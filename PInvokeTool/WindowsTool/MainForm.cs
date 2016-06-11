@@ -322,11 +322,11 @@ namespace WindowsTool
             MethodDescriptor method_descr;
             if (node != null && (method_descr = node.Tag as MethodDescriptor) != null)
             {
-                System.IO.StringWriter writer = new System.IO.StringWriter();
-                TextWriterCodePrinter code_printer = new TextWriterCodePrinter(writer);
+                var writer = new System.IO.StringWriter();
+                var code_printer = new TextWriterCodePrinter(writer);
 
-                StringBuilder log_builder = new StringBuilder();
-                LogCallbackPrinter log_printer = new LogCallbackPrinter(delegate(string entry)
+                var log_builder = new StringBuilder();
+                var log_printer = new LogCallbackPrinter(delegate(string entry)
                 {
                     log_builder.AppendFormat("// {0}{1}", entry, writer.NewLine);
                 });
@@ -456,7 +456,7 @@ namespace WindowsTool
 
         private void treeView_DragDrop(object sender, DragEventArgs e)
         {
-            string[] files = (string[])e.Data.GetData("FileDrop");
+            var files = (string[])e.Data.GetData("FileDrop");
             if (files != null && files.Length == 1)
             {
                 LoadAssembly(files[0]);
@@ -467,7 +467,7 @@ namespace WindowsTool
         {
             if (e.Data.GetDataPresent("FileDrop"))
             {
-                string[] files = (string[])e.Data.GetData("FileDrop");
+                var files = (string[])e.Data.GetData("FileDrop");
                 if (files != null && files.Length == 1)
                 {
                     e.Effect = DragDropEffects.Copy;
@@ -688,7 +688,7 @@ namespace WindowsTool
 
         private static TreeNode CreateTreeNode(string text, ImageIndex imageIndex)
         {
-            TreeNode node = new TreeNode(text, (int)imageIndex, (int)imageIndex);
+            var node = new TreeNode(text, (int)imageIndex, (int)imageIndex);
             node.Name = text;
             return node;
         }

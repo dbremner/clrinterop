@@ -396,7 +396,7 @@ Public Class NativeProxyTypeTest
     ''' <remarks></remarks>
     <TestMethod()> _
     Public Sub Sal3()
-        For Each e As SalEntryType In System.Enum.GetValues(GetType(SalEntryType))
+        For Each e In System.Enum.GetValues(GetType(SalEntryType))
             Assert.IsFalse(String.IsNullOrEmpty(NativeSalEntry.GetDirectiveForEntry(SalEntryType.ElemReadableTo)))
         Next
     End Sub

@@ -83,10 +83,10 @@ namespace SignatureGenerator
 
             Console.WriteLine("  generating definitions...");
 
-            using (TextWriterCodePrinter printer = new TextWriterCodePrinter(new StreamWriter(file_name)))
+            using (var printer = new TextWriterCodePrinter(new StreamWriter(file_name)))
             {
                 // prepare a memory printer to print main to
-                CodeMemoryPrinter main_printer = new CodeMemoryPrinter();
+                var main_printer = new CodeMemoryPrinter();
 
                 main_printer.PrintLn(OutputType.Other, "#define VERIFY(cond) if (!(cond)) printf(\"* \\\"%s\\\" violated\\n\", #cond)");
 
@@ -95,7 +95,7 @@ namespace SignatureGenerator
                 main_printer.Indent();
                 main_printer.PrintLn();
 
-                LogMemoryPrinter log_printer = new LogMemoryPrinter();
+                var log_printer = new LogMemoryPrinter();
 
                 printer.PrintLn(OutputType.Other, "#include <stddef.h>");
                 printer.PrintLn(OutputType.Other, "#include <stdio.h>");
@@ -141,7 +141,7 @@ namespace SignatureGenerator
                                 printer.Indent();
                                 printer.PrintLn();
 
-                                NativeTypeDefinitionSet set = new NativeTypeDefinitionSet();
+                                var set = new NativeTypeDefinitionSet();
                                 set.Add(def_native_type.Definition);
                                 def_native_type.Definition.GetDefinitionsRecursive(set, def_native_type.Definition);
 

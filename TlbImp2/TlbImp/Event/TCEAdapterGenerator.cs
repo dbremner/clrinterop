@@ -108,7 +108,7 @@ namespace tlbimp2.Event
         internal static MethodInfo[] GetPropertyMethods(Type type)
         {
             MethodInfo[] aMethods = type.GetMethods();
-            ArrayList methods = new ArrayList();
+            var methods = new ArrayList();
 
             PropertyInfo[] props = type.GetProperties();
 

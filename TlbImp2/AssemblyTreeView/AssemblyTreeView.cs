@@ -55,14 +55,14 @@ namespace AssemblyTreeViewer
             this.Nodes.Clear();
             if (m_types != null)
             {
-                TreeNode root = new TreeNode(m_assembly.FullName);
+                var root = new TreeNode(m_assembly.FullName);
                 root.Tag = m_assembly;
                 SetTreeNodeImage(root);
                 foreach (Type type in m_types)
                 {
                     if (IsPassFilter(type))
                     {
-                        TreeNode typeNode = new TreeNode(type.FullName);
+                        var typeNode = new TreeNode(type.FullName);
                         typeNode.Tag = type;
                         SetTreeNodeImage(typeNode);
                         root.Nodes.Add(typeNode);

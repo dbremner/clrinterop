@@ -96,9 +96,8 @@ namespace CoreRuleEngine
         /// </summary>
         public List<IConditionDef> GetPossibleConditionDefList(ICategory category)
         {
-            List<IConditionDef> conditionDefList = new List<IConditionDef>();
-            Dictionary<string, IConditionDef>.Enumerator enumerator =
-                m_registeredConditionDef.GetEnumerator();
+            var conditionDefList = new List<IConditionDef>();
+            var enumerator = m_registeredConditionDef.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 if (enumerator.Current.Value.CanApplyToCategory(category))
@@ -112,9 +111,8 @@ namespace CoreRuleEngine
         /// </summary>
         public List<IConditionDef> GetAllConditionDefList()
         {
-            List<IConditionDef> conditionDefList = new List<IConditionDef>();
-            Dictionary<string, IConditionDef>.Enumerator enumerator =
-                m_registeredConditionDef.GetEnumerator();
+            var conditionDefList = new List<IConditionDef>();
+            var enumerator = m_registeredConditionDef.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 conditionDefList.Add(enumerator.Current.Value);

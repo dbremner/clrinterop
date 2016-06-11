@@ -541,7 +541,7 @@ namespace SignatureGenerator
             FieldInfo[] fis = type.GetFields(bindingFlags);
 
             this.fields = new NativeField[fis.Length];
-            KeyValuePair<int, NativeField>[] fields_with_tokens = new KeyValuePair<int, NativeField>[fis.Length];
+            var fields_with_tokens = new KeyValuePair<int, NativeField>[fis.Length];
 
             MarshalFlags flags = key.Flags & ~(MarshalFlags.AnsiStrings | MarshalFlags.UnicodeStrings);
             flags |= Utility.GetCharSetMarshalFlag(type);
@@ -818,7 +818,7 @@ namespace SignatureGenerator
 
             base.PrintTo(printer, logPrinter, flags);
 
-            PrintContext context = new PrintContext(printer, logPrinter, flags);
+            var context = new PrintContext(printer, logPrinter, flags);
 
             if (unalignedSizeOrOffsets)
             {

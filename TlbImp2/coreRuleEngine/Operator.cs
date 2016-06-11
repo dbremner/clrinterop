@@ -58,9 +58,8 @@ namespace CoreRuleEngine
 
         public List<IOperator> GetPossibleOperatorList(IConditionDef conditionDef)
         {
-            List<IOperator> operatorList = new List<IOperator>();
-            Dictionary<string, IOperator>.Enumerator enumerator =
-                m_registeredOperator.GetEnumerator();
+            var operatorList = new List<IOperator>();
+            var enumerator = m_registeredOperator.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 if (enumerator.Current.Value.CanApplyToCondition(conditionDef))
@@ -71,9 +70,8 @@ namespace CoreRuleEngine
 
         public List<IOperator> GetAllOperatorList()
         {
-            List<IOperator> operatorList = new List<IOperator>();
-            Dictionary<string, IOperator>.Enumerator enumerator =
-                m_registeredOperator.GetEnumerator();
+            var operatorList = new List<IOperator>();
+            var enumerator = m_registeredOperator.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 operatorList.Add(enumerator.Current.Value);

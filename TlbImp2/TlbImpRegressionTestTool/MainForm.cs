@@ -113,7 +113,7 @@ namespace TlbImpRegressionTestTool
 
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsForm form = new SettingsForm(m_settings);
+            var form = new SettingsForm(m_settings);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 m_settings.TestedCommand = form.TestedCommandText;
@@ -179,7 +179,7 @@ namespace TlbImpRegressionTestTool
         {
             try
             {
-                FileInfo file = new FileInfo(m_settings.TestedCommand);
+                var file = new FileInfo(m_settings.TestedCommand);
                 if (!file.Exists)
                 {
                     MessageBox.Show("Tested TlbImp does not exist.");
@@ -189,7 +189,7 @@ namespace TlbImpRegressionTestTool
                 file = new FileInfo(m_settings.WindiffPath);
                 if (!file.Exists)
                 {
-                    FileInfo windiffFile =
+                    var windiffFile = 
                         new FileInfo(Path.Combine(Application.StartupPath, "windiff.exe"));
                     if (windiffFile.Exists)
                     {
@@ -270,7 +270,7 @@ namespace TlbImpRegressionTestTool
                 {
                     string target = testCase.TestedTarget;
                     string targetFileName = Path.GetFileName(target);
-                    FileInfo file = new FileInfo(testCase.TestedTarget);
+                    var file = new FileInfo(testCase.TestedTarget);
                     string outputDirString = file.DirectoryName;
                     ShowDiff(m_settings.WindiffPath, testCase.Baseline,
                         Path.Combine(outputDirString, (index + 1) + targetFileName + ".dll.bsl"));

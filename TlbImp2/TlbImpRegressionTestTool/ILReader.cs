@@ -144,7 +144,7 @@ namespace ILReader
 		public static string PrintMethod(MethodBase mb, Assembly workingAssm, Type workingType)
 		{
 		    if (mb == null) throw new ArgumentNullException(nameof(mb));
-		    StringBuilder s = new StringBuilder();
+		    var s = new StringBuilder();
 			if (typeof(MethodInfo).IsInstanceOfType(mb))
 			{
 				s.Append(PrintTypeWithAssem(((MethodInfo)mb).ReturnType, workingAssm));
@@ -1376,7 +1376,7 @@ namespace ILReader
 		{
 			// This gets the number of parameters (stored as b) from the byte[]
 			// Each parameter is then added to the ArrayList T
-			ArrayList T = new ArrayList();
+			var T = new ArrayList();
 			byte[] b = new byte[4];
 			for (int k = 0; k < 4; k++)
 			{

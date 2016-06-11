@@ -34,9 +34,8 @@ namespace CoreRuleEngine
 
         public List<ICategory> GetAllCategory()
         {
-            List<ICategory> categoryList = new List<ICategory>();
-            Dictionary<string, ICategory>.Enumerator enumerator =
-                m_registeredCategory.GetEnumerator();
+            var categoryList = new List<ICategory>();
+            var enumerator = m_registeredCategory.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 categoryList.Add(enumerator.Current.Value);

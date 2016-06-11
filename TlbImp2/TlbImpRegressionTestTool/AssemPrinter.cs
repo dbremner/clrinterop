@@ -228,7 +228,7 @@ public class AssemPrinter
     }
     void PrintCustomAttributes(IList<CustomAttributeData> cads)
     {
-        ArrayList sortedList = new ArrayList();
+        var sortedList = new ArrayList();
         // customattributes
         foreach (CustomAttributeData cad in cads)
             sortedList.Add(cad);
@@ -343,7 +343,7 @@ public class AssemPrinter
     }
     string PrintMember(MemberInfo mi)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         Type t = null;
         if (mi.MemberType == MemberTypes.Field)
             t = ((FieldInfo)mi).FieldType;
@@ -460,7 +460,7 @@ public class AssemPrinter
     // the ToString function of CustomAttribute Data
     string AttrToString(CustomAttributeData ca)
     {
-        StringBuilder ctorArgs = new StringBuilder();
+        var ctorArgs = new StringBuilder();
         //bool shouldReplace = false;
         for (int i = 0; i < ca.ConstructorArguments.Count; i++)
         {
@@ -473,7 +473,7 @@ public class AssemPrinter
             ctorArgs.Append(string.Format(i == 0 ? "{0}" : ", {0}", ca.ConstructorArguments[i]));
         }
 
-        StringBuilder namedArgs = new StringBuilder();
+        var namedArgs = new StringBuilder();
         for (int i = 0; i < ca.NamedArguments.Count; i++)
         {
             if (ca.NamedArguments[i].TypedValue.ToString().Contains("System.Runtime.InteropServices.CustomMarshalers"))
@@ -540,7 +540,7 @@ public class AssemPrinter
     }
     string PrintMethodHead(MethodBase mb)
     {
-        StringBuilder s = new StringBuilder();
+        var s = new StringBuilder();
 
         if (typeof(MethodInfo).IsInstanceOfType(mb))
         {
@@ -618,7 +618,7 @@ public class AssemPrinter
     {
         if (bytes != null)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("(");
             for (int i = 0; i < bytes.Length; i++)
             {
@@ -633,7 +633,7 @@ public class AssemPrinter
     {
         if (input == null) throw new ArgumentNullException(nameof(input));
         String[] pieces = input.Split(new Char[] { ',', ' ' });
-        ArrayList processed = new ArrayList();
+        var processed = new ArrayList();
         // if the attribute doesn't have Public string, it means it is private.
         // In TypeAttributes, NotPublic, Class, AutoLayout, AnsiClass are all of value 0, so there is a potential dangerous
         // of they appear randomly in ToString(). It is too late to screen out AutoLayout and AnsiClass since we arelady generated the baseline
@@ -642,7 +642,7 @@ public class AssemPrinter
             if (!p.Equals(string.Empty) && !p.Equals("ClassSemanticsMask") && !p.Equals("NotPublic") && !p.Equals("Class"))
                 processed.Add(p);
         processed.Sort(sc);
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
         foreach (string p in processed)
             sb.Append(p + ", ");
         return sb.ToString(0, sb.Length - 2);

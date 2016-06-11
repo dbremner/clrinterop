@@ -351,7 +351,7 @@ namespace SignatureGenerator
         public static string Format(Severity severity, int code, int indentLevel, string message)
         {
             if (message == null) throw new ArgumentNullException(nameof(message));
-            StringBuilder sb = new StringBuilder(indentLevel + message.Length + 16);
+            var sb = new StringBuilder(indentLevel + message.Length + 16);
 
             sb.Append("SigExp : ");
 

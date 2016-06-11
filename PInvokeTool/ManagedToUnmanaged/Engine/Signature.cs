@@ -265,7 +265,7 @@ namespace SignatureGenerator
 
         public object Clone()
         {
-            NativeTypeDesc copy = new NativeTypeDesc();
+            var copy = new NativeTypeDesc();
             copy.Type = this.Type;
             copy.Flags = this.Flags;
             copy.MarshalAs = this.MarshalAs;
@@ -394,7 +394,7 @@ namespace SignatureGenerator
             if (mi == null) throw new ArgumentNullException(nameof(mi));
             Debug.Assert((mi.Attributes & MethodAttributes.PinvokeImpl) == MethodAttributes.PinvokeImpl);
 
-            NativeSignature sig = new NativeSignature(false, false);
+            var sig = new NativeSignature(false, false);
 
             // P/Invokes must be static
             if (!mi.IsStatic)
@@ -485,7 +485,7 @@ namespace SignatureGenerator
             Debug.Assert(mi.DeclaringType != null && mi.DeclaringType.IsImport &&
                 (mia & MethodImplAttributes.InternalCall) == MethodImplAttributes.InternalCall);
 
-            NativeSignature sig = new NativeSignature(false, true);
+            var sig = new NativeSignature(false, true);
 
             // COM always uses stdcall
             sig.name = Utility.MakeCIdentifier(mi.Name);
@@ -545,7 +545,7 @@ namespace SignatureGenerator
             if (delegateType == null) throw new ArgumentNullException(nameof(delegateType));
             Debug.Assert(typeof(Delegate).IsAssignableFrom(delegateType));
 
-            NativeSignature sig = new NativeSignature(true, false);
+            var sig = new NativeSignature(true, false);
 
             // set up marshal flags
             MarshalFlags flags = MarshalFlags.CallbackParam;
@@ -703,7 +703,7 @@ namespace SignatureGenerator
 
         public IEnumerable<NativeTypeDefinition> GetDefinitions()
         {
-            NativeTypeDefinitionSet set = new NativeTypeDefinitionSet();
+            var set = new NativeTypeDefinitionSet();
 
             GetDefinitionsRecursive(set, null);
 
@@ -1122,7 +1122,7 @@ namespace SignatureGenerator
             if (pi == null)
                 throw new ArgumentNullException(nameof(pi));
 
-            NativeTypeDesc desc = new NativeTypeDesc(pi,
+            var desc = new NativeTypeDesc(pi,
                 flags & ~(MarshalFlags.ArrayElement | MarshalFlags.StructField));
 
             return CreateFromKey(desc);
@@ -1133,7 +1133,7 @@ namespace SignatureGenerator
             if (fi == null)
                 throw new ArgumentNullException(nameof(fi));
 
-            NativeTypeDesc desc = new NativeTypeDesc(fi,
+            var desc = new NativeTypeDesc(fi,
                 (flags & ~MarshalFlags.ArrayElement) | MarshalFlags.StructField);
 
             return CreateFromKey(desc);
@@ -1144,7 +1144,7 @@ namespace SignatureGenerator
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
 
-            NativeTypeDesc desc = new NativeTypeDesc(type, flags);
+            var desc = new NativeTypeDesc(type, flags);
 
             return CreateFromKey(desc);
         }
@@ -1179,7 +1179,7 @@ namespace SignatureGenerator
             // property to be inherited by the element in some cases (see ArrayNativeType.PrintTo)
             flags &= ~(MarshalFlags.MarshalIn | MarshalFlags.MarshalOut);
 
-            NativeTypeDesc desc = new NativeTypeDesc(
+            var desc = new NativeTypeDesc(
                 element_managed_type,
                 elementUnmanagedType,
                 flags);

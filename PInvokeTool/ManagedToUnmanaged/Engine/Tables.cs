@@ -179,7 +179,7 @@ namespace SignatureGenerator
             // - * is an operator
             // - space is 'other'
 
-            StringBuilder sb = new StringBuilder(typeNameStr.Length);
+            var sb = new StringBuilder(typeNameStr.Length);
             OutputType type = OutputType.Other;
 
             for (int i = 0; i < typeNameStr.Length; i++)
