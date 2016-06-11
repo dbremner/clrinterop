@@ -151,6 +151,7 @@
     <Rule Id="CA2200" Action="None" />
     <Rule Id="CA2201" Action="None" />
     <Rule Id="CA2202" Action="None" />
+    <Rule Id="CA2204" Action="None" />
     <Rule Id="CA2205" Action="None" />
     <Rule Id="CA2207" Action="None" />
     <Rule Id="CA2208" Action="None" />
