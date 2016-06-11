@@ -204,7 +204,7 @@ namespace TlbImpRegressionTestTool
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Bad file path. Check the settings please.");
                 return false;
@@ -289,7 +289,7 @@ namespace TlbImpRegressionTestTool
                 p.StartInfo.Arguments = "\"" + fileFullPath1 + "\" \"" + fileFullPath2 + "\"";
                 p.Start();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

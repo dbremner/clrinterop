@@ -60,7 +60,7 @@ namespace TlbImpRegressionTestTool
                 if (file.Exists)
                     file.Delete();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(String.Format("Can not delete file {0}.", fileName));
                 throw new Exception("Can not delete file");
@@ -90,7 +90,7 @@ namespace TlbImpRegressionTestTool
                 file2.Close();
                 return (byte1 == byte2);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -131,7 +131,7 @@ namespace TlbImpRegressionTestTool
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
