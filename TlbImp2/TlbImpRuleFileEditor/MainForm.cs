@@ -163,7 +163,7 @@ namespace TlbImpRuleFileEditor
         {
             if (condition is AbstractCompositeCondition)
             {
-                var compositeCondition = condition as AbstractCompositeCondition;
+                var compositeCondition = (AbstractCompositeCondition) condition;
                 List<ICondition> list = compositeCondition.ConditionList;
                 if (list.Count == 0)
                 {
@@ -751,9 +751,9 @@ namespace TlbImpRuleFileEditor
         {
             if (node.Tag is AbstractCompositeCondition)
             {
-                var compositeCondition = node.Tag as AbstractCompositeCondition;
+                var compositeCondition = (AbstractCompositeCondition) node.Tag;
                 var compositeConditionDef =
-                    compositeCondition.GetConditionDef() as AbstractCompositeConditionDef;
+                    (AbstractCompositeConditionDef) compositeCondition.GetConditionDef();
                 return compositeCondition.ConditionList.Count <
                     compositeConditionDef.GetMaxSubconditionNumber();
             }
@@ -1194,7 +1194,7 @@ namespace TlbImpRuleFileEditor
             TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
             if (draggedNode.Tag is IMatchTarget)
             {
-                var matchTarget = draggedNode.Tag as IMatchTarget;
+                var matchTarget = (IMatchTarget) draggedNode.Tag;
                 if (node != null && (node.Tag is ICondition || IsEmptyConditionNode(node)))
                 {
                     // Drag to the condition
@@ -1361,7 +1361,7 @@ namespace TlbImpRuleFileEditor
                                     if (oldCondition is AbstractCompositeCondition)
                                     {
                                         var oldCompositeCondition = 
-                                            oldCondition as AbstractCompositeCondition;
+                                            (AbstractCompositeCondition) oldCondition;
                                         if (oldCompositeCondition.ConditionList.Count > 0)
                                         {
                                             var newSingleCondition =
@@ -1376,7 +1376,7 @@ namespace TlbImpRuleFileEditor
                                     if (oldCondition is AbstractCompositeCondition)
                                     {
                                         var oldCompositeCondition =
-                                            oldCondition as AbstractCompositeCondition;
+                                            (AbstractCompositeCondition) oldCondition;
                                         if (oldCompositeCondition.ConditionList.Count > 0)
                                         {
                                             var newCompositeCondition =
@@ -1414,7 +1414,7 @@ namespace TlbImpRuleFileEditor
             {
                 if (oldCondition is AbstractCompositeCondition)
                 {
-                    var condition = oldCondition as AbstractCompositeCondition;
+                    var condition = (AbstractCompositeCondition) oldCondition;
                     if (condition.ConditionList.Count > 0)
                     {
                         return true;
@@ -1425,7 +1425,7 @@ namespace TlbImpRuleFileEditor
             {
                 if (oldCondition is AbstractMultipleCondition)
                 {
-                    var condition = oldCondition as AbstractMultipleCondition;
+                    var condition = (AbstractMultipleCondition) oldCondition;
                     if (condition.ConditionList.Count > 1)
                     {
                         return true;
@@ -1456,7 +1456,7 @@ namespace TlbImpRuleFileEditor
             if (draggedNode.Tag is IMatchTarget)
             {
                 // drag from tlb tree.
-                IMatchTarget matchTarget = draggedNode.Tag as IMatchTarget;
+                IMatchTarget matchTarget = (IMatchTarget) draggedNode.Tag;
 
                 if (node != null)
                 {
@@ -1493,12 +1493,12 @@ namespace TlbImpRuleFileEditor
             else if (draggedNode.Tag is ICondition)
             {
                 // drag from rule tree.
-                var draggedCondition = draggedNode.Tag as ICondition;
+                var draggedCondition = (ICondition) draggedNode.Tag;
 
                 if (node != null)
                 {
                     if (CanAddCondition(node) &&
-                            CanConditionApplyToCategory(draggedNode.Tag as ICondition,
+                            CanConditionApplyToCategory((ICondition) draggedNode.Tag,
                                 (GetRuleNode(node).Tag as Rule).Category) &&
                             !IsInsertToCompositeCondition(node, targetPoint))
                     {
@@ -1511,7 +1511,7 @@ namespace TlbImpRuleFileEditor
                             e.Effect = DragDropEffects.Move;
                     }
                     else if (CanAddCondition(node.Parent) &&
-                            CanConditionApplyToCategory(draggedNode.Tag as ICondition,
+                            CanConditionApplyToCategory((ICondition) draggedNode.Tag,
                                 (GetRuleNode(node).Tag as Rule).Category))
                     {
                         // display the insertion line and unselect the node to avoid misunderstanding.
@@ -1615,7 +1615,7 @@ namespace TlbImpRuleFileEditor
                         TreeNode ruleNode = GetRuleNode(node);
                         if (node.Tag is ICondition)
                             conditionInPlaceEditor.InitBeforeShow(node,
-                                (ruleNode.Tag as Rule).Category, node.Tag as ICondition);
+                                (ruleNode.Tag as Rule).Category, (ICondition) node.Tag);
                         else
                             conditionInPlaceEditor.InitBeforeShow(node,
                                 (ruleNode.Tag as Rule).Category, null);
@@ -1661,7 +1661,7 @@ namespace TlbImpRuleFileEditor
             TreeNode node = ruleTreeView.SelectedNode;
             if (node.Tag is Rule)
             {
-                var rule = node.Tag as Rule;
+                var rule = (Rule) node.Tag;
                 if (e.Label != null && !e.Label.Trim().Equals(""))
                 {
                     rule.Name = e.Label;

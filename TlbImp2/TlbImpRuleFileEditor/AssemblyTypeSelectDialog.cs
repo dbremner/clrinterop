@@ -63,7 +63,7 @@ namespace TlbImpRuleFileEditor
             if (treeViewAssembly.SelectedNode != null &&
                 treeViewAssembly.SelectedNode.Tag is Type)
             {
-                m_selectedType = treeViewAssembly.SelectedNode.Tag as Type;
+                m_selectedType = (Type) treeViewAssembly.SelectedNode.Tag;
                 DialogResult = DialogResult.OK;
                 Dispose();
             }

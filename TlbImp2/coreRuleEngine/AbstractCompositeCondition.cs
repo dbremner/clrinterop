@@ -80,7 +80,7 @@ namespace CoreRuleEngine
         {
             if (obj is AbstractCompositeCondition)
             {
-                var condition = obj as AbstractCompositeCondition;
+                var condition = (AbstractCompositeCondition) obj;
                 return (GetConditionDef() == condition.GetConditionDef());
             }
             return false;

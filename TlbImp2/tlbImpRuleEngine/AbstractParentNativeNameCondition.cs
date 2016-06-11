@@ -22,7 +22,7 @@ namespace TlbImpRuleEngine
             if (matchTarget is IGetNativeParentName)
             {
                 IGetNativeParentName getParentNativeName =
-                    matchTarget as IGetNativeParentName;
+                    (IGetNativeParentName) matchTarget;
                 parentName = getParentNativeName.GetNativeParentName();
             }
             else

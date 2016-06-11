@@ -63,7 +63,7 @@ namespace TlbImpRuleEngine
             int parameterIndex = 0;
             if (matchTarget is SignatureInfoMatchTarget)
             {
-                var sigInfoMatchTarget = matchTarget as SignatureInfoMatchTarget;
+                var sigInfoMatchTarget = (SignatureInfoMatchTarget) matchTarget;
                 parameterIndex = sigInfoMatchTarget.NativeParameterIndex;
             }
             else

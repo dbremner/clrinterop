@@ -76,7 +76,7 @@ namespace TlbImpRuleFileEditor
             if (treeViewTypeLib.SelectedNode != null &&
                 treeViewTypeLib.SelectedNode.Tag is TypeInfoMatchTarget)
             {
-                m_typeTarget = treeViewTypeLib.SelectedNode.Tag as TypeInfoMatchTarget;
+                m_typeTarget = (TypeInfoMatchTarget) treeViewTypeLib.SelectedNode.Tag;
                 DialogResult = DialogResult.OK;
                 Dispose();
             }

@@ -129,7 +129,7 @@ namespace TlbImpRuleFileEditor
             TreeNode conditionNode = new TreeNode();
             if (condition is AbstractCompositeCondition)
             {
-                var compositeCondition = condition as AbstractCompositeCondition;
+                var compositeCondition = (AbstractCompositeCondition) condition;
                 
                 foreach (ICondition subCondition in compositeCondition.ConditionList)
                 {
@@ -138,7 +138,7 @@ namespace TlbImpRuleFileEditor
 
                 // Append the "<Empty>" node.
                 AbstractCompositeConditionDef compositeConditionDef =
-                    condition.GetConditionDef() as AbstractCompositeConditionDef;
+                    (AbstractCompositeConditionDef) condition.GetConditionDef();
                 if (conditionNode.Nodes.Count < compositeConditionDef.GetMaxSubconditionNumber())
                 {
                     conditionNode.Nodes.Add(GetEmptyConditionTreeNode());
@@ -166,12 +166,12 @@ namespace TlbImpRuleFileEditor
         {
             if (condition is AbstractCompositeCondition)
             {
-                var compositeCondition = condition as AbstractCompositeCondition;
+                var compositeCondition = (AbstractCompositeCondition) condition;
                 return compositeCondition.GetConditionDef().GetConditionName();
             }
             else if (condition is AbstractAtomicCondition)
             {
-                var singleCondition = condition as AbstractAtomicCondition;
+                var singleCondition = (AbstractAtomicCondition) condition;
                 return singleCondition.GetExpression();
             }
             else
