@@ -10,7 +10,7 @@ Friend Module Contract
         Contract.ThrowIfNull(value, "Value should not be null")
     End Sub
 
-    Public Sub ThrowIfNull(ByVal value As Object, ByVal message As String)
+    Public Sub ThrowIfNull(Of T As Class)(ByVal value As T, ByVal message As String)
         If (value Is Nothing) Then
             Contract.ContractViolation(message)
         End If
