@@ -169,13 +169,13 @@ Namespace Parser
         End Function
 
         Public Function TryParse(ByVal tokens As List(Of Token), ByRef node As ExpressionNode) As Boolean
-            If tokens Is Nothing Then : Throw New ArgumentNullException(NameOf(tokens)) : End If
+            ThrowIfNull(tokens, NameOf(tokens))
 
             Return TryParseComplete(tokens, node)
         End Function
 
         Public Function TryParse(ByVal expression As String, ByRef node As ExpressionNode) As Boolean
-            If expression Is Nothing Then : Throw New ArgumentNullException(NameOf(expression)) : End If
+            ThrowIfNull(expression, NameOf(expression))
 
             Using reader As New IO.StringReader(expression)
                 Dim scanner As New Scanner(reader)

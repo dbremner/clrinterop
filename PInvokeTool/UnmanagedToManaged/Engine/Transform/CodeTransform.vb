@@ -44,7 +44,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateTypeReference(ByVal nt As NativeType) As CodeTypeReference
-            If nt Is Nothing Then : Throw New ArgumentNullException(NameOf(nt)) : End If
+            ThrowIfNull(nt, NameOf(nt))
 
             Dim comment As String = String.Empty
             Return GenerateTypeReferenceImpl(nt, comment)
@@ -57,9 +57,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateDeclaration(ByVal nt As NativeDefinedType) As CodeTypeDeclaration
-            If nt Is Nothing Then
-                Throw New ArgumentNullException(NameOf(nt))
-            End If
+            ThrowIfNull(nt, NameOf(nt))
 
             Dim ctd As CodeTypeDeclaration
             Select Case nt.Kind
@@ -88,9 +86,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateStruct(ByVal ntStruct As NativeStruct) As CodeTypeDeclaration
-            If ntStruct Is Nothing Then
-                Throw New ArgumentNullException(NameOf(ntStruct))
-            End If
+            ThrowIfNull(ntStruct, NameOf(ntStruct))
 
             ' Generate the core type
             Dim ctd As New CodeTypeDeclaration(ntStruct.Name)
@@ -112,9 +108,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateEnum(ByVal ntEnum As NativeEnum) As CodeTypeDeclaration
-            If ntEnum Is Nothing Then
-                Throw New ArgumentNullException(NameOf(ntEnum))
-            End If
+            ThrowIfNull(ntEnum, NameOf(ntEnum))
 
             ' Generate the type
             Dim ctd As New CodeTypeDeclaration()
@@ -148,9 +142,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateUnion(ByVal ntUnion As NativeUnion) As CodeTypeDeclaration
-            If ntUnion Is Nothing Then
-                Throw New ArgumentNullException(NameOf(ntUnion))
-            End If
+            ThrowIfNull(ntUnion, NameOf(ntUnion))
 
             ' Generate the core type
             Dim ctd As New CodeTypeDeclaration(ntUnion.Name)
@@ -183,7 +175,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateDelegate(ByVal ntFuncPtr As NativeFunctionPointer) As CodeTypeDelegate
-            If ntFuncPtr Is Nothing Then : Throw New ArgumentNullException(NameOf(ntFuncPtr)) : End If
+            ThrowIfNull(ntFuncPtr, NameOf(ntFuncPtr))
 
             Dim comment As String = "Return Type: "
             Dim del As New CodeTypeDelegate()
@@ -213,7 +205,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateProcedures(ByVal enumerable As IEnumerable(Of NativeProcedure)) As CodeTypeDeclaration
-            If enumerable Is Nothing Then : Throw New ArgumentNullException(NameOf(enumerable)) : End If
+            ThrowIfNull(enumerable, NameOf(enumerable))
 
             Dim ctd As New CodeTypeDeclaration()
             ctd.Name = TransformConstants.NativeMethodsName
@@ -234,7 +226,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function GenerateProcedure(ByVal ntProc As NativeProcedure) As CodeMemberMethod
-            If ntProc Is Nothing Then : Throw New ArgumentNullException(NameOf(ntProc)) : End If
+            ThrowIfNull(ntProc, NameOf(ntProc))
 
             ' Create the proc
             Dim ntSig As NativeSignature = ntProc.Signature
@@ -321,13 +313,8 @@ Namespace Transform
         ''' <param name="enumerable"></param>
         ''' <remarks></remarks>
         Public Sub GenerateConstants(ByVal ctd As CodeTypeDeclaration, ByVal enumerable As IEnumerable(Of NativeConstant))
-            If ctd Is Nothing Then
-                Throw New ArgumentNullException(NameOf(ctd))
-            End If
-
-            If enumerable Is Nothing Then
-                Throw New ArgumentNullException(NameOf(enumerable))
-            End If
+            ThrowIfNull(ctd, NameOf(ctd))
+            ThrowIfNull(enumerable, NameOf(enumerable))
 
             For Each nConst As NativeConstant In enumerable
                 ' Build up the attributes and value
@@ -745,9 +732,7 @@ Namespace Transform
 #Region "CodeExpression Generation"
 
         Private Function GenerateValueExpressionImpl(ByVal node As ExpressionNode, ByRef type As CodeTypeReference) As CodeExpression
-            If node Is Nothing Then
-                Throw New ArgumentNullException(NameOf(node))
-            End If
+            ThrowIfNull(node, NameOf(node))
 
             Select Case node.Kind
                 Case ExpressionKind.FunctionCall

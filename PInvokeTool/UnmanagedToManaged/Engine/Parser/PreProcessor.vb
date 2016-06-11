@@ -864,7 +864,7 @@ Namespace Parser
             End While
 
             ' This should always have at least one valid token
-            ThrowIfNull(line.FirstValidToken)
+            ThrowIfNull(line.FirstValidToken, NameOf(line.FirstValidToken))
 
             ' Check and see if the line looks like the following.  If so convert it to a valid pre-processor line
             ' #    define foo

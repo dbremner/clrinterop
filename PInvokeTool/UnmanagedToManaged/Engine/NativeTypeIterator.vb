@@ -63,7 +63,7 @@ Public Class NativeSymbolIterator
     End Function
 
     Public Function FindAllNativeSymbols(ByVal ns As NativeSymbol) As List(Of NativeSymbol)
-        If ns Is Nothing Then : Throw New ArgumentNullException(NameOf(ns)) : End If
+        ThrowIfNull(ns, NameOf(ns))
 
         Dim list As New List(Of NativeSymbol)
         list.Add(ns)

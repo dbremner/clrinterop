@@ -245,9 +245,7 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function Analyze(ByVal reader As TextReader) As NativeCodeAnalyzerResult
-            If reader Is Nothing Then
-                Throw New ArgumentNullException(NameOf(reader))
-            End If
+            ThrowIfNull(reader, NameOf(reader))
 
             Return AnalyzeImpl(New TextReaderBag(reader))
         End Function

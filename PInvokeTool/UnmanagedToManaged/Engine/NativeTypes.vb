@@ -133,10 +133,9 @@ Public MustInherit Class NativeSymbol
     End Sub
 
     Protected Sub ReplaceChildInList(Of T As NativeSymbol)(ByVal oldChild As NativeSymbol, ByVal newChild As NativeSymbol, ByVal list As List(Of T))
-        ThrowIfNull(list)
-
-        If oldChild Is Nothing Then : Throw New ArgumentNullException(NameOf(oldChild)) : End If
-        If newChild Is Nothing Then : Throw New ArgumentNullException(NameOf(newChild)) : End If
+        ThrowIfNull(list, NameOf(list))
+        ThrowIfNull(oldChild, NameOf(oldChild))
+        ThrowIfNull(newChild, NameOf(newChild))
 
         Dim oldTyped = TryCast(oldChild, T)
         Dim newTyped = TryCast(newChild, T)
@@ -1703,7 +1702,7 @@ Public Class NativeConstant
     End Sub
 
     Public Sub New(ByVal name As String, ByVal value As String, ByVal kind As ConstantKind)
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
 
         Me.Name = name
         m_constantKind = kind

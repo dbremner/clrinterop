@@ -92,7 +92,7 @@ Public Class NativeSymbolBag
     End Sub
 
     Public Sub New(ByVal ns As NativeStorage)
-        If ns Is Nothing Then : Throw New ArgumentNullException(NameOf(ns)) : End If
+        ThrowIfNull(ns, NameOf(ns))
 
         m_storageLookup = ns
     End Sub
@@ -103,7 +103,7 @@ Public Class NativeSymbolBag
     ''' <param name="nt"></param>
     ''' <remarks></remarks>
     Public Sub AddDefinedType(ByVal nt As NativeDefinedType)
-        If nt Is Nothing Then : Throw New ArgumentNullException(NameOf(nt)) : End If
+        ThrowIfNull(nt, NameOf(nt))
 
         If nt.IsAnonymous Then
             nt.Name = GenerateAnonymousName()
@@ -127,7 +127,7 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function TryFindDefinedType(ByVal name As String, ByRef nt As NativeDefinedType) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
         Return m_definedMap.TryGetValue(name, nt)
     End Function
 
@@ -137,7 +137,7 @@ Public Class NativeSymbolBag
     End Function
 
     Public Function TryFindOrLoadDefinedType(ByVal name As String, ByRef nt As NativeDefinedType, ByRef fromStorage As Boolean) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
         If TryFindDefinedType(name, nt) Then
             fromStorage = False
             Return True
@@ -158,7 +158,7 @@ Public Class NativeSymbolBag
     ''' <param name="nt"></param>
     ''' <remarks></remarks>
     Public Sub AddTypedef(ByVal nt As NativeTypeDef)
-        If nt Is Nothing Then : Throw New ArgumentNullException(NameOf(nt)) : End If
+        ThrowIfNull(nt, NameOf(nt))
 
         m_typeDefMap.Add(nt.Name, nt)
     End Sub
@@ -172,12 +172,12 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function TryFindTypedef(ByVal name As String, ByRef nt As NativeTypeDef) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
         Return m_typeDefMap.TryGetValue(name, nt)
     End Function
 
     Public Function TryFindOrLoadTypedef(ByVal name As String, ByRef nt As NativeTypeDef) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
 
         If TryFindTypedef(name, nt) Then
             Return True
@@ -197,7 +197,7 @@ Public Class NativeSymbolBag
     ''' <param name="proc"></param>
     ''' <remarks></remarks>
     Public Sub AddProcedure(ByVal proc As NativeProcedure)
-        If proc Is Nothing Then : Throw New ArgumentNullException(NameOf(proc)) : End If
+        ThrowIfNull(proc, NameOf(proc))
 
         m_procMap.Add(proc.Name, proc)
     End Sub
@@ -210,13 +210,13 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function TryFindProcedure(ByVal name As String, ByRef proc As NativeProcedure) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
 
         Return m_procMap.TryGetValue(name, proc)
     End Function
 
     Public Function TryFindOrLoadProcedure(ByVal name As String, ByRef proc As NativeProcedure) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
         If TryFindProcedure(name, proc) Then
             Return True
         End If
@@ -235,7 +235,7 @@ Public Class NativeSymbolBag
     ''' <param name="nConst"></param>
     ''' <remarks></remarks>
     Public Sub AddConstant(ByVal nConst As NativeConstant)
-        If nConst Is Nothing Then : Throw New ArgumentNullException(NameOf(nConst)) : End If
+        ThrowIfNull(nConst, NameOf(nConst))
 
         m_constMap.Add(nConst.Name, nConst)
         AddValue(nConst.Name, nConst)
@@ -247,7 +247,7 @@ Public Class NativeSymbolBag
     ''' <param name="value"></param>
     ''' <remarks></remarks>
     Private Sub AddValue(ByVal name As String, ByVal value As NativeSymbol)
-        If value Is Nothing Then : Throw New ArgumentNullException(NameOf(value)) : End If
+        ThrowIfNull(value, NameOf(value))
 
         m_valueMap(name) = value
     End Sub
@@ -260,12 +260,12 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function TryFindConstant(ByVal name As String, ByRef nConst As NativeConstant) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
         Return m_constMap.TryGetValue(name, nConst)
     End Function
 
     Public Function TryFindOrLoadConstant(ByVal name As String, ByRef nConst As NativeConstant) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
 
         If TryFindConstant(name, nConst) Then
             Return True
@@ -642,7 +642,7 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function TryResolveSymbolsAndValues(ByVal finder As ProcedureFinder, ByVal ep As ErrorProvider) As Boolean
-        If ep Is Nothing Then : Throw New ArgumentNullException(NameOf(ep)) : End If
+        ThrowIfNull(ep, NameOf(ep))
 
         ' Try and resolve the proc name
         For Each proc As NativeProcedure In m_procMap.Values
@@ -828,7 +828,7 @@ Public Class NativeSymbolBag
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Shared Function CreateFrom(ByVal result As Parser.NativeCodeAnalyzerResult, ByVal ns As NativeStorage, ByVal ep As ErrorProvider) As NativeSymbolBag
-        If ep Is Nothing Then : Throw New ArgumentNullException(NameOf(ep)) : End If
+        ThrowIfNull(ep, NameOf(ep))
 
         Dim bag As New NativeSymbolBag(ns)
 

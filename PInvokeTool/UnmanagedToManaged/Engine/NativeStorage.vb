@@ -884,7 +884,7 @@ Partial Class NativeStorage
     End Property
 
     Public Sub AddConstant(ByVal nConst As NativeConstant)
-        If nConst Is Nothing Then : Throw New ArgumentNullException(NameOf(nConst)) : End If
+        ThrowIfNull(nConst, NameOf(nConst))
 
         Dim constRow As ConstantRow = Constant.NewConstantRow()
         constRow.Name = nConst.Name
@@ -911,7 +911,7 @@ Partial Class NativeStorage
     ''' <param name="nt"></param>
     ''' <remarks></remarks>
     Public Sub AddDefinedType(ByVal nt As NativeDefinedType)
-        If nt Is Nothing Then : Throw New ArgumentNullException(NameOf(nt)) : End If
+        ThrowIfNull(nt, NameOf(nt))
 
         ' Add the core type information first.  That we when doing recursive member
         ' adds, we can query the table to see if a type has already been added
@@ -945,7 +945,7 @@ Partial Class NativeStorage
     ''' <param name="nt"></param>
     ''' <remarks></remarks>
     Public Sub AddTypedef(ByVal nt As NativeTypeDef)
-        If nt Is Nothing Then : Throw New ArgumentNullException(NameOf(nt)) : End If
+        ThrowIfNull(nt, NameOf(nt))
 
         If nt.RealType Is Nothing Then
             Dim msg As String = String.Format("NativeTypedef does not point to a real type")
@@ -983,7 +983,7 @@ Partial Class NativeStorage
     ''' <param name="proc"></param>
     ''' <remarks></remarks>
     Public Sub AddProcedure(ByVal proc As NativeProcedure)
-        If proc Is Nothing Then : Throw New ArgumentNullException(NameOf(proc)) : End If
+        ThrowIfNull(proc, NameOf(proc))
 
         ' Store the procedure row
         Dim sigId As Integer = AddSignature(proc.Signature).Id
@@ -1131,7 +1131,7 @@ Partial Class NativeStorage
     End Function
 
     Public Function TryLoadDefined(ByVal name As String, ByRef definedNt As NativeDefinedType) As Boolean
-        If name Is Nothing Then : Throw New ArgumentNullException(NameOf(name)) : End If
+        ThrowIfNull(name, NameOf(name))
 
         Dim dtRow As DefinedTypeRow = Nothing
         If Not DefinedType.TryFindByName(name, dtRow) Then
