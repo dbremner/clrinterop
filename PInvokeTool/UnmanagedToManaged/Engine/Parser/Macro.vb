@@ -192,6 +192,7 @@ Namespace Parser
         End Sub
 
         Public Function Replace(ByVal argList As List(Of Token)) As List(Of Token)
+            ThrowIfNull(argList, NameOf(argList))
             If argList.Count <> m_paramList.Count Then
                 Return New List(Of Token)
             End If

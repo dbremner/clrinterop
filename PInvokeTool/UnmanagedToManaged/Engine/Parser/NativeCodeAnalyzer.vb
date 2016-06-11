@@ -412,6 +412,7 @@ Namespace Parser
         End Function
 
         Private Sub AddOSInformation(ByVal analyzer As NativeCodeAnalyzer, ByVal os As OsVersion)
+            ThrowIfNull(analyzer, NameOf(analyzer))
             Select Case os
                 Case OsVersion.WindowsXP
                     analyzer.AddInitialMacro(New Macro("WINVER", "0x0501"))
@@ -431,7 +432,7 @@ Namespace Parser
         End Sub
 
         Private Sub AddCommonMacros(ByVal analyzer As NativeCodeAnalyzer)
-
+            ThrowIfNull(analyzer, NameOf(analyzer))
             ' MCS Version
             analyzer.AddInitialMacro(New Macro("_MSC_VER", "9999"))
             analyzer.AddInitialMacro(New Macro("_MSC_FULL_VER", "99999999"))

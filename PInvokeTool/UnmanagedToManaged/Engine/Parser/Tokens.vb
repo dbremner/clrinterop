@@ -602,6 +602,7 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function TryConvertToNumber(ByVal t As Token, ByRef val As Object) As Boolean
+            ThrowIfNull(t, NameOf(t))
             Return TryConvertToNumber(t.Value, val)
         End Function
 

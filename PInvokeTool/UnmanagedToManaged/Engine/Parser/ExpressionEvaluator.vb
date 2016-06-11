@@ -87,11 +87,13 @@ Namespace Parser
         End Function
 
         Protected Overridable Function TryEvaluateNegative(ByVal node As ExpressionNode) As Boolean
+            ThrowIfNull(node, NameOf(node))
             node.Tag = -(DirectCast(node.LeftNode.Tag, ExpressionValue))
             Return True
         End Function
 
         Protected Overridable Function TryEvaluateLeaf(ByVal node As ExpressionNode) As Boolean
+            ThrowIfNull(node, NameOf(node))
             Dim token As Token = node.Token
             If token.IsNumber Then
                 Dim value As Object = Nothing
@@ -126,6 +128,7 @@ Namespace Parser
         End Function
 
         Protected Overridable Function TryEvaluateBinaryOperation(ByVal node As ExpressionNode) As Boolean
+            ThrowIfNull(node, NameOf(node))
             Dim left = DirectCast(node.LeftNode.Tag, ExpressionValue)
             Dim right = DirectCast(node.RightNode.Tag, ExpressionValue)
             Dim result As ExpressionValue = Nothing

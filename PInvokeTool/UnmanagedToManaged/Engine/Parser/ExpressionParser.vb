@@ -262,6 +262,7 @@ Namespace Parser
         End Function
 
         Private Function TryParseFunctionCall(ByVal tokens As List(Of Token), ByRef node As ExpressionNode, ByRef remaining As List(Of Token)) As Boolean
+            ThrowIfNull(tokens, NameOf(tokens))
             ThrowIfTrue(tokens.Count < 3)
 
             node = New ExpressionNode(ExpressionKind.FunctionCall, tokens(0))
@@ -285,6 +286,7 @@ Namespace Parser
         End Function
 
         Private Function TryParseFunctionCallArguments(ByVal tokens As List(Of Token), ByVal callNode As ExpressionNode) As Boolean
+            ThrowIfNull(tokens, NameOf(tokens))
             ThrowIfNull(callNode, NameOf(callNode))
             ThrowIfFalse(ExpressionKind.FunctionCall = callNode.Kind)
 
@@ -378,6 +380,7 @@ Namespace Parser
         End Function
 
         Private Function FindMatchingParenIndex(ByVal tokens As List(Of Token), ByVal start As Integer) As Integer
+            ThrowIfNull(tokens, NameOf(tokens))
 
             Dim depth As Integer = 1
             For i As Integer = start To tokens.Count - 1

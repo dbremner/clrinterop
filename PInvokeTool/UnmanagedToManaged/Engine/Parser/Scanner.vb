@@ -379,6 +379,7 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Function PeekTokenList(ByVal count As Integer) As List(Of Token)
+            Contract.ThrowIfTrue(count < 1)
             Dim mark As ScannerMark = Me.Mark()
             Dim oldThrow As Boolean = m_options.ThrowOnEndOfStream
             m_options.ThrowOnEndOfStream = False

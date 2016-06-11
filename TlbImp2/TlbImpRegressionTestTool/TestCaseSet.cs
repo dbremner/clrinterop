@@ -55,6 +55,7 @@ namespace TlbImpRegressionTestTool
 
         private TestCase ProcessTestCaseNode(XmlNode testCaseNode)
         {
+            if (testCaseNode == null) throw new ArgumentNullException(nameof(testCaseNode));
             FileInfo file = new FileInfo(m_testCaseFilePath);
             string testCaseFileDir = file.DirectoryName;
             // Target Attribute

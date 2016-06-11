@@ -34,6 +34,7 @@ namespace CoreRuleEngine
 
         private Rule ProcessRuleNode(XmlNode ruleNode)
         {
+            if (ruleNode == null) throw new ArgumentNullException(nameof(ruleNode));
             // for name attribute
             string nameString = RuleFileConstants.DefaultRuleName;
             XmlNode nameAttributeNode = ruleNode.Attributes.GetNamedItem(

@@ -176,6 +176,7 @@ Namespace Parser
             ''' <returns></returns>
             ''' <remarks></remarks>
             Public Function EvalauteConditional(ByVal line As PreprocessorLine) As Boolean
+                ThrowIfNull(line, NameOf(line))
                 Dim list As List(Of Token) = line.GetValidTokens()
 
                 ' Remove the #pound token.  We don't care what type of conditional this is, this just serves

@@ -236,6 +236,7 @@ namespace tlbimp2
         /// </summary>
         static private void SetDefaultValueInternal(IntPtr ipVariant, Type type, ParameterBuilder paramBuilder, FieldBuilder fieldBuilder, short typeVt)
         {
+            if (type == null) throw new ArgumentNullException(nameof(type));
             // Use the element type for normalization if the type is a ByRef
             while (type.IsByRef)
                 type = type.GetElementType();

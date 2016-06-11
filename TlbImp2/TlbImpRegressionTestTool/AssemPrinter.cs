@@ -191,6 +191,7 @@ public class AssemPrinter
     }
     void PrintAssemblyName(Assembly asm, AssemblyName asmName, bool IsExtern)
     {
+        if (asmName == null) throw new ArgumentNullException(nameof(asmName));
         if (IsExtern)
             sw.WriteLine(".assembly extern " + asmName.Name);
         else sw.WriteLine(".assembly " + asmName.Name);
