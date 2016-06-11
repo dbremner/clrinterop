@@ -250,7 +250,7 @@ namespace ILReader
 				default:
 					Console.WriteLine("Error: Unknown exception handling call, no exception handler emitted");
 					return "Error";
-			};
+			}
 		}
 
 		public int ExceptionPos
@@ -423,7 +423,7 @@ namespace ILReader
 				default:
 					Console.WriteLine("Error: Unrecognized local, " + ((byte)*psig).ToString("x"));
 					return null;
-			};
+			}
 		}
 
 		Opcode GetOpcode()							
@@ -1096,12 +1096,12 @@ namespace ILReader
 						default:
 							Console.WriteLine(Environment.NewLine + "ERROR - Invalid byte (" + Tok2.ToString("x") + "). Invalid IL byte stream.");
 							return new Opcode();
-					};
+					}
 							
 					default:
 						Console.WriteLine(Environment.NewLine + "ERROR - Invalid byte (" + Tok.ToString("x") + "). Invalid IL byte stream.");
 						return new Opcode();
-				};
+				}
 
 				
 
@@ -1473,7 +1473,7 @@ namespace ILReader
 						ExceptionHandlers.Add(new ExceptionInstruction(ehclause.HandlerOffset,ExceptionHandler.Fault,null));
 						ExceptionHandlers.Add(new ExceptionInstruction(ehclause.HandlerOffset+ehclause.HandlerLength,ExceptionHandler.EndException,null));
 						break;
-				};
+				}
 			}
 			// populate opcode
 			Opcode Op = GetOpcode();
