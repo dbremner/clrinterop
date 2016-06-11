@@ -304,7 +304,7 @@ Namespace Transform
         End Function
 
         Protected Function IsCharType(ByVal nt As NativeType, ByRef charSet As CharSet) As Boolean
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             ' BYTE is commonly typedef'd out to char however it is not a char
             ' type persay.  Essentially BYTE[] should not convert into String or
@@ -351,7 +351,7 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Protected Function IsArrayOfCharType(ByVal nt As NativeType, ByRef charSet As CharSet) As Boolean
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             nt = nt.DigThroughTypedefAndNamedTypes()
             If nt.Kind <> NativeSymbolKind.ArrayType Then
@@ -362,7 +362,7 @@ Namespace Transform
         End Function
 
         Protected Function IsArrayOfBuiltin(ByVal nt As NativeType, ByRef bt As NativeBuiltinType) As Boolean
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             nt = nt.DigThroughTypedefAndNamedTypes()
             If nt.Kind <> NativeSymbolKind.ArrayType Then
@@ -379,7 +379,7 @@ Namespace Transform
         End Function
 
         Protected Function IsPointerToBuiltin(ByVal nt As NativeType, ByRef bt As NativeBuiltinType) As Boolean
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             nt = nt.DigThroughTypedefAndNamedTypes()
             If nt.Kind <> NativeSymbolKind.PointerType Then
@@ -396,7 +396,7 @@ Namespace Transform
         End Function
 
         Protected Function GetPointerTarget(Of T As NativeType)(ByVal nt As NativeType, ByRef targetType As T) As Boolean
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             nt = nt.DigThroughTypedefAndNamedTypes()
             If nt.Kind <> NativeSymbolKind.PointerType Then
@@ -1027,7 +1027,7 @@ Namespace Transform
         End Function
 
         Private Function ProcessArray(ByVal arr As NativeArray, ByRef elemType As CodeTypeReference, ByRef unmanagedType As UnmanagedType) As Boolean
-            ThrowIfNull(arr)
+            ThrowIfNull(arr, NameOf(arr))
 
             ' Don't process a char[]
             If IsArrayOfCharType(arr) Then
@@ -1054,7 +1054,7 @@ Namespace Transform
         End Function
 
         Private Function ProcessPointer(ByVal ptr As NativePointer, ByRef elemType As CodeTypeReference, ByRef unmanagedType As UnmanagedType) As Boolean
-            ThrowIfNull(ptr)
+            ThrowIfNull(ptr, NameOf(ptr))
 
             ' Don't process a char*
             If IsPointerToCharType(ptr) Then

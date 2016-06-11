@@ -11,7 +11,7 @@ Namespace Transform
     Public Class CodeDomIterator
 
         Public Function Iterate(ByVal col As CodeTypeDeclarationCollection) As List(Of Object)
-            ThrowIfNull(col)
+            ThrowIfNull(col, NameOf(col))
 
             Dim list As New List(Of Object)
             For Each ctd As CodeTypeDeclaration In col
@@ -22,7 +22,7 @@ Namespace Transform
         End Function
 
         Public Function Iterate(ByVal ctd As CodeTypeDeclaration) As List(Of Object)
-            ThrowIfNull(ctd)
+            ThrowIfNull(ctd, NameOf(ctd))
 
             Dim list As New List(Of Object)
             IterateTypeMemberImpl(ctd, list)
@@ -32,8 +32,8 @@ Namespace Transform
 #Region "CodeMember Iteration"
 
         Private Sub IterateTypeMemberImpl(ByVal ctm As CodeTypeMember, ByVal list As List(Of Object))
-            ThrowIfNull(ctm)
-            ThrowIfNull(list)
+            ThrowIfNull(ctm, NameOf(ctm))
+            ThrowIfNull(list, NameOf(list))
 
             list.Add(ctm)
             IterateAttributesImpl(ctm.CustomAttributes, list)
@@ -77,8 +77,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateTypeDeclarationImpl(ByVal col As CodeTypeDeclarationCollection, ByVal list As List(Of Object))
-            ThrowIfNull(col)
-            ThrowIfNull(list)
+            ThrowIfNull(col, NameOf(col))
+            ThrowIfNull(list, NameOf(list))
 
             For Each ctd As CodeTypeDeclaration In col
                 IterateTypeMemberImpl(ctd, list)
@@ -86,8 +86,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateTypeDeclarationImpl(ByVal ctd As CodeTypeDeclaration, ByVal list As List(Of Object))
-            ThrowIfNull(ctd)
-            ThrowIfNull(list)
+            ThrowIfNull(ctd, NameOf(ctd))
+            ThrowIfNull(list, NameOf(list))
 
             ' Don't add to the list because this is added in the member iterater
             For Each ctdRef As CodeTypeReference In ctd.BaseTypes
@@ -110,8 +110,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateMemberEventImpl(ByVal memEvent As CodeMemberEvent, ByVal list As List(Of Object))
-            ThrowIfNull(memEvent)
-            ThrowIfNull(list)
+            ThrowIfNull(memEvent, NameOf(memEvent))
+            ThrowIfNull(list, NameOf(list))
 
             For Each typeRef As CodeTypeReference In memEvent.ImplementationTypes
                 IterateTypeRefImpl(typeRef, list)
@@ -122,16 +122,16 @@ Namespace Transform
         End Sub
 
         Private Sub IterateMemberFieldImpl(ByVal memField As CodeMemberField, ByVal list As List(Of Object))
-            ThrowIfNull(memField)
-            ThrowIfNull(list)
+            ThrowIfNull(memField, NameOf(memField))
+            ThrowIfNull(list, NameOf(list))
 
             IterateTypeRefImpl(memField.Type, list)
             IterateExprImpl(memField.InitExpression, list)
         End Sub
 
         Private Sub IterateMemberMethodImpl(ByVal memMethod As CodeMemberMethod, ByVal list As List(Of Object))
-            ThrowIfNull(memMethod)
-            ThrowIfNull(list)
+            ThrowIfNull(memMethod, NameOf(memMethod))
+            ThrowIfNull(list, NameOf(list))
 
             IterateTypeRefImpl(memMethod.ImplementationTypes, list)
             IterateParametersImpl(memMethod.Parameters, list)
@@ -143,8 +143,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateMemberPropertyImpl(ByVal memProperty As CodeMemberProperty, ByVal list As List(Of Object))
-            ThrowIfNull(memProperty)
-            ThrowIfNull(list)
+            ThrowIfNull(memProperty, NameOf(memProperty))
+            ThrowIfNull(list, NameOf(list))
 
             IterateTypeRefImpl(memProperty.Type, list)
             IterateTypeRefImpl(memProperty.ImplementationTypes, list)
@@ -164,8 +164,8 @@ Namespace Transform
 #Region "CodeParameter Iteration"
 
         Private Sub IterateParametersImpl(ByVal col As CodeParameterDeclarationExpressionCollection, ByVal list As List(Of Object))
-            ThrowIfNull(col)
-            ThrowIfNull(list)
+            ThrowIfNull(col, NameOf(col))
+            ThrowIfNull(list, NameOf(list))
 
             For Each param As CodeParameterDeclarationExpression In col
                 list.Add(param)
@@ -178,8 +178,8 @@ Namespace Transform
 
 #Region "CodeAttribute Iteration"
         Private Sub IterateAttributesImpl(ByVal col As CodeAttributeDeclarationCollection, ByVal list As List(Of Object))
-            ThrowIfNull(col)
-            ThrowIfNull(list)
+            ThrowIfNull(col, NameOf(col))
+            ThrowIfNull(list, NameOf(list))
 
             For Each decl As CodeAttributeDeclaration In col
                 IterateAttributesImpl(decl, list)
@@ -188,8 +188,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateAttributesImpl(ByVal attr As CodeAttributeDeclaration, ByVal list As List(Of Object))
-            ThrowIfNull(attr)
-            ThrowIfNull(list)
+            ThrowIfNull(attr, NameOf(attr))
+            ThrowIfNull(list, NameOf(list))
 
             list.Add(attr)
             IterateTypeRefImpl(attr.AttributeType, list)
@@ -204,7 +204,7 @@ Namespace Transform
 
 #Region "CodeExpression Iteration"
         Private Sub IterateExprImpl(ByVal expr As CodeExpression, ByVal list As List(Of Object))
-            ThrowIfNull(list)
+            ThrowIfNull(list, NameOf(list))
             If expr Is Nothing Then
                 Return
             End If
@@ -323,8 +323,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateStatementImpl(ByVal state As CodeStatement, ByVal list As List(Of Object))
-            ThrowIfNull(state)
-            ThrowIfNull(list)
+            ThrowIfNull(state, NameOf(state))
+            ThrowIfNull(list, NameOf(list))
 
             list.Add(state)
             Dim retState = TryCast(state, CodeMethodReturnStatement)
@@ -376,8 +376,8 @@ Namespace Transform
 #End Region
 
         Private Sub IterateTypeRefImpl(ByVal col As CodeTypeReferenceCollection, ByVal list As List(Of Object))
-            ThrowIfNull(col)
-            ThrowIfNull(list)
+            ThrowIfNull(col, NameOf(col))
+            ThrowIfNull(list, NameOf(list))
 
             For Each typeRef As CodeTypeReference In col
                 IterateTypeRefImpl(typeRef, list)
@@ -401,8 +401,8 @@ Namespace Transform
         End Sub
 
         Private Sub IterateTypeParametersImpl(ByVal col As CodeTypeParameterCollection, ByVal list As List(Of Object))
-            ThrowIfNull(col)
-            ThrowIfNull(list)
+            ThrowIfNull(col, NameOf(col))
+            ThrowIfNull(list, NameOf(list))
 
             For Each param As CodeTypeParameter In col
                 Throw New NotImplementedException()

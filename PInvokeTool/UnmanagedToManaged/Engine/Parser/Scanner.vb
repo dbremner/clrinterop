@@ -294,8 +294,8 @@ Namespace Parser
         End Sub
 
         Public Sub New(ByVal bag As TextReaderBag, ByVal options As ScannerOptions)
-            ThrowIfNull(bag)
-            ThrowIfNull(options)
+            ThrowIfNull(bag, NameOf(bag))
+            ThrowIfNull(options, NameOf(options))
             m_readerBag = bag
             m_buffer = New ScannerBuffer(bag.TextReader)
             m_options = options

@@ -459,7 +459,7 @@ Public Class NativeSymbolBag
 
         ' Lastly try and find it in the stored file
         If m_storageLookup.TryLoadByName(name, nt) Then
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
             loadFromStorage = True
 
             ' If this is a stored symbol we need to add it to the bag.  Otherwise we can 
@@ -758,8 +758,8 @@ Public Class NativeSymbolBag
     End Function
 
     Private Function IsResolved(ByVal ns As NativeSymbol, ByVal map As Dictionary(Of NativeSymbol, Nullable(Of Boolean))) As Boolean
-        ThrowIfNull(ns)
-        ThrowIfNull(map)
+        ThrowIfNull(ns, NameOf(ns))
+        ThrowIfNull(map, NameOf(map))
 
         ' See if this has already been calculated
         Dim ret As Nullable(Of Boolean) = False

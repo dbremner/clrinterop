@@ -1476,7 +1476,7 @@ Public Class NativeParameter
             Return m_salAttribute
         End Get
         Set(ByVal value As NativeSalAttribute)
-            ThrowIfNull(value)
+            ThrowIfNull(value, NameOf(value))
             m_salAttribute = value
         End Set
     End Property

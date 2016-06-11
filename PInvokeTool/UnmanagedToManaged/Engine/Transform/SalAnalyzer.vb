@@ -665,7 +665,7 @@ Namespace Transform
         End Function
 
         Private Sub BuildLists()
-            ThrowIfNull(m_sal)
+            ThrowIfNull(m_sal, NameOf(m_sal))
             If m_sal.IsEmpty() Then
                 Return
             End If

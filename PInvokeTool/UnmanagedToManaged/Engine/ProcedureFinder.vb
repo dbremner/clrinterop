@@ -89,7 +89,7 @@ Public Class ProcedureFinder
     End Function
 
     Private Function TryFindDllNameImpl(ByVal procName As String, ByRef dllName As String) As Boolean
-        ThrowIfNull(procName)
+        ThrowIfNull(procName, NameOf(procName))
 
         If Not m_loaded Then
             LoadLibraryList()

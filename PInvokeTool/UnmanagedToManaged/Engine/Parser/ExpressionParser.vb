@@ -222,7 +222,7 @@ Namespace Parser
         End Function
 
         Private Function TryParseCore(ByVal tokens As List(Of Token), ByRef node As ExpressionNode, ByRef remaining As List(Of Token)) As Boolean
-            ThrowIfNull(tokens)
+            ThrowIfNull(tokens, NameOf(tokens))
 
             If tokens.Count = 0 Then
                 Return False
@@ -285,7 +285,7 @@ Namespace Parser
         End Function
 
         Private Function TryParseFunctionCallArguments(ByVal tokens As List(Of Token), ByVal callNode As ExpressionNode) As Boolean
-            ThrowIfNull(callNode)
+            ThrowIfNull(callNode, NameOf(callNode))
             ThrowIfFalse(ExpressionKind.FunctionCall = callNode.Kind)
 
             ' Start the list
@@ -332,7 +332,7 @@ Namespace Parser
         End Function
 
         Private Function FindNextCallArgumentSeparator(ByVal tokens As List(Of Token)) As Integer
-            ThrowIfNull(tokens)
+            ThrowIfNull(tokens, NameOf(tokens))
 
             For i As Integer = 0 To tokens.Count - 1
                 If tokens(i).TokenType = TokenType.Comma Then
@@ -344,7 +344,7 @@ Namespace Parser
         End Function
 
         Private Function TryConvertTokenToExpressionBinaryOperation(ByVal token As Token, ByRef node As ExpressionNode) As Boolean
-            ThrowIfNull(token)
+            ThrowIfNull(token, NameOf(token))
 
             Dim isvalid As Boolean = token.IsBinaryOperation
             If isvalid Then
@@ -357,7 +357,7 @@ Namespace Parser
         End Function
 
         Private Function TryConvertTokenToExpressionLeafNode(ByVal token As Token, ByRef node As ExpressionNode) As Boolean
-            ThrowIfNull(token)
+            ThrowIfNull(token, NameOf(token))
 
             If token.IsAnyWord Then
                 node = New ExpressionNode(ExpressionKind.Leaf, token)

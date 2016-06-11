@@ -225,7 +225,7 @@ Namespace Parser
 #End Region
 
         Private Function ParseCore(ByVal readerBag As TextReaderBag) As ParseResult
-            ThrowIfNull(readerBag)
+            ThrowIfNull(readerBag, NameOf(readerBag))
             ThrowIfTrue(m_parsing, "Recursive parsing is not supported.  Instead create a new Parser")
             Dim toReturn As ParseResult = Nothing
 
@@ -399,7 +399,7 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Private Function ProcessClass(ByVal nameprefix As String) As NativeStruct
-            Contract.ThrowIfNull(nameprefix)
+            Contract.ThrowIfNull(nameprefix, NameOf(nameprefix))
 
             ' If this called with a struct token still in the stream, remove it
             If m_scanner.PeekNextToken().TokenType = TokenType.ClassKeyword Then
@@ -424,7 +424,7 @@ Namespace Parser
         ''' </summary>
         ''' <remarks></remarks>
         Private Function ProcessStruct(ByVal namePrefix As String) As NativeStruct
-            Contract.ThrowIfNull(namePrefix)
+            Contract.ThrowIfNull(namePrefix, NameOf(namePrefix))
 
             ' If this called with a struct token still in the stream, remove it
             If m_scanner.PeekNextToken().TokenType = TokenType.StructKeyword Then
@@ -497,7 +497,7 @@ Namespace Parser
         ''' </summary>
         ''' <remarks></remarks>
         Private Function ProcessUnion(ByVal namePrefix As String) As NativeUnion
-            Contract.ThrowIfNull(namePrefix)
+            Contract.ThrowIfNull(namePrefix, NameOf(namePrefix))
 
             ' Check through the union token if it hasn't been consumed
             Dim token As Token = m_scanner.PeekNextToken()
@@ -549,7 +549,7 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Private Function ProcessEnum(ByVal namePrefix As String) As NativeEnum
-            Contract.ThrowIfNull(namePrefix)
+            Contract.ThrowIfNull(namePrefix, NameOf(namePrefix))
 
             ' Move past the enum token if it's still in the stream
             Dim token As Token = m_scanner.PeekNextToken()
@@ -661,7 +661,7 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Private Function ProcessProcedure(ByVal retType As NativeType, ByVal retTypeSal As NativeSalAttribute, ByVal callmod As TriState(Of NativeCallingConvention)) As NativeProcedure
-            ThrowIfNull(callmod)
+            ThrowIfNull(callmod, NameOf(callmod))
             Dim mark As ScannerMark = m_scanner.Mark()
 
             ProcessCalltypeModifier(callmod)
@@ -773,8 +773,8 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Private Function ProcessFunctionPointer(ByVal namePrefix As String, ByVal retType As NativeType, ByVal retTypeSal As NativeSalAttribute) As NativeFunctionPointer
-            ThrowIfNull(namePrefix)
-            ThrowIfNull(retType)
+            ThrowIfNull(namePrefix, NameOf(namePrefix))
+            ThrowIfNull(retType, NameOf(retType))
 
             ' It's fine for this method to be called with the scanner either immediately before or 
             ' after the opening paren
@@ -1446,7 +1446,7 @@ Namespace Parser
         ''' <param name="nt"></param>
         ''' <remarks></remarks>
         Private Sub ProcessParsedDefinedType(ByVal nt As NativeDefinedType)
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             ' It's possible for members of a defined type to not have a name.  Go ahead and add that
             ' name now
@@ -1473,14 +1473,14 @@ Namespace Parser
         End Sub
 
         Private Sub ProcessParsedTypeDef(ByVal typeDef As NativeTypeDef)
-            ThrowIfNull(typeDef)
+            ThrowIfNull(typeDef, NameOf(typeDef))
 
             m_result.NativeTypedefs.Add(typeDef)
             m_result.ParsedTypes.Add(typeDef)
         End Sub
 
         Private Sub ProcessParsedProcedure(ByVal proc As NativeProcedure)
-            ThrowIfNull(proc)
+            ThrowIfNull(proc, NameOf(proc))
             m_result.NativeProcedures.Add(proc)
         End Sub
 

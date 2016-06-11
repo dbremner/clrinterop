@@ -16,7 +16,7 @@ Namespace Parser
         End Property
 
         Public Sub New(ByVal value As Object)
-            Contract.ThrowIfNull(value)
+            Contract.ThrowIfNull(value, NameOf(value))
             m_value = value
         End Sub
 
@@ -29,110 +29,110 @@ Namespace Parser
         End Sub
 
         Public Shared Operator +(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value + right.Value)
         End Operator
 
         Public Shared Operator -(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value - right.Value)
         End Operator
 
         Public Shared Operator -(ByVal left As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
+            Contract.ThrowIfNull(left, NameOf(left))
             Return New ExpressionValue(-(left.Value))
         End Operator
 
         Public Shared Operator /(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value / right.Value)
         End Operator
 
         Public Shared Operator \(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value \ right.Value)
         End Operator
 
         Public Shared Operator >(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return left.Value > right.Value
         End Operator
 
         Public Shared Operator <(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return left.Value < right.Value
         End Operator
 
         Public Shared Operator >=(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return left.Value >= right.Value
         End Operator
 
         Public Shared Operator <=(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return left.Value <= right.Value
         End Operator
 
         Public Shared Operator <>(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return left.Value <> right.Value
         End Operator
 
         Public Shared Operator =(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return left.Value = right.Value
         End Operator
 
         Public Shared Operator *(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value * right.Value)
         End Operator
 
         Public Shared Operator <<(ByVal left As ExpressionValue, ByVal count As Int32) As ExpressionValue
-            Contract.ThrowIfNull(left)
+            Contract.ThrowIfNull(left, NameOf(left))
             Return New ExpressionValue(CInt(left.Value) << count)
         End Operator
 
         Public Shared Operator >>(ByVal left As ExpressionValue, ByVal count As Int32) As ExpressionValue
-            Contract.ThrowIfNull(left)
+            Contract.ThrowIfNull(left, NameOf(left))
             Return New ExpressionValue(CInt(left.Value) >> count)
         End Operator
 
         Public Shared Operator IsTrue(ByVal expr As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(expr)
+            Contract.ThrowIfNull(expr, NameOf(expr))
             Return CBool(expr.Value)
         End Operator
 
         Public Shared Operator IsFalse(ByVal expr As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(expr)
+            Contract.ThrowIfNull(expr, NameOf(expr))
             Return Not CBool(expr.Value)
         End Operator
 
         Public Shared Operator Not(ByVal expr As ExpressionValue) As Boolean
-            Contract.ThrowIfNull(expr)
+            Contract.ThrowIfNull(expr, NameOf(expr))
             Return Not CBool(expr.Value)
         End Operator
 
         Public Shared Operator And(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value And right.Value)
         End Operator
 
         Public Shared Operator Or(ByVal left As ExpressionValue, ByVal right As ExpressionValue) As ExpressionValue
-            Contract.ThrowIfNull(left)
-            Contract.ThrowIfNull(right)
+            Contract.ThrowIfNull(left, NameOf(left))
+            Contract.ThrowIfNull(right, NameOf(right))
             Return New ExpressionValue(left.Value Or right.Value)
         End Operator
 

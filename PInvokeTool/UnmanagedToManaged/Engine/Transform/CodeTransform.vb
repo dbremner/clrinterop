@@ -268,7 +268,7 @@ Namespace Transform
         End Function
 
         Private Function GenerateParameters(ByVal ntSig As NativeSignature, Optional ByRef comments As String = Nothing) As CodeParameterDeclarationExpressionCollection
-            ThrowIfNull(ntSig)
+            ThrowIfNull(ntSig, NameOf(ntSig))
             If comments Is Nothing Then
                 comments = String.Empty
             End If
@@ -357,8 +357,8 @@ Namespace Transform
         ''' <param name="ctd"></param>
         ''' <remarks></remarks>
         Private Sub GenerateContainerMembers(ByVal nt As NativeDefinedType, ByVal ctd As CodeTypeDeclaration)
-            ThrowIfNull(nt)
-            ThrowIfNull(ctd)
+            ThrowIfNull(nt, NameOf(nt))
+            ThrowIfNull(ctd, NameOf(ctd))
 
             Dim bitVectorCount As Integer = 0
             For i As Integer = 0 To nt.Members.Count - 1
@@ -417,7 +417,7 @@ Namespace Transform
         End Function
 
         Private Function IsBitVector(ByVal nt As NativeType, ByRef bitvector As NativeBitVector) As Boolean
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             nt = nt.DigThroughTypedefAndNamedTypes()
 
@@ -438,9 +438,9 @@ Namespace Transform
         ''' <param name="codeMember"></param>
         ''' <remarks></remarks>
         Private Sub GenerateBitVectorProperty(ByVal ntMember As NativeMember, ByVal offset As Integer, ByVal ctd As CodeTypeDeclaration, ByVal codeMember As CodeMemberField)
-            ThrowIfNull(ntMember)
-            ThrowIfNull(ctd)
-            ThrowIfNull(codeMember)
+            ThrowIfNull(ntMember, NameOf(ntMember))
+            ThrowIfNull(ctd, NameOf(ctd))
+            ThrowIfNull(codeMember, NameOf(codeMember))
             ThrowIfTrue(offset < 0)
 
             Dim bitVector As NativeBitVector = Nothing
@@ -535,8 +535,8 @@ Namespace Transform
         ''' <param name="ctd"></param>
         ''' <remarks></remarks>
         Private Function GenerateContainerMember(ByVal nt As NativeMember, ByVal ctd As CodeTypeDeclaration) As CodeMemberField
-            ThrowIfNull(nt)
-            ThrowIfNull(ctd)
+            ThrowIfNull(nt, NameOf(nt))
+            ThrowIfNull(ctd, NameOf(ctd))
             ThrowIfTrue(nt.NativeType.Kind = NativeSymbolKind.BitVectorType)  ' Bitvector instances should be handled seperately
 
             ' Generate the type reference and comment
@@ -665,7 +665,7 @@ Namespace Transform
 #Region "CodeTypeReference Generation"
 
         Private Function GenerateTypeReferenceImpl(ByVal nt As NativeType, ByRef comment As String) As CodeTypeReference
-            ThrowIfNull(nt)
+            ThrowIfNull(nt, NameOf(nt))
 
             Select Case nt.Category
                 Case NativeSymbolCategory.Defined
@@ -681,7 +681,7 @@ Namespace Transform
         End Function
 
         Public Function GenerateDefinedTypeReferenceImpl(ByVal definedNt As NativeDefinedType, ByRef comment As String) As CodeTypeReference
-            ThrowIfNull(definedNt)
+            ThrowIfNull(definedNt, NameOf(definedNt))
 
             comment &= definedNt.Name
             Return New CodeTypeReference(definedNt.Name)
@@ -722,7 +722,7 @@ Namespace Transform
         End Function
 
         Public Function GenerateSpecializedTypeReferenceImpl(ByVal specialNt As NativeSpecializedType, ByRef comment As String) As CodeTypeReference
-            ThrowIfNull(specialNt)
+            ThrowIfNull(specialNt, NameOf(specialNt))
 
             Select Case specialNt.Kind
                 Case NativeSymbolKind.BitVectorType
@@ -769,21 +769,21 @@ Namespace Transform
         End Function
 
         Private Function GenerateValueExpressionNegative(ByVal node As ExpressionNode, ByRef exprType As CodeTypeReference) As CodeExpression
-            ThrowIfNull(node)
+            ThrowIfNull(node, NameOf(node))
 
             Dim left As CodeExpression = Me.GenerateValueExpressionImpl(node.LeftNode, exprType)
             Return New CodeNegativeExpression(m_lang, left)
         End Function
 
         Private Function GenerateValueExpressionNegation(ByVal node As ExpressionNode, ByRef exprType As CodeTypeReference) As CodeExpression
-            ThrowIfNull(node)
+            ThrowIfNull(node, NameOf(node))
 
             Dim left As CodeExpression = Me.GenerateValueExpressionImpl(node.LeftNode, exprType)
             Return New CodeNotExpression(m_lang, left)
         End Function
 
         Private Function GenerateValueExpressionBinaryOperation(ByVal node As ExpressionNode, ByRef exprType As CodeTypeReference) As CodeExpression
-            ThrowIfNull(node)
+            ThrowIfNull(node, NameOf(node))
 
             If node.LeftNode Is Nothing OrElse node.RightNode Is Nothing Then
                 Throw New InvalidOperationException("Error generating operation")
@@ -863,7 +863,7 @@ Namespace Transform
         End Function
 
         Private Function GenerateValueExpressionLeaf(ByVal node As ExpressionNode, ByRef leafType As CodeTypeReference) As CodeExpression
-            ThrowIfNull(node)
+            ThrowIfNull(node, NameOf(node))
 
             Dim ntVal = DirectCast(node.Tag, NativeValue)
             If ntVal Is Nothing Then
@@ -960,7 +960,7 @@ Namespace Transform
 #End Region
 
         Private Function GetManagedNameForBitVector(ByVal bitNt As NativeBitVector) As String
-            ThrowIfNull(bitNt)
+            ThrowIfNull(bitNt, NameOf(bitNt))
             Return String.Format("BitVector_Size_{0}", bitNt.Size)
         End Function
 

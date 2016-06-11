@@ -73,7 +73,7 @@ Namespace Transform
         End Function
 
         Private Function GetDefined(ByVal ctd As CodeTypeDeclaration) As NativeDefinedType
-            ThrowIfNull(ctd)
+            ThrowIfNull(ctd, NameOf(ctd))
 
             If ctd.UserData.Contains(TransformConstants.Type) Then
                 Return DirectCast(ctd.UserData(TransformConstants.Type), NativeDefinedType)
@@ -83,8 +83,8 @@ Namespace Transform
         End Function
 
         Private Sub SmartTypeRename(ByVal map As Dictionary(Of String, String), ByVal col As List(Of Object))
-            ThrowIfNull(map)
-            ThrowIfNull(col)
+            ThrowIfNull(map, NameOf(map))
+            ThrowIfNull(col, NameOf(col))
 
             For Each obj As Object In col
                 Dim ctd = TryCast(obj, CodeTypeDeclaration)
@@ -118,7 +118,7 @@ Namespace Transform
         ''' <param name="col"></param>
         ''' <remarks></remarks>
         Private Sub ResetCustomExpressions(ByVal col As List(Of Object))
-            ThrowIfNull(col)
+            ThrowIfNull(col, NameOf(col))
 
             For Each obj As Object In col
                 Dim custom = TryCast(obj, CodeCustomExpression)

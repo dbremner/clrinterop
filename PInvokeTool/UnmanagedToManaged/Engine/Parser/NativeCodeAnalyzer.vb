@@ -271,7 +271,7 @@ Namespace Parser
         End Function
 
         Private Function AnalyzeImpl(ByVal readerbag As TextReaderBag) As NativeCodeAnalyzerResult
-            ThrowIfNull(readerbag)
+            ThrowIfNull(readerbag, NameOf(readerbag))
 
             Dim result As New NativeCodeAnalyzerResult()
 
@@ -294,8 +294,8 @@ Namespace Parser
         ''' <returns></returns>
         ''' <remarks></remarks>
         Private Function RunPreProcessorImpl(ByVal result As NativeCodeAnalyzerResult, ByVal readerBag As TextReaderBag) As TextReaderBag
-            ThrowIfNull(result)
-            ThrowIfNull(readerBag)
+            ThrowIfNull(result, NameOf(result))
+            ThrowIfNull(readerBag, NameOf(readerBag))
 
             ' Create the options
             Dim opts As New PreProcessorOptions()
@@ -327,7 +327,7 @@ Namespace Parser
         ''' <param name="readerBag"></param>
         ''' <remarks></remarks>
         Private Sub RunParser(ByVal result As NativeCodeAnalyzerResult, ByVal readerBag As TextReaderBag)
-            ThrowIfNull(readerBag)
+            ThrowIfNull(readerBag, NameOf(readerBag))
 
             ' Perform the parse
             Dim parser As New ParseEngine()

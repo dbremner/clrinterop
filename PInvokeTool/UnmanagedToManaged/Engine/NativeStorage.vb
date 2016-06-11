@@ -449,7 +449,7 @@ Partial Class NativeStorage
     Partial Class PointerTypeDataTable
 
         Public Function Add(ByVal typeRef As TypeReference) As PointerTypeRow
-            ThrowIfNull(typeRef)
+            ThrowIfNull(typeRef, NameOf(typeRef))
 
             Dim row As PointerTypeRow = Me.NewPointerTypeRow()
             row.RealTypeId = typeRef.Id
@@ -505,7 +505,7 @@ Partial Class NativeStorage
     Partial Class ArrayTypeDataTable
 
         Public Function Add(ByVal count As Integer, ByVal typeRef As TypeReference) As ArrayTypeRow
-            ThrowIfNull(typeRef)
+            ThrowIfNull(typeRef, NameOf(typeRef))
 
             Dim row As ArrayTypeRow = Me.NewArrayTypeRow()
             row.RealTypeId = typeRef.Id
@@ -991,7 +991,7 @@ Partial Class NativeStorage
     End Sub
 
     Private Function AddSignature(ByVal sig As NativeSignature) As SignatureRow
-        ThrowIfNull(sig)
+        ThrowIfNull(sig, NameOf(sig))
 
         ' Create the row
         Dim sigRow As SignatureRow = Me.Signature.NewSignatureRow()
@@ -1278,7 +1278,7 @@ Partial Class NativeStorage
     ''' <returns></returns>
     ''' <remarks></remarks>
     Friend Function CreateTypeReference(ByVal nt As NativeType) As TypeReference
-        ThrowIfNull(nt)
+        ThrowIfNull(nt, NameOf(nt))
 
         Select Case nt.Category
             Case NativeSymbolCategory.Defined
@@ -1300,7 +1300,7 @@ Partial Class NativeStorage
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function CreateTypeReferenceToName(ByVal nt As NativeType) As TypeReference
-        ThrowIfNull(nt)
+        ThrowIfNull(nt, NameOf(nt))
 
         ' Create a NativeNamedType to make the referenc to
         Dim namedNt As New NativeNamedType(nt.Name)
@@ -1348,7 +1348,7 @@ Partial Class NativeStorage
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function CreateTypeReferenceToProxy(ByVal nt As NativeProxyType) As TypeReference
-        ThrowIfNull(nt)
+        ThrowIfNull(nt, NameOf(nt))
 
         ' See what kind of type reference we're adding and special case then optimized ones
         Select Case nt.Kind
@@ -1372,7 +1372,7 @@ Partial Class NativeStorage
     ''' <returns></returns>
     ''' <remarks></remarks>
     Private Function CreateTypeReferenceToSpecialized(ByVal nt As NativeSpecializedType) As TypeReference
-        ThrowIfNull(nt)
+        ThrowIfNull(nt, NameOf(nt))
 
         ' Optimization.  See if there is an entry we can reuse here
         Dim existingRow As SpecializedTypeRow = Nothing
@@ -1411,7 +1411,7 @@ Partial Class NativeStorage
 #Region "LoadTypes"
 
     Public Function TryLoadType(ByVal typeRef As TypeReference, ByRef nt As NativeType) As Boolean
-        ThrowIfNull(typeRef)
+        ThrowIfNull(typeRef, NameOf(typeRef))
 
         Select Case typeRef.Kind
             Case NativeSymbolKind.StructType, NativeSymbolKind.UnionType, NativeSymbolKind.EnumNameValue, NativeSymbolKind.FunctionPointer

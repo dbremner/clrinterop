@@ -185,8 +185,8 @@ Namespace Transform
 
         <SuppressMessage("Microsoft.Security", "CA2122")> _
         Private Function ConvertCodeDomToPInvokeCodeImpl(ByVal col As CodeTypeDeclarationCollection, ByVal ep As ErrorProvider) As String
-            ThrowIfNull(col)
-            ThrowIfNull(ep)
+            ThrowIfNull(col, NameOf(col))
+            ThrowIfNull(ep, NameOf(ep))
 
             Dim writer As New IO.StringWriter
             Dim provider As CodeDom.Compiler.CodeDomProvider
@@ -234,8 +234,8 @@ Namespace Transform
         ''' <returns></returns>
         ''' <remarks></remarks>
         Private Function ConvertBagToCodeDom(ByVal bag As NativeSymbolBag, ByVal ep As ErrorProvider) As CodeTypeDeclarationCollection
-            ThrowIfNull(bag)
-            ThrowIfNull(ep)
+            ThrowIfNull(bag, NameOf(bag))
+            ThrowIfNull(ep, NameOf(ep))
 
             ' Make sure than all of the referenced NativeDefinedType instances are in the correct
             ' portion of the bag

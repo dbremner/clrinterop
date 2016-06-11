@@ -24,7 +24,7 @@ Namespace Transform
             If ns Is Nothing Then
                 Return
             End If
-            ThrowIfNull(child)
+            ThrowIfNull(child, NameOf(child))
 
             If child.Kind = NativeSymbolKind.NamedType Then
                 Dim namedNt = DirectCast(child, NativeNamedType)
@@ -44,7 +44,7 @@ Namespace Transform
             If ns Is Nothing Then
                 Return
             End If
-            ThrowIfNull(child)
+            ThrowIfNull(child, NameOf(child))
 
             If child.Kind = NativeSymbolKind.TypedefType Then
                 Dim typedef = DirectCast(child, NativeTypeDef)
@@ -76,7 +76,7 @@ Namespace Transform
         ''' <param name="definedNt"></param>
         ''' <remarks></remarks>
         Public Sub RunTypeNameHeuristics(ByVal definedNt As NativeDefinedType)
-            ThrowIfNull(definedNt)
+            ThrowIfNull(definedNt, NameOf(definedNt))
 
 
         End Sub

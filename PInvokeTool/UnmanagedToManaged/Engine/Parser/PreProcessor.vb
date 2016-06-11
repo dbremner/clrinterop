@@ -934,7 +934,7 @@ Namespace Parser
         End Function
 
         Private Sub ReplaceDefinedTokens(ByVal line As PreprocessorLine)
-            ThrowIfNull(line)
+            ThrowIfNull(line, NameOf(line))
 
             Dim i As Integer = 0
             Dim list As List(Of Token) = line.TokenList
