@@ -290,7 +290,6 @@ internal class TlbImp
 
     private static bool ParseArguments(String []aArgs, ref TlbImpOptions Options, ref int ReturnCode)
     {
-        CommandLine cmdLine;
         Option opt;
         bool delaysign = false;
 
@@ -298,11 +297,11 @@ internal class TlbImp
         Options = new TlbImpOptions();
 
         // Parse the command line arguments using the command line argument parser.
-        cmdLine = new CommandLine(aArgs, new String[] { "*out", "*publickey", "*keyfile", "*keycontainer", "delaysign", "*reference",
-                                                        "unsafe", "nologo", "silent", "verbose", "+strictref", "primary", "*namespace", 
-                                                        "*asmversion", "sysarray", "*transform", "?", "help", "*tlbreference",
-                                                        "noclassmembers", "*machine", "*silence", "*product", "*productversion", 
-                                                        "*company", "*copyright", "*trademark", "v2", "preservesig", "*config" });
+        var cmdLine = new CommandLine(aArgs, new String[] { "*out", "*publickey", "*keyfile", "*keycontainer", "delaysign", "*reference",
+            "unsafe", "nologo", "silent", "verbose", "+strictref", "primary", "*namespace", 
+            "*asmversion", "sysarray", "*transform", "?", "help", "*tlbreference",
+            "noclassmembers", "*machine", "*silence", "*product", "*productversion", 
+            "*company", "*copyright", "*trademark", "v2", "preservesig", "*config" });
 
         // Make sure there is at least one argument.
         if ((cmdLine.NumArgs + cmdLine.NumOpts) < 1)
@@ -343,9 +342,7 @@ internal class TlbImp
             }
             else if (opt.Name.Equals("reference"))
             {
-                String FullPath = null;
-                
-                FullPath = GetFullPath(opt.Value, false);
+                string FullPath = GetFullPath(opt.Value, false);
                 
                 if (FullPath == null)
                 {
@@ -370,9 +367,7 @@ internal class TlbImp
             }
             else if (opt.Name.Equals("tlbreference"))
             {
-                String FullPath = null;
-                
-                FullPath = GetFullPath(opt.Value, false);
+                string FullPath = GetFullPath(opt.Value, false);
                 if (FullPath == null)
                 {
                     ReturnCode = ErrorReturnCode;
@@ -627,11 +622,9 @@ internal class TlbImp
     
     private static string GetFullPath(String FileName, bool fInputFile)
     {
-        String fullpath = null;
-        
         // Try resolving the partial path (or if we just got a filename, the current path)
         //  to a full path and check for the file.
-        fullpath = (new FileInfo(Path.GetFullPath(FileName))).FullName;
+        string fullpath = (new FileInfo(Path.GetFullPath(FileName))).FullName;
         if (!File.Exists(fullpath))
         {
             // Next, call SearchPath to find the full path of the typelib to load.
@@ -671,11 +664,11 @@ internal class TlbImp
 
         string resNameBase = "Msg_Usage_";
         string outputStr = "temp";
-        string resName;
         int index = 0;
 
         while (outputStr != null)
         {
+            string resName;
             if (index < 10)
                 resName = resNameBase + "0" + index;
             else

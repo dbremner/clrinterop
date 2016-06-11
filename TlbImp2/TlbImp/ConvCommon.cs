@@ -39,8 +39,7 @@ namespace tlbimp2
         static public void DefineGuid(TypeInfo typeInfo, TypeInfo nonAliasedTypeInfo, TypeBuilder typeBuilder)
         {
             // Prefer the GUID on the alias, otherwise the aliased type
-            Guid guid = Guid.Empty;
-            guid = typeInfo.GetTypeAttr().Guid;
+            Guid guid = typeInfo.GetTypeAttr().Guid;
             if (guid == Guid.Empty)
                 guid = nonAliasedTypeInfo.GetTypeAttr().Guid;
 
@@ -1550,9 +1549,6 @@ namespace tlbimp2
             // First string is the method name so offset by one
             String[] saNames = info.RefTypeInfo.GetNames(func.memid, cParams + 1);
 
-            bool isVarArg;
-            bool isOptionalArg;
-
             //
             // Process parameters
             //
@@ -1569,8 +1565,8 @@ namespace tlbimp2
                 if (returnKind == ReturnKind.RetValParameter && n == retArgId)
                     continue;
 
-                isOptionalArg = (n >= firstOptArg && n <= lastOptArg);
-                isVarArg = (n == varArg);
+                bool isOptionalArg = (n >= firstOptArg && n <= lastOptArg);
+                bool isVarArg = (n == varArg);
 
                 ProcessParam(info, memberInfo, elem, paramTypeConverters[paramIndex], methodBuilder, paramIndex + 1, saNames[n + 1], isVarArg, isOptionalArg);
 

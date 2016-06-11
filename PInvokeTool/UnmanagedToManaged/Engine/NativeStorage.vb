@@ -1195,14 +1195,13 @@ Partial Class NativeStorage
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function TryLoadProcedure(ByVal name As String, ByRef retProc As NativeProcedure) As Boolean
-        Dim proc As NativeProcedure = Nothing
         Dim procRow As ProcedureRow = Nothing
         If Not Procedure.TryLoadByName(name, procRow) Then
             Return False
         End If
 
         ' Load the procedure
-        proc = New NativeProcedure()
+        Dim proc = New NativeProcedure()
         proc.Name = procRow.Name
         proc.CallingConvention = procRow.CallingConvention
         If Not procRow.IsDllNameNull() Then

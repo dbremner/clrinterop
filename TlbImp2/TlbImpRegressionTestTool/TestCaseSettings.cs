@@ -56,18 +56,15 @@ namespace TlbImpRegressionTestTool
             XmlDocument xDoc = new XmlDocument();
 
             xDoc.Load(Application.StartupPath + "\\TlbImpRegressionTestTool.exe.config");
-            XmlNode xNode;
-            XmlElement xElem1;
-            XmlElement xElem2;
-            xNode = xDoc.SelectSingleNode("//appSettings");
-            xElem1 = (XmlElement)xNode.SelectSingleNode("//add[@key='" + AppKey + "']");
+            XmlNode xNode = xDoc.SelectSingleNode("//appSettings");
+            XmlElement xElem1 = (XmlElement)xNode.SelectSingleNode("//add[@key='" + AppKey + "']");
             if (xElem1 != null)
             {
                 xElem1.SetAttribute("value", AppValue);
             }
             else
             {
-                xElem2 = xDoc.CreateElement("add");
+                XmlElement xElem2 = xDoc.CreateElement("add");
                 xElem2.SetAttribute("key", AppKey);
                 xElem2.SetAttribute("value", AppValue);
                 xNode.AppendChild(xElem2);

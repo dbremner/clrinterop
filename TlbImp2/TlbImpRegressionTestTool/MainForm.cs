@@ -179,9 +179,7 @@ namespace TlbImpRegressionTestTool
         {
             try
             {
-                FileInfo file;
-
-                file = new FileInfo(m_settings.TestedCommand);
+                FileInfo file = new FileInfo(m_settings.TestedCommand);
                 if (!file.Exists)
                 {
                     MessageBox.Show("Tested TlbImp does not exist.");

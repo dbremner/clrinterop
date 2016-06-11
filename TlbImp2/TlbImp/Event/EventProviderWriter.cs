@@ -101,8 +101,6 @@ namespace tlbimp2.Event
 
         private MethodBuilder DefineAddEventMethod(TypeBuilder OutputTypeBuilder, MethodInfo SrcItfMethod, Type SinkHelperClass, FieldBuilder fbSinkHelperArray, FieldBuilder fbEventCP, MethodBuilder mbInitSrcItf)
         {
-            Type[] aParamTypes;
-
             // Find the delegate on the event sink helper.
             FieldInfo DelegateField = SinkHelperClass.GetField("m_" + SrcItfMethod.Name + "Delegate");
             Debug.Assert(DelegateField != null, "Unable to find the field m_" + SrcItfMethod.Name + "Delegate on the sink helper");
@@ -120,7 +118,7 @@ namespace tlbimp2.Event
             Debug.Assert(CPAdviseMethod != null, "Unable to find the method ConnectionPoint.Advise");
 
             // Retrieve the ArrayList.Add method.
-            aParamTypes = new Type[1];
+            var aParamTypes = new Type[1];
             aParamTypes[0] = typeof(Object);
             MethodInfo ArrayListAddMethod = typeof(ArrayList).GetMethod("Add", aParamTypes, null);
             Debug.Assert(ArrayListAddMethod != null, "Unable to find the method ArrayList.Add");
@@ -141,8 +139,7 @@ namespace tlbimp2.Event
             Debug.Assert(MonitorExitMethod != null, "Unable to find the method Monitor.Exit()");
 
             // Define the add_XXX method.
-            Type[] parameterTypes;
-            parameterTypes = new Type[1];
+            var parameterTypes = new Type[1];
             parameterTypes[0] = DelegateField.FieldType;
             MethodBuilder Meth = OutputTypeBuilder.DefineMethod(
                 "add_" + SrcItfMethod.Name,
@@ -267,8 +264,6 @@ namespace tlbimp2.Event
 
         private MethodBuilder DefineRemoveEventMethod(TypeBuilder OutputTypeBuilder, MethodInfo SrcItfMethod, Type SinkHelperClass, FieldBuilder fbSinkHelperArray, FieldBuilder fbEventCP)
         {
-            Type[] aParamTypes;
-
             // Find the delegate on the event sink helper.
             FieldInfo DelegateField = SinkHelperClass.GetField("m_" + SrcItfMethod.Name + "Delegate");
             Debug.Assert(DelegateField != null, "Unable to find the field m_" + SrcItfMethod.Name + "Delegate on the sink helper");
@@ -278,7 +273,7 @@ namespace tlbimp2.Event
             Debug.Assert(CookieField != null, "Unable to find the field m_dwCookie on the sink helper");
 
             // Retrieve the ArrayList.RemoveAt method.
-            aParamTypes = new Type[1];
+            var aParamTypes = new Type[1];
             aParamTypes[0] = typeof(Int32);
             MethodInfo ArrayListRemoveMethod = typeof(ArrayList).GetMethod("RemoveAt", aParamTypes, null);
             Debug.Assert(ArrayListRemoveMethod != null, "Unable to find the method ArrayList.RemoveAt()");
@@ -325,8 +320,7 @@ namespace tlbimp2.Event
             Debug.Assert(ReleaseComObjectMethod != null, "Unable to find the method Marshal.ReleaseComObject()");
 
             // Define the remove_XXX method.
-            Type[] parameterTypes;
-            parameterTypes = new Type[1];
+            var parameterTypes = new Type[1];
             parameterTypes[0] = DelegateField.FieldType;
             MethodBuilder Meth = OutputTypeBuilder.DefineMethod(
                 "remove_" + SrcItfMethod.Name,
@@ -524,7 +518,6 @@ namespace tlbimp2.Event
             Debug.Assert(DefaultArrayListCons != null, "Unable to find the constructor for class ArrayList");
 
             // Temp byte array for Guid
-            ubyte[] rgByteGuid = new ubyte[16];
 
             // Retrieve the constructor info for the Guid constructor.
             Type[] aParamTypes = new Type[1];
@@ -560,7 +553,7 @@ namespace tlbimp2.Event
             il.Emit(OpCodes.Stloc, ltCP);
 
             // Get unsigned byte array for the GUID of the event interface.
-            rgByteGuid = SourceInterface.GUID.ToByteArray();
+            byte[] rgByteGuid = SourceInterface.GUID.ToByteArray();
 
             // Generate the following code:
             //  ubyte rgByteArray[] = new ubyte [16];

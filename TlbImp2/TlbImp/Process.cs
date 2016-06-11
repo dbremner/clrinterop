@@ -524,18 +524,16 @@ namespace tlbimp2
             int nCount = tlb.GetTypeInfoCount();
             for (int n = 0; n < nCount; ++n)
             {
-                TypeInfo type = null;
                 try
                 {
-                    type = tlb.GetTypeInfo(n);
+                    TypeInfo type = tlb.GetTypeInfo(n);
                     string strType = type.GetDocumentation();
-
-                    TypeInfo typeToProcess;
-                    TypeAttr attrToProcess;
 
                     using (TypeAttr attr = type.GetTypeAttr())
                     {
                         TypeLibTypes.Interop.TYPEKIND kind = attr.typekind;
+                        TypeInfo typeToProcess;
+                        TypeAttr attrToProcess;
                         if (kind == TypeLibTypes.Interop.TYPEKIND.TKIND_ALIAS)
                         {
                             ConvCommon.ResolveAlias(type, attr.tdescAlias, out typeToProcess, out attrToProcess);

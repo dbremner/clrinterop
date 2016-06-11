@@ -547,11 +547,10 @@ namespace tlbimp2
 
         private static void SetPropertyInfo(SortedDictionary<int, InterfacePropertyInfo> propertyList, InterfaceMemberInfo memberInfo, PropertyKind kind)
         {
-            InterfacePropertyInfo funcPropInfo;
             if (!propertyList.ContainsKey(memberInfo.MemId))
                 propertyList.Add(memberInfo.MemId, new InterfacePropertyInfo(memberInfo.RefTypeInfo, kind));
 
-            funcPropInfo = propertyList[memberInfo.MemId];
+            InterfacePropertyInfo funcPropInfo = propertyList[memberInfo.MemId];
             switch (memberInfo.InvokeKind)
             {
                 case TypeLibTypes.Interop.INVOKEKIND.INVOKE_PROPERTYGET:
@@ -969,7 +968,6 @@ namespace tlbimp2
                 m_parentInterface = null;
                 m_parentInterfaceTypeInfo = null;
                 string interfacename = m_info.GetUniqueManagedName(RefTypeInfo, ConvType.Interface);
-                Type typeParent = null;
 
                 m_implementsIEnumerable = ConvCommon.ExplicitlyImplementsIEnumerable(typeInfo, typeAttr);
 
@@ -990,7 +988,7 @@ namespace tlbimp2
                             ConvCommon.ThrowIfImplementingExportedClassInterface(RefTypeInfo, m_parentInterface);
 
                             m_parentInterfaceTypeInfo = parent;
-                            typeParent = m_parentInterface.RealManagedType;
+                            Type typeParent = m_parentInterface.RealManagedType;
                             implTypeList.Add(typeParent);
                         }
                     }

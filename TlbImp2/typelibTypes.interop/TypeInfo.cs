@@ -73,8 +73,7 @@ namespace TypeLibTypes.Interop
         public TypeInfo GetRefType(int index)
         {
             int href;
-            int hr;
-            hr = m_typeInfo.GetRefTypeOfImplType(index, out href);
+            int hr = m_typeInfo.GetRefTypeOfImplType(index, out href);
             if (hr != 0)
                 throw Marshal.GetExceptionForHR(hr);
             ITypeInfo typeinfo;

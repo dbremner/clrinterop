@@ -241,10 +241,9 @@ namespace TlbImpRuleEngine
                 case VarEnum.VT_RECORD:
                 case VarEnum.VT_USERDEFINED:
                     // Handle structs, interfaces, enums, and unions
-                    TypeInfo realType;
                     try
                     {
-                        realType = m_typeDesc.GetUserDefinedTypeInfo(m_interfaceType);
+                        TypeInfo realType = m_typeDesc.GetUserDefinedTypeInfo(m_interfaceType);
                         string typeString = "[" + realType.GetContainingTypeLib().GetDocumentation() +
                             "]" + realType.GetDocumentation();
                         m_typeStringBuilder.Append(typeString);

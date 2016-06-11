@@ -231,11 +231,9 @@ public class TlbImpCode
         }
         catch (ReflectionTypeLoadException e)
         {
-            int i;
-            Exception[] exceptions;
             Output.WriteError(Resource.FormatString("Err_TypeLoadExceptions"), ErrorCode.Err_TypeLoadExceptions);
-            exceptions = e.LoaderExceptions;
-            for (i = 0; i < exceptions.Length; i++)
+            Exception[] exceptions = e.LoaderExceptions;
+            for (int i = 0; i < exceptions.Length; i++)
             {
                 try
                 {
@@ -334,10 +332,8 @@ public class TlbImpCode
     /// <returns>HRESULT. >=0 if succeeds, otherwise failed</returns>
     private static int TryLoadTypeLib(string pathName, string simpleName, Guid tlbId, ushort majorVersion, ushort minorVersion)
     {
-        int hr;
-
         TypeLibTypes.Interop.ITypeLib typeLib;
-        hr = TypeLib.LoadTypeLib(pathName, out typeLib);
+        int hr = TypeLib.LoadTypeLib(pathName, out typeLib);
         if (hr >= 0)
         {
             s_RefTypeLibraries.Add(pathName, typeLib as System.Runtime.InteropServices.ComTypes.ITypeLib);
@@ -498,13 +494,11 @@ public class TlbImpCode
     //**************************************************************************
     private static bool LoadAssemblyRef(String path)
     {
-        Assembly asm = null;
-
         // We're guaranteed to have a fully qualified path at this point.              
         try
         {
             // Load the assembly.
-            asm = Assembly.ReflectionOnlyLoadFrom(path);
+            Assembly asm = Assembly.ReflectionOnlyLoadFrom(path);
                     
             // Retrieve the GUID and add the assembly to the hashtable of referenced assemblies.
             Guid TypeLibId = Marshal.GetTypeLibGuidForAssembly(asm);
@@ -672,7 +666,6 @@ public class TlbImpCode
     internal static bool GetPrimaryInteropAssembly(Object TypeLib, out String asmName, out String asmCodeBase)
     {
         IntPtr pAttr = (IntPtr)0;
-        _TYPELIBATTR Attr;
         System.Runtime.InteropServices.ComTypes.ITypeLib pTLB = (System.Runtime.InteropServices.ComTypes.ITypeLib)TypeLib;
         int Major = 0;
         int Minor = 0;
@@ -683,7 +676,7 @@ public class TlbImpCode
         try
         {
             pTLB.GetLibAttr(out pAttr);
-            Attr = (_TYPELIBATTR)Marshal.PtrToStructure(pAttr, typeof(_TYPELIBATTR));
+            _TYPELIBATTR Attr = (_TYPELIBATTR)Marshal.PtrToStructure(pAttr, typeof(_TYPELIBATTR));
             Major = Attr.wMajorVerNum;
             Minor = Attr.wMinorVerNum;
             TlbId = Attr.guid;
@@ -845,7 +838,6 @@ internal class ImporterCallback : ITypeLibImporterNotifySink
 
     public Assembly ResolveRef(Object TypeLib)
     {
-        Assembly rslt = null;
         System.Runtime.InteropServices.ComTypes.ITypeLib pTLB = (System.Runtime.InteropServices.ComTypes.ITypeLib)TypeLib;
         String strPIAName = null;
         String strPIACodeBase = null;
@@ -863,7 +855,7 @@ internal class ImporterCallback : ITypeLibImporterNotifySink
         //----------------------------------------------------------------------
         // Check our list of referenced assemblies.
 
-        rslt = (Assembly)TlbImpCode.s_AssemblyRefs[Marshal.GetTypeLibGuid((System.Runtime.InteropServices.ComTypes.ITypeLib)TypeLib)];
+        Assembly rslt = (Assembly)TlbImpCode.s_AssemblyRefs[Marshal.GetTypeLibGuid((System.Runtime.InteropServices.ComTypes.ITypeLib)TypeLib)];
         if (rslt != null)
         {
             // PIA should only reference PIA
@@ -957,7 +949,6 @@ internal class ImporterCallback : ITypeLibImporterNotifySink
         try
         {
             IntPtr pAttr = (IntPtr)0;
-            _TYPELIBATTR Attr;
             Int16 MajorTlbVer = 0;
             Int16 MinorTlbVer = 0;
             Guid TlbId;
@@ -972,7 +963,7 @@ internal class ImporterCallback : ITypeLibImporterNotifySink
             try
             {
                 ((System.Runtime.InteropServices.ComTypes.ITypeLib)TypeLib).GetLibAttr(out pAttr);
-                Attr = (_TYPELIBATTR)Marshal.PtrToStructure(pAttr, typeof(_TYPELIBATTR));
+                _TYPELIBATTR Attr = (_TYPELIBATTR)Marshal.PtrToStructure(pAttr, typeof(_TYPELIBATTR));
                 MajorTlbVer = Attr.wMajorVerNum;
                 MinorTlbVer = Attr.wMinorVerNum;
                 TlbId = Attr.guid;
@@ -1074,11 +1065,9 @@ internal class ImporterCallback : ITypeLibImporterNotifySink
         catch (ReflectionTypeLoadException e)
         {
             // Display the type load exceptions that occurred and rethrow the exception.
-            int i;
-            Exception[] exceptions;
             Output.WriteError(Resource.FormatString("Err_TypeLoadExceptions"), ErrorCode.Err_TypeLoadExceptions);
-            exceptions = e.LoaderExceptions;
-            for (i = 0; i < exceptions.Length; i++)
+            Exception[] exceptions = e.LoaderExceptions;
+            for (int i = 0; i < exceptions.Length; i++)
             {
                 try 
                 {

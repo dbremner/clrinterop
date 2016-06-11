@@ -31,8 +31,7 @@ internal class Resource
     
     internal static String GetString(String key)
     {
-        string s = null;
-        s = GetStringIfExists(key);
+        string s = GetStringIfExists(key);
         
         if (s == null) 
             // We are not localizing this stringas this is for invalid resource scenario

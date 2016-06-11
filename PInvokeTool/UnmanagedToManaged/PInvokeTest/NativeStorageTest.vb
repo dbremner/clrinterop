@@ -256,9 +256,8 @@ Public Class NativeStorageTest
         ns.AddDefinedType(fptr)
 
         Dim temp As NativeDefinedType = Nothing
-        Dim retPtr As NativeFunctionPointer = Nothing
         Assert.IsTrue(ns.TryLoadDefined(fptr.Name, temp))
-        retPtr = DirectCast(temp, NativeFunctionPointer)
+        Dim retPtr = DirectCast(temp, NativeFunctionPointer)
         Assert.AreEqual(NativeCallingConvention.Pascal, retPtr.CallingConvention)
 
         Dim retProc As NativeProcedure = Nothing

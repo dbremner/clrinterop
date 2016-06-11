@@ -128,8 +128,6 @@ internal class CommandLine
 
     public CommandLine(String[] aArgs, String[] aValidOpts)
     {
-        int i, iArg, iOpt;
-
         // Keep a list of valid option names.
         m_sValidOptions = new Abbrevs(aValidOpts);
 
@@ -140,25 +138,21 @@ internal class CommandLine
 
         // Reset counters of raw arguments and option/value pairs found
         // so far.
-        iArg = 0;
-        iOpt = 0;
+        int iArg = 0;
+        int iOpt = 0;
 
         // Iterate through words of command line.
-        for (i = 0; i < aArgs.Length; i++)
+        for (int i = 0; i < aArgs.Length; i++)
         {
             // Check for option or raw argument.
             if (aArgs[i].StartsWith("/") ||
                 aArgs[i].StartsWith("-"))
             {
-                String strOpt;
-                String strVal = null;
-                bool bRequiresValue;
-                bool bCanHaveValue;
-
                 // It's an option. Strip leading '/' or '-' and
                 // anything after a value separator (':' or
                 // '=').
                 int iColon = aArgs[i].IndexOfAny(new char[] {':', '='});
+                String strOpt;
                 if (iColon == -1)
                         strOpt = aArgs[i].Substring(1);
                 else
@@ -167,6 +161,8 @@ internal class CommandLine
                 // Look it up in the table of valid options (to
                 // check it exists, get the full option name and
                 // to see if an associated value is expected).
+                bool bRequiresValue;
+                bool bCanHaveValue;
                 strOpt = m_sValidOptions.Lookup(strOpt, out bRequiresValue, out bCanHaveValue);
 
                 // Check that the user hasn't specified a value separator for an option 
@@ -178,6 +174,7 @@ internal class CommandLine
                 if (bRequiresValue && (iColon == -1))
                     throw new TlbImpGeneralException(Resource.FormatString("Err_ValueRequired", strOpt), ErrorCode.Err_ValueRequired, true);
                 
+                String strVal = null;
                 // Go look for a value if there is one.
                 if (bCanHaveValue && iColon != -1)
                 {

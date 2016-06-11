@@ -1835,11 +1835,11 @@ namespace SignatureGenerator
         {
             if (key == null) throw new ArgumentNullException(nameof(key));
 
-            NativeTypeDefinition definition;
             T specific_definition;
 
             lock (cache)
             {
+                NativeTypeDefinition definition;
                 if (cache.TryGetValue(key, out definition)) return (T)definition;
 
                 specific_definition = new T();
