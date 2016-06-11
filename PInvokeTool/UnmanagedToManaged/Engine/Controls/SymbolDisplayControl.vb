@@ -234,14 +234,14 @@ Namespace Controls
         Private Sub GenerateCode(ByVal force As Boolean)
             m_codeBox.Text = String.Empty
 
-            Dim text As String
+            Dim generated As String
             If force OrElse m_searchGrid.SelectedRows.Count <= 5 Then
-                text = m_conv.ConvertToPInvokeCode(m_searchGrid.SelectedSymbolBag)
+                generated = m_conv.ConvertToPInvokeCode(m_searchGrid.SelectedSymbolBag)
             Else
-                text = "More than 5 rows selected.  Will not autogenerate"
+                generated = "More than 5 rows selected.  Will not autogenerate"
             End If
 
-            m_codeBox.Code = text
+            m_codeBox.Code = generated
         End Sub
 
 #End Region

@@ -53,11 +53,11 @@ namespace TlbImpRuleFileEditor
             try
             {
                 // Load the typelib.
-                System.Runtime.InteropServices.ComTypes.ITypeLib TypeLib = null;
-                APIHelper.LoadTypeLibEx(tlbFileName, REGKIND.REGKIND_DEFAULT, out TypeLib);
+                System.Runtime.InteropServices.ComTypes.ITypeLib typeLib = null;
+                APIHelper.LoadTypeLibEx(tlbFileName, REGKIND.REGKIND_DEFAULT, out typeLib);
 
                 // Update the tlbTreeView.
-                m_typeLib = new TypeLib((ITypeLib)TypeLib);
+                m_typeLib = new TypeLib((ITypeLib)typeLib);
                 treeViewTypeLib.SetTypeLibrary(m_typeLib);
             }
             catch (Exception)

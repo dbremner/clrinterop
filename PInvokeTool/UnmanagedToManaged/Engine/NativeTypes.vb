@@ -829,18 +829,18 @@ Public Class NativeNamedType
     Public ReadOnly Property RealTypeFullName() As String
         Get
             If RealType IsNot Nothing Then
-                Dim name As String
+                Dim result As String
                 If String.IsNullOrEmpty(m_qualification) Then
-                    name = RealType.DisplayName
+                    result = RealType.DisplayName
                 Else
-                    name = m_qualification & " " & RealType.DisplayName
+                    result = m_qualification & " " & RealType.DisplayName
                 End If
 
                 If IsConst Then
-                    Return "const " & name
+                    Return "const " & result
                 End If
 
-                Return name
+                Return result
             Else
                 Return "<null>"
             End If
